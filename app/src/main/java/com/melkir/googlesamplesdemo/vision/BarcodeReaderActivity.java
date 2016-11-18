@@ -13,7 +13,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.melkir.googlesamplesdemo.R;
 import com.melkir.vision.barcodereader.BarcodeCaptureActivity;
 
-public class BarcodeReader extends AppCompatActivity implements View.OnClickListener {
+public class BarcodeReaderActivity extends AppCompatActivity implements View.OnClickListener {
     // use a compound button so either checkbox or switch widgets work.
     private CompoundButton autoFocus;
     private CompoundButton useFlash;
@@ -21,7 +21,7 @@ public class BarcodeReader extends AppCompatActivity implements View.OnClickList
     private TextView barcodeValue;
 
     private static final int RC_BARCODE_CAPTURE = 9001;
-    private static final String TAG = BarcodeReader.class.getSimpleName();
+    private static final String TAG = BarcodeReaderActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

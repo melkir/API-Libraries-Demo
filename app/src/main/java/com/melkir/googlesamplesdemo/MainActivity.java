@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.melkir.googlesamplesdemo.vision.BarcodeReader;
+import com.melkir.googlesamplesdemo.vision.BarcodeReaderActivity;
+import com.melkir.googlesamplesdemo.vision.FaceTrackerActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +17,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startBarcodeReader(View view) {
-        Intent intent = new Intent(this, BarcodeReader.class);
+        Intent intent = new Intent(this, BarcodeReaderActivity.class);
+        startActivity(intent);
+    }
+
+    public void startFaceTracker(View view) {
+        Intent intent = new Intent(this, FaceTrackerActivity.class);
         startActivity(intent);
     }
 }

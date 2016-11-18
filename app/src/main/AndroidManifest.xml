@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!-- main activity -->
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -15,11 +16,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- child of the main activity -->
+
+        <!-- child of the main activity for barcode reader -->
         <activity
-            android:name=".vision.BarcodeReader"
+            android:name=".vision.BarcodeReaderActivity"
             android:label="Barcode reader"
             android:parentActivityName=".MainActivity" />
+
+        <!-- child of the main activity for face tracker -->
+        <activity
+            android:name=".vision.FaceTrackerActivity"
+            android:label="Face Tracker"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="fullSensor" />
     </application>
 
 </manifest>
