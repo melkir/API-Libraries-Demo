@@ -13,6 +13,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,6 +28,13 @@
         <activity
             android:name=".vision.FaceTrackerActivity"
             android:label="Face Tracker"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="fullSensor" />
+
+        <!-- child of the main activity for googly eyes -->
+        <activity
+            android:name=".vision.GooglyEyesActivity"
+            android:label="Googly Eyes"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="fullSensor" />
     </application>

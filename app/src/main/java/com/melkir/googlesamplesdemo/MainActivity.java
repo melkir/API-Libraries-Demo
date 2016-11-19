@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.melkir.googlesamplesdemo.vision.BarcodeReaderActivity;
 import com.melkir.googlesamplesdemo.vision.FaceTrackerActivity;
+import com.melkir.googlesamplesdemo.vision.GooglyEyesActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,13 +17,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void startBarcodeReader(View view) {
+    public void startBarcodeReaderActivity(View view) {
         Intent intent = new Intent(this, BarcodeReaderActivity.class);
         startActivity(intent);
     }
 
-    public void startFaceTracker(View view) {
+    public void startFaceTrackerActivity(View view) {
         Intent intent = new Intent(this, FaceTrackerActivity.class);
+        startActivity(intent);
+    }
+
+    public void startGooglyEyesActivity(View view) {
+        Intent intent = new Intent(this, GooglyEyesActivity.class);
         startActivity(intent);
     }
 }

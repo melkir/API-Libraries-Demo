@@ -3,4 +3,6 @@
     <string name="button_barcode_reader">Barcode Reader</string>
     <string name="button_facetracker">Face Tracker</string>
     <string name="main_description">All Google Samples in one place!</string>
+    <string name="button_flip">flip</string>
+    <string name="button_googly_eyes">Googly Eyes</string>
 </resources>
