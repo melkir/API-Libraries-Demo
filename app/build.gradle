@@ -13,7 +13,7 @@ android {
     }
     buildTypes {
         debug {
-            resValue "string", "google_maps_key", "\"${MyOurStreetMapApiKey}\""
+            resValue "string", "google_maps_key", "${MyOurStreetMapApiKey}"
         }
         release {
             minifyEnabled false
@@ -39,4 +39,5 @@ dependencies {
     compile project(path: ':googly-eyes')
     compile project(path: ':accelerometer-play')
     compile project(path: ':our-streets')
+    compile project(path: ':material-design-codelab')
 }

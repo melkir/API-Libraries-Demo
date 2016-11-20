@@ -1,1 +1,1 @@
-include ':app', ':barcode-reader', ':face-tracker', ':googly-eyes', ':accelerometer-play', ':our-streets'
+include ':app', ':barcode-reader', ':face-tracker', ':googly-eyes', ':accelerometer-play', ':our-streets', ':material-design-codelab'

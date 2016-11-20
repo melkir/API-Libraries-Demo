@@ -56,8 +56,17 @@
         android:id="@+id/button_our_streets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="startOurStreetsActivity"
-        android:text="@string/button_our_streets"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/button_accelerometer_play"
-        android:layout_alignParentStart="true" />
+        android:onClick="startOurStreetsActivity"
+        android:text="@string/button_our_streets" />
+
+    <Button
+        android:id="@+id/button_android_design_library"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button_our_streets"
+        android:onClick="startAndroidDesignLibrary"
+        android:text="@string/button_android_design_library" />
 </RelativeLayout>

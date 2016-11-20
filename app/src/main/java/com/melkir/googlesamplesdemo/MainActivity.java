@@ -42,4 +42,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, com.melkir.ourstreets.activity.MainActivity.class);
         startActivity(intent);
     }
+
+    public void startAndroidDesignLibrary(View view) {
+        Intent intent = new Intent(this, com.melkir.materialdesigncodelab.MainActivity.class);
+        startActivity(intent);
+    }
 }
