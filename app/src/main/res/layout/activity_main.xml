@@ -42,4 +42,13 @@
         android:layout_below="@+id/button_facetracker"
         android:onClick="startGooglyEyesActivity"
         android:text="@string/button_googly_eyes" />
+
+    <Button
+        android:text="@string/button_accelerometer_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_googlyeyes"
+        android:layout_alignParentStart="true"
+        android:onClick="startAccelerometerPlayActivity"
+        android:id="@+id/button_accelerometer_play" />
 </RelativeLayout>

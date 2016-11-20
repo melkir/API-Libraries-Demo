@@ -5,4 +5,5 @@
     <string name="main_description">All Google Samples in one place!</string>
     <string name="button_flip">flip</string>
     <string name="button_googly_eyes">Googly Eyes</string>
+    <string name="button_accelerometer_play">Accelerometer Play</string>
 </resources>

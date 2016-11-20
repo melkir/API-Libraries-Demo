@@ -1,0 +1,10 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_accelerometer_play"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/wood"
+    android:orientation="vertical"
+    tools:context="com.melkir.googlesamplesdemo.sensor.AccelerometerPlayActivity">
+
+</FrameLayout>
