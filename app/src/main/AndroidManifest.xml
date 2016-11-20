@@ -43,6 +43,17 @@
             android:name="com.melkir.accelerometerplay.AccelerometerPlayActivity"
             android:label="Accelerometer Play"
             android:parentActivityName=".MainActivity" />
+
+        <!-- child of the main activity for our streets -->
+        <activity
+            android:name="com.melkir.ourstreets.activity.MainActivity"
+            android:label="Our Streets"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/OurStreets" />
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

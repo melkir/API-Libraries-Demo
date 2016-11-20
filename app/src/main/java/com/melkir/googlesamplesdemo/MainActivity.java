@@ -37,4 +37,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AccelerometerPlayActivity.class);
         startActivity(intent);
     }
+
+    public void startOurStreetsActivity(View view) {
+        Intent intent = new Intent(this, com.melkir.ourstreets.activity.MainActivity.class);
+        startActivity(intent);
+    }
 }
