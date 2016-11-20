@@ -9,7 +9,7 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true">
-        <activity android:name=".activity_accelerometer_play"></activity>
+        <activity android:name=".AccelerometerPlayActivity" />
     </application>
 
 </manifest>
