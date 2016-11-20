@@ -40,11 +40,9 @@
 
         <!-- child of the main activity for accelerometer play -->
         <activity
-            android:name=".sensor.AccelerometerPlayActivity"
+            android:name="com.melkir.accelerometerplay.AccelerometerPlayActivity"
             android:label="Accelerometer Play"
             android:parentActivityName=".MainActivity" />
     </application>
 
-    <!-- permission for accelerometer play -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 </manifest>

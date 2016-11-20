@@ -1,1 +1,1 @@
-include ':app', ':barcode-reader', ':face-tracker', ':googly-eyes'
+include ':app', ':barcode-reader', ':face-tracker', ':googly-eyes', ':accelerometer-play'

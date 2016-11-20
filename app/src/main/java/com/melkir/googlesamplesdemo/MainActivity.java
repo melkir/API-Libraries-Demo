@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.melkir.googlesamplesdemo.sensor.AccelerometerPlayActivity;
+import com.melkir.accelerometerplay.AccelerometerPlayActivity;
 import com.melkir.googlesamplesdemo.vision.BarcodeReaderActivity;
 import com.melkir.googlesamplesdemo.vision.FaceTrackerActivity;
 import com.melkir.googlesamplesdemo.vision.GooglyEyesActivity;

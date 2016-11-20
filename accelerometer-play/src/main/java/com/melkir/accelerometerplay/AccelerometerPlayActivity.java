@@ -1,4 +1,4 @@
-package com.melkir.googlesamplesdemo.sensor;
+package com.melkir.accelerometerplay;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -22,8 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-
-import com.melkir.googlesamplesdemo.R;
 
 /**
  * This is an example of using the accelerometer to integrate the device's
