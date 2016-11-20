@@ -16,10 +16,10 @@
 
 package com.melkir.ourstreets.fragment;
 
-import com.melkir.ourstreets.activity.MainActivity;
+import com.melkir.ourstreets.activity.OurStreetsActivity;
 
 /**
- * Enables fragments to listen to {@link MainActivity#onBackPressed()}.
+ * Enables fragments to listen to {@link OurStreetsActivity#onBackPressed()}.
  * Fragments implementing BackStackAware must pop themselves of the back stack
  * after they're finished with their work.
  */

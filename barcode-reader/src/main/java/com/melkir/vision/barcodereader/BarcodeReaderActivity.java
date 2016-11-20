@@ -1,4 +1,20 @@
-package com.melkir.googlesamplesdemo.vision;
+/*
+ * Copyright (C) The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.melkir.vision.barcodereader;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +26,11 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
-import com.melkir.googlesamplesdemo.R;
-import com.melkir.vision.barcodereader.BarcodeCaptureActivity;
 
+/**
+ * Main activity demonstrating how to pass extra parameters to an activity that
+ * reads barcodes.
+ */
 public class BarcodeReaderActivity extends AppCompatActivity implements View.OnClickListener {
     // use a compound button so either checkbox or switch widgets work.
     private CompoundButton autoFocus;
@@ -26,7 +44,7 @@ public class BarcodeReaderActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vision_barcode_reader);
+        setContentView(R.layout.activity_barcode_reader);
 
         statusMessage = (TextView) findViewById(R.id.status_message);
         barcodeValue = (TextView) findViewById(R.id.barcode_value);

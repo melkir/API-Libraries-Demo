@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.melkir.googlyeyes;
+package com.melkir.vision.googlyeyes;
 
 import android.graphics.PointF;
 
@@ -21,7 +21,7 @@ import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 import com.google.android.gms.vision.face.Landmark;
-import com.melkir.googlyeyes.camera.GraphicOverlay;
+import com.melkir.vision.googlyeyes.camera.GraphicOverlay;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.melkir.googlyeyes;
+package com.melkir.vision.googlyeyes;
 
 import android.graphics.PointF;
 import android.os.SystemClock;

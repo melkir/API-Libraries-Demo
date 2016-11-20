@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.melkir.googlyeyes;
+package com.melkir.vision.googlyeyes;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
 
-import com.melkir.googlyeyes.camera.GraphicOverlay;
+import com.melkir.vision.googlyeyes.camera.GraphicOverlay;
 
 /**
  * Graphics class for rendering Googly Eyes on a graphic overlay given the current eye positions.

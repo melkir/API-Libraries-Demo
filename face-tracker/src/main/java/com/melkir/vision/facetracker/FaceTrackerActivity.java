@@ -1,4 +1,20 @@
-package com.melkir.googlesamplesdemo.vision;
+/*
+ * Copyright (C) The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.melkir.vision.facetracker;
 
 import android.Manifest;
 import android.app.Activity;
@@ -21,10 +37,8 @@ import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
-import com.melkir.facetracker.FaceGraphic;
-import com.melkir.facetracker.camera.CameraSourcePreview;
-import com.melkir.facetracker.camera.GraphicOverlay;
-import com.melkir.googlesamplesdemo.R;
+import com.melkir.vision.facetracker.camera.CameraSourcePreview;
+import com.melkir.vision.facetracker.camera.GraphicOverlay;
 
 import java.io.IOException;
 
@@ -54,7 +68,7 @@ public class FaceTrackerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vision_face_tracker);
+        setContentView(R.layout.activity_face_tracker);
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.faceOverlay);

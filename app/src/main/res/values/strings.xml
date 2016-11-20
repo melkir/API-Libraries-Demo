@@ -3,9 +3,8 @@
     <string name="button_barcode_reader">Barcode Reader</string>
     <string name="button_facetracker">Face Tracker</string>
     <string name="main_description">All Google Samples in one place!</string>
-    <string name="button_flip">flip</string>
     <string name="button_googly_eyes">Googly Eyes</string>
     <string name="button_accelerometer_play">Accelerometer Play</string>
     <string name="button_our_streets">Our Streets</string>
-    <string name="button_android_design_library">Android Design Library</string>
+    <string name="button_material_design_activity">Material Design Codelab</string>
 </resources>

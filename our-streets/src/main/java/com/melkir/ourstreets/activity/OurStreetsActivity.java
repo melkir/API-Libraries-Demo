@@ -31,7 +31,7 @@ import com.melkir.ourstreets.fragment.GalleryFragment;
 /**
  * The activity hosting all fragments for this application.
  */
-public class MainActivity extends AppCompatActivity {
+public class OurStreetsActivity extends AppCompatActivity {
 
     private FragmentManager mFragmentManager;
 

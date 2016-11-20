@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.melkir.accelerometerplay.AccelerometerPlayActivity;
-import com.melkir.googlesamplesdemo.vision.BarcodeReaderActivity;
-import com.melkir.googlesamplesdemo.vision.FaceTrackerActivity;
-import com.melkir.googlesamplesdemo.vision.GooglyEyesActivity;
+import com.melkir.materialdesigncodelab.MaterialDesignActivity;
+import com.melkir.ourstreets.activity.OurStreetsActivity;
+import com.melkir.vision.barcodereader.BarcodeReaderActivity;
+import com.melkir.vision.facetracker.FaceTrackerActivity;
+import com.melkir.vision.googlyeyes.GooglyEyesActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startOurStreetsActivity(View view) {
-        Intent intent = new Intent(this, com.melkir.ourstreets.activity.MainActivity.class);
+        Intent intent = new Intent(this, OurStreetsActivity.class);
         startActivity(intent);
     }
 
-    public void startAndroidDesignLibrary(View view) {
-        Intent intent = new Intent(this, com.melkir.materialdesigncodelab.MainActivity.class);
+    public void startMaterialDesignActivity(View view) {
+        Intent intent = new Intent(this, MaterialDesignActivity.class);
         startActivity(intent);
     }
 }

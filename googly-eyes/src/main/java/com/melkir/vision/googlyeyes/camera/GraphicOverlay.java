@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.melkir.facetracker.camera;
+package com.melkir.vision.googlyeyes.camera;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -30,7 +30,7 @@ import java.util.Set;
  * (i.e., the camera preview).  The creator can add graphics objects, update the objects, and remove
  * them, triggering the appropriate drawing and invalidation within the view.<p>
  *
- * Supports scaling and mirroring of the graphics relative the camera's preview properties.  The
+ * Supports scaling and mirroring of the graphics relative to the camera's preview properties.  The
  * idea is that detection items are expressed in terms of a preview size, but need to be scaled up
  * to the full view size, and also mirrored in the case of the front-facing camera.<p>
  *

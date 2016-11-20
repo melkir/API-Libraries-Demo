@@ -23,7 +23,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MaterialDesignActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 

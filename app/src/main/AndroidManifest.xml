@@ -20,20 +20,24 @@
 
         <!-- child of the main activity for barcode reader -->
         <activity
-            android:name=".vision.BarcodeReaderActivity"
-            android:label="Barcode reader"
-            android:parentActivityName=".MainActivity" />
+            android:name="com.melkir.vision.barcodereader.BarcodeReaderActivity"
+            android:label="Barcode reader" />
+
+        <activity
+            android:name="com.melkir.vision.barcodereader.BarcodeCaptureActivity"
+            android:label="Read Barcode"
+            android:parentActivityName="com.melkir.vision.barcodereader.BarcodeReaderActivity" />
 
         <!-- child of the main activity for face tracker -->
         <activity
-            android:name=".vision.FaceTrackerActivity"
+            android:name="com.melkir.vision.facetracker.FaceTrackerActivity"
             android:label="Face Tracker"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="fullSensor" />
 
         <!-- child of the main activity for googly eyes -->
         <activity
-            android:name=".vision.GooglyEyesActivity"
+            android:name="com.melkir.vision.googlyeyes.GooglyEyesActivity"
             android:label="Googly Eyes"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="fullSensor" />
@@ -46,7 +50,7 @@
 
         <!-- child of the main activity for our streets -->
         <activity
-            android:name="com.melkir.ourstreets.activity.MainActivity"
+            android:name="com.melkir.ourstreets.activity.OurStreetsActivity"
             android:label="Our Streets"
             android:parentActivityName=".MainActivity"
             android:theme="@style/OurStreets" />
@@ -56,13 +60,13 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.melkir.materialdesigncodelab.MainActivity"
+            android:name="com.melkir.materialdesigncodelab.MaterialDesignActivity"
             android:label="Material Design Codelab"
             android:theme="@style/MaterialAppTheme" />
 
         <activity
             android:name="com.melkir.materialdesigncodelab.DetailActivity"
-            android:parentActivityName="com.melkir.materialdesigncodelab.MainActivity"
+            android:parentActivityName="com.melkir.materialdesigncodelab.MaterialDesignActivity"
             android:theme="@style/MaterialAppTheme.Base" />
 
     </application>

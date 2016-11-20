@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.melkir.googlyeyes.camera;
+package com.melkir.vision.facetracker.camera;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -81,6 +81,7 @@ public class CameraSourcePreview extends ViewGroup {
         }
     }
 
+    @SuppressWarnings("MissingPermission")
     private void startIfReady() throws IOException {
         if (mStartRequested && mSurfaceAvailable) {
             mCameraSource.start(mSurfaceView.getHolder());
