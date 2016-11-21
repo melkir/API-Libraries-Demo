@@ -20,6 +20,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.melkir.materialdesigncodelab.fragment.CardContentFragment;
+import com.melkir.materialdesigncodelab.fragment.ListContentFragment;
+import com.melkir.materialdesigncodelab.fragment.TileContentFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.melkir.materialdesigncodelab;
+package com.melkir.materialdesigncodelab.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +33,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.melkir.materialdesigncodelab.R;
+import com.melkir.materialdesigncodelab.DetailActivity;
 
 /**
  * Provides UI for the view with Cards.
