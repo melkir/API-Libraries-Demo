@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_googly_eyes"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context="com.melkir.vision.googlyeyes.GooglyEyesActivity">
+    tools:context=".GooglyEyesActivity">
 
     <com.melkir.vision.googlyeyes.camera.CameraSourcePreview
         android:id="@+id/preview"
@@ -22,13 +23,13 @@
         android:id="@+id/flipButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_camera_rear_white_48px"
-        android:background="@null"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="12dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:layout_marginEnd="3dp"
-        android:layout_marginTop="12dp" />
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@null"
+        android:src="@drawable/ic_camera_rear_white_48px" />
 
 </RelativeLayout>
