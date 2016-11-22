@@ -7,4 +7,5 @@
     <string name="button_accelerometer_play">Accelerometer Play</string>
     <string name="button_our_streets">Our Streets</string>
     <string name="button_material_design_activity">Material Design Codelab</string>
+    <string name="button_ai_experiments">AI Experiments</string>
 </resources>

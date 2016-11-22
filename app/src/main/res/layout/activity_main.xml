@@ -69,4 +69,14 @@
         android:layout_below="@+id/button_our_streets"
         android:onClick="startMaterialDesignActivity"
         android:text="@string/button_material_design_activity" />
+
+    <Button
+        android:id="@+id/button_ia_experiments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button_material_design_activity"
+        android:onClick="startAIExperimentsActivity"
+        android:text="@string/button_ai_experiments" />
+
 </RelativeLayout>
