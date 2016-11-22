@@ -6,6 +6,6 @@
     android:layout_height="fill_parent"
     android:background="@drawable/wood"
     android:orientation="vertical"
-    tools:context="com.melkir.accelerometerplay.AccelerometerPlayActivity">
+    tools:context=".AccelerometerPlayActivity">
 
 </FrameLayout>
