@@ -55,9 +55,9 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
+            android:layout_gravity="end|bottom"
             android:layout_marginBottom="@dimen/md_keylines"
-            android:layout_marginRight="@dimen/md_keylines"
+            android:layout_marginEnd="@dimen/md_keylines"
             android:tint="@color/white"
             app:srcCompat="@drawable/ic_add" />
     </android.support.design.widget.CoordinatorLayout>
@@ -69,5 +69,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/material_navheader"
-        app:menu="@menu/menu_navigation" />
+        app:menu="@menu/material_menu_navigation" />
 </android.support.v4.widget.DrawerLayout>
