@@ -29,6 +29,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -53,6 +54,9 @@ public class FaceTrackerActivity extends AppCompatActivity {
 
     private CameraSourcePreview mPreview;
     private GraphicOverlay mGraphicOverlay;
+    private ImageButton mFlipButton;
+
+    private boolean mIsFrontFacing = true;
 
     private static final int RC_HANDLE_GMS = 9001;
     // permission request codes need to be < 256
@@ -72,6 +76,13 @@ public class FaceTrackerActivity extends AppCompatActivity {
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.faceOverlay);
+
+        mFlipButton = (ImageButton) findViewById(R.id.flipButton);
+        mFlipButton.setOnClickListener(mFlipButtonListener);
+
+        if (savedInstanceState != null) {
+            mIsFrontFacing = savedInstanceState.getBoolean("IsFrontFacing");
+        }
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
@@ -121,7 +132,6 @@ public class FaceTrackerActivity extends AppCompatActivity {
      * at long distances.
      */
     private void createCameraSource() {
-
         Context context = getApplicationContext();
         FaceDetector detector = new FaceDetector.Builder(context)
                 .setClassificationType(FaceDetector.ALL_CLASSIFICATIONS)
@@ -143,9 +153,14 @@ public class FaceTrackerActivity extends AppCompatActivity {
             Log.w(TAG, "Face detector dependencies are not yet available.");
         }
 
+        int facing = CameraSource.CAMERA_FACING_FRONT;
+        if (!mIsFrontFacing) {
+            facing = CameraSource.CAMERA_FACING_BACK;
+        }
+
         mCameraSource = new CameraSource.Builder(context, detector)
                 .setRequestedPreviewSize(640, 480)
-                .setFacing(CameraSource.CAMERA_FACING_BACK)
+                .setFacing(facing)
                 .setRequestedFps(30.0f)
                 .build();
     }
@@ -227,6 +242,37 @@ public class FaceTrackerActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.ok, listener)
                 .show();
     }
+
+    //==============================================================================================
+    // UI
+    //==============================================================================================
+
+    /**
+     * Saves the camera facing mode, so that it can be restored after the device is rotated.
+     */
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean("IsFrontFacing", mIsFrontFacing);
+    }
+
+    /**
+     * Toggles between front-facing and rear-facing modes.
+     */
+    private View.OnClickListener mFlipButtonListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            int drawableIcon = (mIsFrontFacing ? R.drawable.ic_camera_front_white_48px : R.drawable.ic_camera_rear_white_48px);
+            mFlipButton.setImageResource(drawableIcon);
+            mIsFrontFacing = !mIsFrontFacing;
+            if (mCameraSource != null) {
+                mCameraSource.release();
+                mCameraSource = null;
+            }
+
+            createCameraSource();
+            startCameraSource();
+        }
+    };
 
     //==============================================================================================
     // Camera Source Preview
