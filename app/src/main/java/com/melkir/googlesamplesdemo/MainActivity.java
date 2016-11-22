@@ -9,6 +9,7 @@ import android.view.View;
 import com.melkir.accelerometerplay.AccelerometerPlayActivity;
 import com.melkir.materialdesigncodelab.MaterialDesignActivity;
 import com.melkir.ourstreets.activity.OurStreetsActivity;
+import com.melkir.texttospeech.TextToSpeechActivity;
 import com.melkir.vision.barcodereader.BarcodeReaderActivity;
 import com.melkir.vision.facetracker.FaceTrackerActivity;
 import com.melkir.vision.googlyeyes.GooglyEyesActivity;
@@ -55,6 +56,18 @@ public class MainActivity extends AppCompatActivity {
         String url = "https://aiexperiments.withgoogle.com";
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    public void startHalloweenDoodleActivity(View view) {
+        String url = "https://www.google.com/doodles/halloween-2016";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    public void startTextToSpeechActivity(View view) {
+        Intent intent = new Intent(this, TextToSpeechActivity.class);
         startActivity(intent);
     }
 

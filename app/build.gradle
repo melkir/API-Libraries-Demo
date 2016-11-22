@@ -40,4 +40,5 @@ dependencies {
     compile project(path: ':accelerometer-play')
     compile project(path: ':our-streets')
     compile project(path: ':material-design-codelab')
+    compile project(path: ':text-to-speech')
 }

@@ -8,4 +8,6 @@
     <string name="button_our_streets">Our Streets</string>
     <string name="button_material_design_activity">Material Design Codelab</string>
     <string name="button_ai_experiments">AI Experiments</string>
+    <string name="button_text_to_speech">Text to speech</string>
+    <string name="button_halloween_doodle">Halloween Doodle</string>
 </resources>

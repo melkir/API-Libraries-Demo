@@ -69,6 +69,11 @@
             android:parentActivityName="com.melkir.materialdesigncodelab.MaterialDesignActivity"
             android:theme="@style/MaterialAppTheme.Base" />
 
+        <activity
+            android:name="com.melkir.texttospeech.TextToSpeechActivity"
+            android:label="Text to Speech"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>
