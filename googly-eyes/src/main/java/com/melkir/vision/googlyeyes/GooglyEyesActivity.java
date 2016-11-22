@@ -32,7 +32,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -61,6 +61,7 @@ public class GooglyEyesActivity extends AppCompatActivity {
     private CameraSource mCameraSource = null;
     private CameraSourcePreview mPreview;
     private GraphicOverlay mGraphicOverlay;
+    private ImageButton mFlipButton;
 
     private boolean mIsFrontFacing = true;
 
@@ -79,8 +80,8 @@ public class GooglyEyesActivity extends AppCompatActivity {
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.faceOverlay);
 
-        final Button button = (Button) findViewById(R.id.flipButton);
-        button.setOnClickListener(mFlipButtonListener);
+        mFlipButton = (ImageButton) findViewById(R.id.flipButton);
+        mFlipButton.setOnClickListener(mFlipButtonListener);
 
         if (savedInstanceState != null) {
             mIsFrontFacing = savedInstanceState.getBoolean("IsFrontFacing");
@@ -223,8 +224,9 @@ public class GooglyEyesActivity extends AppCompatActivity {
      */
     private View.OnClickListener mFlipButtonListener = new View.OnClickListener() {
         public void onClick(View v) {
+            int drawableIcon = (mIsFrontFacing ? R.drawable.ic_camera_front_white_48px : R.drawable.ic_camera_rear_white_48px);
+            mFlipButton.setImageResource(drawableIcon);
             mIsFrontFacing = !mIsFrontFacing;
-
             if (mCameraSource != null) {
                 mCameraSource.release();
                 mCameraSource = null;

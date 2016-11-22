@@ -18,11 +18,17 @@
 
     </com.melkir.vision.googlyeyes.camera.CameraSourcePreview>
 
-    <Button
+    <ImageButton
         android:id="@+id/flipButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="@string/button_flip" />
+        android:src="@drawable/ic_camera_rear_white_48px"
+        android:background="@null"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="12dp" />
 
 </RelativeLayout>
