@@ -3,7 +3,10 @@
     package="com.melkir.materialdesigncodelab">
 
     <application android:allowBackup="true">
-        <activity android:name=".MaterialDesignActivity">
+        <activity
+            android:name=".MaterialDesignActivity"
+            android:label="Material Design Codelab"
+            android:theme="@style/MaterialAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -11,7 +14,8 @@
         </activity>
         <activity
             android:name=".DetailActivity"
-            android:parentActivityName=".MaterialDesignActivity">
+            android:parentActivityName=".MaterialDesignActivity"
+            android:theme="@style/MaterialAppTheme.Base">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MaterialDesignActivity" />
