@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
 
+        <!-- google maps api key for our streets dependency -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
