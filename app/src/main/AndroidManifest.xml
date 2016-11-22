@@ -22,7 +22,6 @@
         <activity
             android:name="com.melkir.vision.barcodereader.BarcodeReaderActivity"
             android:label="Barcode reader" />
-
         <activity
             android:name="com.melkir.vision.barcodereader.BarcodeCaptureActivity"
             android:label="Read Barcode"
@@ -54,21 +53,21 @@
             android:label="Our Streets"
             android:parentActivityName=".MainActivity"
             android:theme="@style/OurStreets" />
-
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <!-- child of the main activity for material design codelab -->
         <activity
             android:name="com.melkir.materialdesigncodelab.MaterialDesignActivity"
             android:label="Material Design Codelab"
             android:theme="@style/MaterialAppTheme" />
-
         <activity
             android:name="com.melkir.materialdesigncodelab.DetailActivity"
             android:parentActivityName="com.melkir.materialdesigncodelab.MaterialDesignActivity"
             android:theme="@style/MaterialAppTheme.Base" />
 
+        <!-- child of the main activity for text to speech activity -->
         <activity
             android:name="com.melkir.texttospeech.TextToSpeechActivity"
             android:label="Text to Speech"
