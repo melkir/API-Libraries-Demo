@@ -1,6 +1,7 @@
 package com.melkir.googlesamplesdemo.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -8,9 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.melkir.googlesamplesdemo.DetailActivity;
 import com.melkir.googlesamplesdemo.R;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
@@ -19,16 +23,33 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     /**
      * Provide a reference to the type of views we are using (custom ViewHolder)
      */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView picture;
         private final TextView name;
         private final TextView description;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             picture = (ImageView) view.findViewById(R.id.card_image);
             name = (TextView) view.findViewById(R.id.card_title);
             description = (TextView) view.findViewById(R.id.card_text);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Context context = view.getContext();
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    intent.putExtra(DetailActivity.EXTRA_POSITION, getAdapterPosition());
+                    context.startActivity(intent);
+                }
+            });
+            Button button = (Button) itemView.findViewById(R.id.action_launch);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Context context = view.getContext();
+                    Toast.makeText(context, "Button clicked", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 

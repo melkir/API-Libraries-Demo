@@ -16,6 +16,8 @@ public class MainActivity extends Activity {
         getFragmentManager().beginTransaction()
                 .add(R.id.activity_main, new CardContentFragment())
                 .commit();
+//        Intent intent = new Intent(this, MaterialDesignActivity.class);
+//        startActivity(intent);
     }
 
     @Override

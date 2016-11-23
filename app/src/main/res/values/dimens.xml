@@ -9,4 +9,6 @@
     <dimen name="cards_button_height">48dp</dimen>
     <dimen name="card_title_height">40dp</dimen>
     <dimen name="article_subheading">16sp</dimen>
+    <dimen name="article_keylines">72dp</dimen>
+    <dimen name="article_titles">20sp</dimen>
 </resources>

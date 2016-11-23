@@ -10,12 +10,17 @@
         android:theme="@style/AppTheme">
 
         <!-- main activity -->
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".DetailActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.Base">
         </activity>
 
         <!-- google maps api key for our streets dependency -->
