@@ -2,6 +2,7 @@ package com.melkir.googlesamplesdemo.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.widget.Toast;
 
 import com.melkir.accelerometerplay.AccelerometerPlayActivity;
@@ -15,34 +16,42 @@ import com.melkir.vision.googlyeyes.GooglyEyesActivity;
 public class ActivityLauncher {
 
     public static void start(Context context, int position) {
-        Class<?> activity;
+        Intent intent = new Intent();
         switch (position) {
             case 0:
-                activity = BarcodeReaderActivity.class;
+                intent.setClass(context, BarcodeReaderActivity.class);
                 break;
             case 1:
-                activity = FaceTrackerActivity.class;
+                intent.setClass(context, FaceTrackerActivity.class);
                 break;
             case 2:
-                activity = GooglyEyesActivity.class;
+                intent.setClass(context, GooglyEyesActivity.class);
                 break;
             case 3:
-                activity = AccelerometerPlayActivity.class;
+                intent.setClass(context, AccelerometerPlayActivity.class);
                 break;
             case 4:
-                activity = OurStreetsActivity.class;
+                intent.setClass(context, OurStreetsActivity.class);
                 break;
             case 5:
-                activity = MaterialDesignActivity.class;
+                intent.setClass(context, MaterialDesignActivity.class);
                 break;
             case 6:
-                activity = TextToSpeechActivity.class;
+                intent.setClass(context, TextToSpeechActivity.class);
+                break;
+            case 7:
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://aiexperiments.withgoogle.com/"));
+                break;
+            case 8:
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://www.google.com/doodles/halloween-2016"));
                 break;
             default:
                 Toast.makeText(context, "Not implemented yet", Toast.LENGTH_LONG).show();
                 return;
         }
-        context.startActivity(new Intent(context, activity));
+        context.startActivity(intent);
     }
 
 }

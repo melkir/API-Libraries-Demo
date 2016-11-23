@@ -80,16 +80,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    public void startHalloweenDoodleActivity(View view) {
-//        String url = "https://www.google.com/doodles/halloween-2016";
-//        Intent intent = new Intent(Intent.ACTION_VIEW);
-//        intent.setData(Uri.parse(url));
-//        startActivity(intent);
-//    }
-//
-//    public void startTextToSpeechActivity(View view) {
-//        Intent intent = new Intent(this, TextToSpeechActivity.class);
-//        startActivity(intent);
-//    }
-
 }
