@@ -17,7 +17,6 @@
 package com.melkir.accelerometerplay;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory.Options;
@@ -30,6 +29,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -51,7 +51,7 @@ import android.widget.FrameLayout;
  * @see Sensor
  */
 
-public class AccelerometerPlayActivity extends Activity {
+public class AccelerometerPlayActivity extends AppCompatActivity {
 
     private SimulationView mSimulationView;
     private SensorManager mSensorManager;

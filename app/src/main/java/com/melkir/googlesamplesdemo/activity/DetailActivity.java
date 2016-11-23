@@ -1,13 +1,13 @@
 package com.melkir.googlesamplesdemo.activity;
 
-import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.melkir.googlesamplesdemo.R;
 
-public class DetailActivity extends Activity {
+public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "position";
 
