@@ -41,9 +41,9 @@
             android:layout_marginTop="@dimen/md_keylines"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/dark_grey"
             android:textSize="@dimen/article_subheading"
-            tools:text="Module description" />
+            tools:text="Module description"
+            android:text="Module description" />
 
         <Button
             android:id="@+id/action_launch"
