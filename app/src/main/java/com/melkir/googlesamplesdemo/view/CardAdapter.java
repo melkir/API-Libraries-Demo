@@ -14,8 +14,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.melkir.accelerometerplay.AccelerometerPlayActivity;
 import com.melkir.googlesamplesdemo.DetailActivity;
 import com.melkir.googlesamplesdemo.R;
+import com.melkir.materialdesigncodelab.MaterialDesignActivity;
+import com.melkir.ourstreets.activity.OurStreetsActivity;
+import com.melkir.texttospeech.TextToSpeechActivity;
+import com.melkir.vision.barcodereader.BarcodeReaderActivity;
+import com.melkir.vision.facetracker.FaceTrackerActivity;
+import com.melkir.vision.googlyeyes.GooglyEyesActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     private static final String TAG = CardAdapter.class.getSimpleName();
@@ -27,6 +37,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         private final ImageView picture;
         private final TextView name;
         private final TextView description;
+        private final List<Class> activity = getActivityList();
 
         ViewHolder(View view) {
             super(view);
@@ -36,8 +47,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, DetailActivity.class);
+                    final Context context = view.getContext();
+                    final Intent intent = new Intent(context, DetailActivity.class);
                     intent.putExtra(DetailActivity.EXTRA_POSITION, getAdapterPosition());
                     context.startActivity(intent);
                 }
@@ -46,11 +57,29 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Context context = view.getContext();
-                    Toast.makeText(context, "Button clicked", Toast.LENGTH_SHORT).show();
+                    final Context context = view.getContext();
+                    final int position = getAdapterPosition();
+                    if (position <= activity.size() - 1) {
+                        context.startActivity(new Intent(context, activity.get(position)));
+                    } else {
+                        Toast.makeText(context, "Not implemented yet", Toast.LENGTH_LONG).show();
+                    }
                 }
             });
         }
+
+        private List<Class> getActivityList() {
+            List<Class> activityList = new ArrayList<>();
+            activityList.add(BarcodeReaderActivity.class);
+            activityList.add(FaceTrackerActivity.class);
+            activityList.add(GooglyEyesActivity.class);
+            activityList.add(AccelerometerPlayActivity.class);
+            activityList.add(OurStreetsActivity.class);
+            activityList.add(MaterialDesignActivity.class);
+            activityList.add(TextToSpeechActivity.class);
+            return activityList;
+        }
+
     }
 
     private final String[] mModules;

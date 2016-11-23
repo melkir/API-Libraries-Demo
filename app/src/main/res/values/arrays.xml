@@ -7,8 +7,8 @@
         <item>Accelerometer Play</item>
         <item>Our Streets</item>
         <item>Material Design Codelab</item>
-        <item>AI Experiments</item>
         <item>Text to speech</item>
+        <item>AI Experiments</item>
         <item>Halloween Doodle</item>
     </string-array>
     <string-array name="modules_desc">
@@ -55,13 +55,13 @@
             https://github.com/googlecodelabs/android-design-library
         </item>
         <item>
-            Explore machine learning by playing with pictures, language, music, code, and more.
-            https://aiexperiments.withgoogle.com/
-        </item>
-        <item>
             Text-To-Speech (TTS). Also known as "speech synthesis", enables your Android device
             to "speak" text of different languages.
             https://goo.gl/aDs0bM
+        </item>
+        <item>
+            Explore machine learning by playing with pictures, language, music, code, and more.
+            https://aiexperiments.withgoogle.com/
         </item>
         <item>
             Grab your wand and help fend off a ghostly catastrophe. Press play to swipe spells,
