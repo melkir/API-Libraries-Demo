@@ -11,7 +11,8 @@
         <activity
             android:name=".GooglyEyesActivity"
             android:label="Googly Eyes"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="fullSensor"
+            android:theme="@style/GooglyEyesTheme" />
     </application>
 
 </manifest>

@@ -16,9 +16,9 @@
 
 package com.melkir.vision.barcodereader;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -31,7 +31,7 @@ import com.google.android.gms.vision.barcode.Barcode;
  * Main activity demonstrating how to pass extra parameters to an activity that
  * reads barcodes.
  */
-public class BarcodeReaderActivity extends AppCompatActivity implements View.OnClickListener {
+public class BarcodeReaderActivity extends Activity implements View.OnClickListener {
     // use a compound button so either checkbox or switch widgets work.
     private CompoundButton autoFocus;
     private CompoundButton useFlash;

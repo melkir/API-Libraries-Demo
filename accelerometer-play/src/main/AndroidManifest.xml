@@ -11,7 +11,8 @@
         android:supportsRtl="true">
         <activity
             android:name=".AccelerometerPlayActivity"
-            android:label="Accelerometer Play" />
+            android:label="Accelerometer Play"
+            android:theme="@style/AccelerometerPlayTheme" />
     </application>
 
 </manifest>

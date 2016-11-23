@@ -25,6 +25,7 @@
 
         <activity
             android:name=".BarcodeCaptureActivity"
+            android:theme="@style/BarcodeTheme.Base"
             android:label="Read Barcode"
             android:parentActivityName=".BarcodeReaderActivity" />
     </application>
