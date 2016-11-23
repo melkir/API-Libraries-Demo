@@ -1,8 +1,8 @@
 package com.melkir.texttospeech;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +28,7 @@ import java.util.Random;
  * </p>
  * <ul>
  */
-public class TextToSpeechActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
+public class TextToSpeechActivity extends Activity implements TextToSpeech.OnInitListener {
 
     private static final String TAG = "TextToSpeechDemo";
 
