@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
-    private static final String TAG = CardAdapter.class.getSimpleName();
 
     /**
      * Provide a reference to the type of views we are using (custom ViewHolder)
@@ -86,6 +85,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     private final String[] mModuleDesc;
     private final Drawable[] mModulePictures;
 
+    /**
+     * Adapter to display recycler view.
+     */
     public CardAdapter(Context context) {
         Resources resources = context.getResources();
         mModules = resources.getStringArray(R.array.modules);

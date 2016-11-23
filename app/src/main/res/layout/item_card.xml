@@ -15,6 +15,7 @@
 
         <ImageView
             android:id="@+id/card_image"
+            android:contentDescription="Image of the module"
             android:layout_width="match_parent"
             android:layout_height="@dimen/card_image_height"
             android:scaleType="centerCrop"
