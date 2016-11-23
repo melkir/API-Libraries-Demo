@@ -10,4 +10,6 @@
     <string name="button_ai_experiments">AI Experiments</string>
     <string name="button_text_to_speech">Text to speech</string>
     <string name="button_halloween_doodle">Halloween Doodle</string>
+    <string name="action_settings">Settings</string>
+    <string name="launch">Launch</string>
 </resources>
