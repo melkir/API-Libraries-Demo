@@ -4,11 +4,14 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 import com.melkir.googlesamplesdemo.R;
 
 public class DetailActivity extends AppCompatActivity {
@@ -23,7 +26,7 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar((Toolbar) findViewById(com.melkir.materialdesigncodelab.R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        int position = getIntent().getIntExtra(EXTRA_POSITION, 0);
+        final int position = getIntent().getIntExtra(EXTRA_POSITION, 0);
         Resources resources = getResources();
 
         // Set the title on the collapsing toolbar
@@ -42,7 +45,17 @@ public class DetailActivity extends AppCompatActivity {
         ImageView modulePicture = (ImageView) findViewById(R.id.image);
         modulePicture.setImageDrawable(modulesPictures.getDrawable(position % modulesPictures.length()));
 
+        // Set the fab icon action
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_action);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityLauncher.start(view.getContext(), position);
+            }
+        });
+
         modulesPictures.recycle();
 
     }
+
 }

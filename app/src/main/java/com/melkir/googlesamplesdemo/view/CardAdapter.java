@@ -12,22 +12,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.melkir.accelerometerplay.AccelerometerPlayActivity;
+import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 import com.melkir.googlesamplesdemo.R;
 import com.melkir.googlesamplesdemo.activity.DetailActivity;
-import com.melkir.materialdesigncodelab.MaterialDesignActivity;
-import com.melkir.ourstreets.activity.OurStreetsActivity;
-import com.melkir.texttospeech.TextToSpeechActivity;
-import com.melkir.vision.barcodereader.BarcodeReaderActivity;
-import com.melkir.vision.facetracker.FaceTrackerActivity;
-import com.melkir.vision.googlyeyes.GooglyEyesActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
+
+    public static final String TAG = CardAdapter.class.getSimpleName();
 
     /**
      * Provide a reference to the type of views we are using (custom ViewHolder)
@@ -36,7 +28,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         private final ImageView picture;
         private final TextView name;
         private final TextView description;
-        private final List<Class> activity = getActivityList();
 
         ViewHolder(View view) {
             super(view);
@@ -56,29 +47,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    final Context context = view.getContext();
-                    final int position = getAdapterPosition();
-                    if (position <= activity.size() - 1) {
-                        context.startActivity(new Intent(context, activity.get(position)));
-                    } else {
-                        Toast.makeText(context, "Not implemented yet", Toast.LENGTH_LONG).show();
-                    }
+                    ActivityLauncher.start(view.getContext(), getAdapterPosition());
                 }
             });
         }
-
-        private List<Class> getActivityList() {
-            List<Class> activityList = new ArrayList<>();
-            activityList.add(BarcodeReaderActivity.class);
-            activityList.add(FaceTrackerActivity.class);
-            activityList.add(GooglyEyesActivity.class);
-            activityList.add(AccelerometerPlayActivity.class);
-            activityList.add(OurStreetsActivity.class);
-            activityList.add(MaterialDesignActivity.class);
-            activityList.add(TextToSpeechActivity.class);
-            return activityList;
-        }
-
     }
 
     private final String[] mModules;
