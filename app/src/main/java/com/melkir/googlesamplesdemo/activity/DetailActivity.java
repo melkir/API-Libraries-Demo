@@ -1,9 +1,11 @@
-package com.melkir.googlesamplesdemo;
+package com.melkir.googlesamplesdemo.activity;
 
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.melkir.googlesamplesdemo.R;
 
 public class DetailActivity extends Activity {
 

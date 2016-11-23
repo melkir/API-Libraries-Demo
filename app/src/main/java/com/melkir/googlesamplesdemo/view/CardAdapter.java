@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.melkir.accelerometerplay.AccelerometerPlayActivity;
-import com.melkir.googlesamplesdemo.DetailActivity;
 import com.melkir.googlesamplesdemo.R;
+import com.melkir.googlesamplesdemo.activity.DetailActivity;
 import com.melkir.materialdesigncodelab.MaterialDesignActivity;
 import com.melkir.ourstreets.activity.OurStreetsActivity;
 import com.melkir.texttospeech.TextToSpeechActivity;
