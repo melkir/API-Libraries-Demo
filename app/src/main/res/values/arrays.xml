@@ -15,7 +15,6 @@
         <item>
             The Barcode Scanner API detects barcodes in real time in any orientation.
             You can also detect and parse several barcodes in different formats at the same time.
-            https://developers.google.com/vision/
         </item>
         <item>
             The Face API finds human faces in photos, videos, or live streams.
@@ -24,13 +23,11 @@
             eyes open? Are they smiling? With these technologies, you can edit photos and video,
             enhance video feeds with effects and decorations, create hands-free controls for games
             and apps, or react when a person winks or smiles.
-            https://developers.google.com/vision/
         </item>
         <item>
             An app that uses the camera to track faces and superimpose Googly Eyes animated graphics
             over the eyes. The app also detects whether the eyes are open or closed, drawing the
             eyes in the correct state.
-            https://developers.google.com/vision/
         </item>
         <item>
             This sample demonstrates how to use an accelerometer sensor as input for a physics-based
@@ -38,7 +35,6 @@
             number of free-moving objects placed on top of it. Any effects from the device\'s
             acceleration vector (including both gravity and temporary movement) will be translated
             to the on-screen particles.
-            https://github.com/googlesamples/android-AccelerometerPlay
         </item>
         <item>
             With OurStreets you can experience beautiful views from around the world in 360 degrees.
@@ -47,27 +43,33 @@
             The data for OurStreets is stored in Firebase and retrieved at runtime.
             This allows for a smaller initial download as well as modifying of data without having
             to deploy a new apk.
-            https://github.com/googlesamples/android-OurStreets
         </item>
         <item>
             Android Design Support library has been released and samples are coming up all over the place.
             This sample is bringing Material Design implementation using Android Design Support Library.
-            https://github.com/googlecodelabs/android-design-library
         </item>
         <item>
             Text-To-Speech (TTS). Also known as "speech synthesis", enables your Android device
             to "speak" text of different languages.
-            https://goo.gl/aDs0bM
         </item>
         <item>
             Explore machine learning by playing with pictures, language, music, code, and more.
-            https://aiexperiments.withgoogle.com/
         </item>
         <item>
             Grab your wand and help fend off a ghostly catastrophe. Press play to swipe spells,
             save your friends, and help restore the peace at the Magic Cat Academy.
-            https://www.google.com/doodles/halloween-2016
         </item>
+    </string-array>
+    <string-array name="modules_link">
+        <item>https://developers.google.com/vision</item>
+        <item>https://developers.google.com/vision"</item>
+        <item>https://developers.google.com/vision"</item>
+        <item>https://github.com/googlesamples/android-AccelerometerPlay"</item>
+        <item>https://github.com/googlesamples/android-OurStreets"</item>
+        <item>https://github.com/googlecodelabs/android-design-library"</item>
+        <item>https://goo.gl/aDs0bM</item>
+        <item>https://aiexperiments.withgoogle.com"</item>
+        <item>https://www.google.com/doodles/halloween-2016"</item>
     </string-array>
     <string-array name="modules_picture">
         <item>@drawable/card_demo</item>

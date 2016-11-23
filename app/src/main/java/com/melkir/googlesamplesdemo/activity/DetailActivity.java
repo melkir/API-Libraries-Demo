@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 import com.melkir.googlesamplesdemo.R;
+import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -39,6 +39,11 @@ public class DetailActivity extends AppCompatActivity {
         String[] modulesDesc = resources.getStringArray(R.array.modules_desc);
         TextView moduleDesc = (TextView) findViewById(R.id.module_desc);
         moduleDesc.setText(modulesDesc[position % modulesDesc.length]);
+
+        // Set the module link
+        String[] modulesLink = resources.getStringArray(R.array.modules_link);
+        TextView moduleLink = (TextView) findViewById(R.id.module_link);
+        moduleLink.setText(modulesLink[position % modulesLink.length]);;
 
         // Set the picture
         TypedArray modulesPictures = resources.obtainTypedArray(R.array.modules_picture);

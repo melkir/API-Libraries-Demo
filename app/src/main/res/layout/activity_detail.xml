@@ -70,7 +70,16 @@
                 android:id="@+id/module_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/md_keylines"
                 tools:text="@string/detail_desc" />
+
+            <TextView
+                android:id="@+id/module_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                tools:text="https://www.google.com" />
+
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
