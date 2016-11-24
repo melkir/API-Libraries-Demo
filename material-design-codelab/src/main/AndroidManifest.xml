@@ -7,10 +7,6 @@
             android:name=".MaterialDesignActivity"
             android:label="Material Design Codelab"
             android:theme="@style/MaterialAppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".DetailActivity"
