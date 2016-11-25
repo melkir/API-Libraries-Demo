@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -62,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         if (supportActionBar != null) {
             VectorDrawableCompat indicator = VectorDrawableCompat.create(getResources(),
                     R.drawable.ic_menu, getTheme());
-            indicator.setTint(ResourcesCompat.getColor(getResources(), R.color.white, getTheme()));
             supportActionBar.setHomeAsUpIndicator(indicator);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }

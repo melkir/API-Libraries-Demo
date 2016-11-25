@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/ic_build"
             android:title="Component" />
         <item
             android:icon="@drawable/ic_favorite_black_24dp"
             android:title="Design" />
         <item
-            android:icon="@drawable/ic_bookmark_border_black_24dp"
+            android:icon="@drawable/ic_game"
             android:title="Game" />
     </group>
 
