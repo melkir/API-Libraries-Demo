@@ -4,17 +4,19 @@
     android:layout_height="@dimen/navheader_height"
     android:background="?attr/colorPrimaryDark"
     android:gravity="bottom"
+    android:paddingStart="2dp"
+    android:paddingEnd="2dp"
     android:orientation="vertical"
-    android:padding="@dimen/md_keylines">
+    android:paddingBottom="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circle_view"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/card_demo" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_account" />
 
     <TextView
         android:id="@+id/name"

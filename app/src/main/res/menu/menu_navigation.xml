@@ -11,4 +11,13 @@
             android:icon="@drawable/ic_bookmark_border_black_24dp"
             android:title="Game" />
     </group>
+
+    <group android:checkableBehavior="none">
+        <item
+            android:icon="@drawable/ic_help"
+            android:title="Help and feedback" />
+        <item
+            android:icon="@drawable/ic_info"
+            android:title="About" />
+    </group>
 </menu>
