@@ -22,7 +22,7 @@ public class CardContentFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        CardAdapter adapter = new CardAdapter(getContext());
+        CardAdapter adapter = new CardAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
 
