@@ -5,7 +5,7 @@
             android:icon="@drawable/ic_build"
             android:title="Component" />
         <item
-            android:icon="@drawable/ic_favorite_black_24dp"
+            android:icon="@drawable/ic_favorite"
             android:title="Design" />
         <item
             android:icon="@drawable/ic_game"
@@ -14,8 +14,11 @@
 
     <group android:checkableBehavior="none">
         <item
-            android:icon="@drawable/ic_help"
-            android:title="Help and feedback" />
+            android:icon="@drawable/ic_settings"
+            android:title="Settings" />
+        <item
+            android:icon="@drawable/ic_feedback"
+            android:title="Send feedback" />
         <item
             android:icon="@drawable/ic_info"
             android:title="About" />
