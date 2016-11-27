@@ -1,7 +1,5 @@
 package com.melkir.googlesamplesdemo.activity;
 
-import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -12,55 +10,51 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.melkir.googlesamplesdemo.R;
+import com.melkir.googlesamplesdemo.model.Module;
 import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 
 public class DetailActivity extends AppCompatActivity {
 
-    public static final String EXTRA_POSITION = "position";
+    public static final String MODULE = "module";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        setSupportActionBar((Toolbar) findViewById(com.melkir.materialdesigncodelab.R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
-        final int position = getIntent().getIntExtra(EXTRA_POSITION, 0);
-        Resources resources = getResources();
+        if (null != getSupportActionBar()) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        // Retrieve module from extra
+        final Module module = getIntent().getParcelableExtra(MODULE);
 
         // Set the title on the collapsing toolbar
-        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout)
-                findViewById(com.melkir.materialdesigncodelab.R.id.collapsing_toolbar);
-        String[] modules = resources.getStringArray(R.array.modules);
-        collapsingToolbar.setTitle(modules[position % modules.length]);
+        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(module.getTitle());
 
         // Set the description text
-        String[] modulesDesc = resources.getStringArray(R.array.modules_desc);
         TextView moduleDesc = (TextView) findViewById(R.id.module_desc);
-        moduleDesc.setText(modulesDesc[position % modulesDesc.length]);
+        moduleDesc.setText(module.getDescription());
 
         // Set the module link
-        String[] modulesLink = resources.getStringArray(R.array.modules_link);
         TextView moduleLink = (TextView) findViewById(R.id.module_link);
-        moduleLink.setText(modulesLink[position % modulesLink.length]);;
+        moduleLink.setText(module.getLink());
 
         // Set the picture
-        TypedArray modulesPictures = resources.obtainTypedArray(R.array.modules_picture);
         ImageView modulePicture = (ImageView) findViewById(R.id.image);
-        modulePicture.setImageDrawable(modulesPictures.getDrawable(position % modulesPictures.length()));
+        modulePicture.setImageResource(module.getPicture());
 
         // Set the fab icon action
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_action);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityLauncher.start(view.getContext(), position);
+                ActivityLauncher.start(view.getContext(), module.getAction());
             }
         });
-
-        modulesPictures.recycle();
-
     }
 
 }
