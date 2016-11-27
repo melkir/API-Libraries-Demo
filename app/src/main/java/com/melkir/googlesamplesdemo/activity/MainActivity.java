@@ -69,9 +69,23 @@ public class MainActivity extends AppCompatActivity {
     private class NavigationViewListener implements NavigationView.OnNavigationItemSelectedListener {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            // Set item in checked state
-            item.setChecked(true);
+            // Set item in checked state or disable if already checked
+            item.setChecked(!item.isChecked());
             // TODO: handle navigation
+            switch (item.getItemId()) {
+                case R.id.component:
+                    return true;
+                case R.id.design:
+                    return true;
+                case R.id.game:
+                    return true;
+                case R.id.feedback:
+                    return true;
+                case R.id.about:
+                    return true;
+                case R.id.settings:
+                    return true;
+            }
             // Closing drawer on item click
             mDrawerLayout.closeDrawers();
             return true;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="modules">
+    <string-array name="modules_title">
         <item>Barcode Scanner</item>
         <item>Face Tracker</item>
         <item>Googly Eyes</item>
@@ -10,6 +10,17 @@
         <item>Text to speech</item>
         <item>AI Experiments</item>
         <item>Halloween Doodle</item>
+    </string-array>
+    <string-array name="modules_category">
+        <item>component</item>
+        <item>component</item>
+        <item>component</item>
+        <item>game;component</item>
+        <item>design</item>
+        <item>design</item>
+        <item>component</item>
+        <item>game</item>
+        <item>game</item>
     </string-array>
     <string-array name="modules_desc">
         <item>
@@ -81,5 +92,11 @@
         <item>@drawable/card_demo</item>
         <item>@drawable/card_demo</item>
         <item>@drawable/card_demo</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>component</item>
+        <item>game</item>
+        <item>design</item>
     </string-array>
 </resources>

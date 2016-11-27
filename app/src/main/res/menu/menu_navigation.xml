@@ -2,24 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/component"
             android:icon="@drawable/ic_build"
             android:title="Component" />
         <item
+            android:id="@+id/design"
             android:icon="@drawable/ic_favorite"
             android:title="Design" />
         <item
+            android:id="@+id/game"
             android:icon="@drawable/ic_game"
             android:title="Game" />
     </group>
 
     <group android:checkableBehavior="none">
         <item
+            android:id="@+id/settings"
             android:icon="@drawable/ic_settings"
             android:title="Settings" />
         <item
+            android:id="@+id/feedback"
             android:icon="@drawable/ic_feedback"
             android:title="Send feedback" />
         <item
+            android:id="@+id/about"
             android:icon="@drawable/ic_info"
             android:title="About" />
     </group>

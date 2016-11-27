@@ -10,16 +10,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 import com.melkir.googlesamplesdemo.R;
 import com.melkir.googlesamplesdemo.activity.DetailActivity;
+import com.melkir.googlesamplesdemo.model.Module;
+import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> implements Filterable {
 
     public static final String TAG = CardAdapter.class.getSimpleName();
+
+    private final List<Module> mModules;
+    private CardFilter cardFilter;
 
     /**
      * Provide a reference to the type of views we are using (custom ViewHolder)
@@ -53,19 +62,21 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         }
     }
 
-    private final String[] mModules;
-    private final String[] mModuleDesc;
-    private final Drawable[] mModulePictures;
-
     /**
      * Adapter to display recycler view.
      */
     public CardAdapter(Context context) {
         Resources resources = context.getResources();
-        mModules = resources.getStringArray(R.array.modules);
-        mModuleDesc = resources.getStringArray(R.array.modules_desc);
-        TypedArray a = resources.obtainTypedArray(R.array.modules_picture);
-        mModulePictures = new Drawable[a.length()];
+        final String[] mModuleTitles = resources.getStringArray(R.array.modules_title);
+        final String[] mModuleDesc = resources.getStringArray(R.array.modules_desc);
+        final String[] mModuleCategories = resources.getStringArray(R.array.modules_category);
+        final TypedArray a = resources.obtainTypedArray(R.array.modules_picture);
+        final Drawable[] mModulePictures = new Drawable[a.length()];
+        mModules = new ArrayList<>();
+//        for (int i = 0; i < mModuleTitles.length; ++i) {
+//            Module module = new Module(mModuleTitles[i], mModuleDesc[i], mModuleLinks[i], mModuleCategories[i], a.getDrawable(i));
+//            mModules.add(module);
+//        }
         for (int i = 0; i < mModulePictures.length; i++) {
             mModulePictures[i] = a.getDrawable(i);
         }
@@ -81,13 +92,19 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.picture.setImageDrawable(mModulePictures[position % mModulePictures.length]);
-        holder.name.setText(mModules[position % mModules.length]);
+        holder.name.setText(mModuleTitles[position % mModuleTitles.length]);
         holder.description.setText(mModuleDesc[position % mModuleDesc.length]);
     }
 
     @Override
     public int getItemCount() {
-        return mModules.length;
+        return mModuleTitles.length;
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (null == cardFilter) cardFilter = new CardFilter(this, mModuleCategories);
+        return cardFilter;
     }
 
 }
