@@ -16,7 +16,6 @@ import com.melkir.googlesamplesdemo.R;
 import com.melkir.googlesamplesdemo.fragment.CardContentFragment;
 
 public class MainActivity extends AppCompatActivity {
-
     private DrawerLayout mDrawerLayout;
     private CardContentFragment cardContentFragment;
 
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationViewListener());
         // Add our card fragment
         cardContentFragment = new CardContentFragment();
-        getFragmentManager().beginTransaction().add(R.id.container, cardContentFragment).commit();
+        getFragmentManager().beginTransaction().replace(R.id.container, cardContentFragment).commit();
     }
 
     @Override
