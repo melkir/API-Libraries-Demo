@@ -26,8 +26,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> im
 
     public static final String TAG = CardAdapter.class.getSimpleName();
 
-    private final List<Module> mModules;
+    private List<Module> mModules;
     private CardFilter cardFilter;
+
+    /**
+     * Adapter to display recycler view.
+     */
+    public CardAdapter(Context context) {
+        this.mModules = initModules(context);
+        this.cardFilter = new CardFilter(this, mModules);
+    }
 
     /**
      * Provide a reference to the type of views we are using (custom ViewHolder)
@@ -62,27 +70,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> im
         }
     }
 
-    /**
-     * Adapter to display recycler view.
-     */
-    public CardAdapter(Context context) {
-        Resources resources = context.getResources();
-        final String[] mModulesTitle = resources.getStringArray(R.array.modules_title);
-        final String[] mModulesDesc = resources.getStringArray(R.array.modules_desc);
-        final String[] mModulesCategory = resources.getStringArray(R.array.modules_category);
-        final String[] mModulesLink = resources.getStringArray(R.array.modules_link);
-        final String[] mModulesAction = resources.getStringArray(R.array.modules_action);
-        final TypedArray a = resources.obtainTypedArray(R.array.modules_picture);
-        mModules = new ArrayList<>();
-        for (int i = 0; i < mModulesTitle.length; ++i) {
-            String[] categories = mModulesCategory[i].split(";");
-            Module module = new Module(mModulesTitle[i], mModulesDesc[i], mModulesLink[i],
-                    mModulesAction[i], categories, a.getResourceId(i, R.drawable.card_demo));
-            mModules.add(module);
-        }
-        a.recycle();
-    }
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card, parent, false);
@@ -104,8 +91,30 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> im
 
     @Override
     public Filter getFilter() {
-        if (null == cardFilter) cardFilter = new CardFilter(this, mModules);
         return cardFilter;
+    }
+
+    public void setList(List<Module> list) {
+        this.mModules = list;
+    }
+
+    private List<Module> initModules(Context context) {
+        List<Module> modules = new ArrayList<>();
+        Resources resources = context.getResources();
+        final String[] mModulesTitle = resources.getStringArray(R.array.modules_title);
+        final String[] mModulesDesc = resources.getStringArray(R.array.modules_desc);
+        final String[] mModulesCategory = resources.getStringArray(R.array.modules_category);
+        final String[] mModulesLink = resources.getStringArray(R.array.modules_link);
+        final String[] mModulesAction = resources.getStringArray(R.array.modules_action);
+        final TypedArray a = resources.obtainTypedArray(R.array.modules_picture);
+        for (int i = 0; i < mModulesTitle.length; ++i) {
+            String[] categories = mModulesCategory[i].split(";");
+            Module module = new Module(mModulesTitle[i], mModulesDesc[i], mModulesLink[i],
+                    mModulesAction[i], categories, a.getResourceId(i, R.drawable.card_demo));
+            modules.add(module);
+        }
+        a.recycle();
+        return modules;
     }
 
 }

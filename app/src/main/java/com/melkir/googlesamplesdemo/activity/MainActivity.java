@@ -18,6 +18,7 @@ import com.melkir.googlesamplesdemo.fragment.CardContentFragment;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+    private CardContentFragment cardContentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +31,8 @@ public class MainActivity extends AppCompatActivity {
         // Set behavior of Navigation drawer
         navigationView.setNavigationItemSelectedListener(new NavigationViewListener());
         // Add our card fragment
-        getFragmentManager().beginTransaction()
-                .add(R.id.container, new CardContentFragment())
-                .commit();
+        cardContentFragment = new CardContentFragment();
+        getFragmentManager().beginTransaction().add(R.id.container, cardContentFragment).commit();
     }
 
     @Override
@@ -69,26 +69,37 @@ public class MainActivity extends AppCompatActivity {
     private class NavigationViewListener implements NavigationView.OnNavigationItemSelectedListener {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            // Set item in checked state or disable if already checked
-            item.setChecked(!item.isChecked());
-            // TODO: handle navigation
             switch (item.getItemId()) {
                 case R.id.component:
-                    return true;
+                    filterBehaviour(item, "component");
+                    break;
                 case R.id.design:
-                    return true;
+                    filterBehaviour(item, "design");
+                    break;
                 case R.id.game:
-                    return true;
+                    filterBehaviour(item, "game");
+                    break;
                 case R.id.feedback:
-                    return true;
+                    break;
                 case R.id.about:
-                    return true;
+                    break;
                 case R.id.settings:
-                    return true;
+                    break;
+                default:
+                    break;
             }
-            // Closing drawer on item click
             mDrawerLayout.closeDrawers();
             return true;
+        }
+
+        private void filterBehaviour(MenuItem item, String constraint) {
+            if (!item.isChecked()) {
+                item.setChecked(true);
+                cardContentFragment.filter(constraint);
+            } else {
+                item.setChecked(false);
+                cardContentFragment.filter("");
+            }
         }
     }
 
