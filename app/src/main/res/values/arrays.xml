@@ -93,7 +93,17 @@
         <item>@drawable/card_demo</item>
         <item>@drawable/card_demo</item>
     </string-array>
-
+    <string-array name="modules_action">
+        <item>barcode</item>
+        <item>face</item>
+        <item>googly</item>
+        <item>accelerometer</item>
+        <item>ourStreets</item>
+        <item>materialDesign</item>
+        <item>tts</item>
+        <item>aiExperiments</item>
+        <item>halloweenDoodle</item>
+    </string-array>
     <string-array name="categories">
         <item>component</item>
         <item>game</item>

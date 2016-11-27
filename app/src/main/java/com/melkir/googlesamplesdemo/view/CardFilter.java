@@ -2,11 +2,15 @@ package com.melkir.googlesamplesdemo.view;
 
 import android.widget.Filter;
 
+import com.melkir.googlesamplesdemo.model.Module;
+
+import java.util.List;
+
 public class CardFilter extends Filter {
-    private String[] mModules;
+    private List<Module> mModules;
     private String[] mFilteredModules;
 
-    public CardFilter(CardAdapter cardAdapter, String[] modules) {
+    public CardFilter(CardAdapter cardAdapter, List<Module> modules) {
     }
 
     @Override
@@ -16,6 +20,6 @@ public class CardFilter extends Filter {
 
     @Override
     protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-
     }
+
 }
