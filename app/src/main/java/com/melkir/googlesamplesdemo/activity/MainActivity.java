@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.melkir.googlesamplesdemo.R;
 import com.melkir.googlesamplesdemo.fragment.CardContentFragment;
@@ -99,12 +100,10 @@ public class MainActivity extends AppCompatActivity {
                     filterBehaviour(item, "game");
                     break;
                 case R.id.feedback:
-                    break;
                 case R.id.about:
-                    break;
                 case R.id.settings:
-                    break;
                 default:
+                    Toast.makeText(getApplicationContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
                     break;
             }
             mDrawerLayout.closeDrawers();
