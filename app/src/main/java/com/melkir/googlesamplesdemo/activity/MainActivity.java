@@ -18,6 +18,8 @@ import com.melkir.googlesamplesdemo.fragment.CardContentFragment;
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private CardContentFragment cardContentFragment;
+    private String mCurrentFilter = "";
+    final String STATE_FILTER = "filterSelected";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,24 @@ public class MainActivity extends AppCompatActivity {
         // Add our card fragment
         cardContentFragment = new CardContentFragment();
         getFragmentManager().beginTransaction().replace(R.id.container, cardContentFragment).commit();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // Save the filter
+        outState.putString(STATE_FILTER, mCurrentFilter);
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore the filter
+        mCurrentFilter = savedInstanceState.getString(STATE_FILTER);
+        // Apply the filter to the view
+        cardContentFragment.filter(mCurrentFilter);
     }
 
     @Override
@@ -94,9 +114,11 @@ public class MainActivity extends AppCompatActivity {
         private void filterBehaviour(MenuItem item, String constraint) {
             if (!item.isChecked()) {
                 item.setChecked(true);
+                mCurrentFilter = constraint;
                 cardContentFragment.filter(constraint);
             } else {
                 item.setChecked(false);
+                mCurrentFilter = "";
                 cardContentFragment.filter("");
             }
         }
