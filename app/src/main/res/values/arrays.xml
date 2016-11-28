@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="modules">
+    <string-array name="modules_title">
         <item>Barcode Scanner</item>
         <item>Face Tracker</item>
         <item>Googly Eyes</item>
+        <item>Giant Emoji</item>
         <item>Accelerometer Play</item>
         <item>Our Streets</item>
         <item>Material Design Codelab</item>
         <item>Text to speech</item>
         <item>AI Experiments</item>
         <item>Halloween Doodle</item>
+    </string-array>
+    <string-array name="modules_category">
+        <item>component</item>
+        <item>component</item>
+        <item>component</item>
+        <item>component</item>
+        <item>game;component</item>
+        <item>design</item>
+        <item>design</item>
+        <item>component</item>
+        <item>game</item>
+        <item>game</item>
     </string-array>
     <string-array name="modules_desc">
         <item>
@@ -28,6 +41,12 @@
             An app that uses the camera to track faces and superimpose Googly Eyes animated graphics
             over the eyes. The app also detects whether the eyes are open or closed, drawing the
             eyes in the correct state.
+        </item>
+        <item>
+            Giant Emoji is an experimental openFrameworks application that translates your facial
+            expressions into a giant emoji. It was created over a three week sprint and debuted at
+            Google I/O 2016. We thought it might be fun for an attendee to turn their face into an emoji.
+            So, we set out to figure out how to make that happen. This is the result.
         </item>
         <item>
             This sample demonstrates how to use an accelerometer sensor as input for a physics-based
@@ -64,6 +83,7 @@
         <item>https://developers.google.com/vision</item>
         <item>https://developers.google.com/vision"</item>
         <item>https://developers.google.com/vision"</item>
+        <item>https://github.com/googlecreativelab/giantemoji</item>
         <item>https://github.com/googlesamples/android-AccelerometerPlay"</item>
         <item>https://github.com/googlesamples/android-OurStreets"</item>
         <item>https://github.com/googlecodelabs/android-design-library"</item>
@@ -72,14 +92,32 @@
         <item>https://www.google.com/doodles/halloween-2016"</item>
     </string-array>
     <string-array name="modules_picture">
+        <item>@drawable/barcode_scanner</item>
+        <item>@drawable/face_tracker</item>
+        <item>@drawable/googly_eyes</item>
+        <item>@drawable/giant_emoji</item>
+        <item>@drawable/accelerometer_play</item>
         <item>@drawable/card_demo</item>
         <item>@drawable/card_demo</item>
         <item>@drawable/card_demo</item>
         <item>@drawable/card_demo</item>
         <item>@drawable/card_demo</item>
-        <item>@drawable/card_demo</item>
-        <item>@drawable/card_demo</item>
-        <item>@drawable/card_demo</item>
-        <item>@drawable/card_demo</item>
+    </string-array>
+    <string-array name="modules_action">
+        <item>barcode</item>
+        <item>face</item>
+        <item>googly</item>
+        <item>gmoji</item>
+        <item>accelerometer</item>
+        <item>ourStreets</item>
+        <item>materialDesign</item>
+        <item>tts</item>
+        <item>aiExperiments</item>
+        <item>halloweenDoodle</item>
+    </string-array>
+    <string-array name="categories">
+        <item>component</item>
+        <item>game</item>
+        <item>design</item>
     </string-array>
 </resources>

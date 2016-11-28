@@ -16,8 +16,10 @@ import com.melkir.googlesamplesdemo.R;
 import com.melkir.googlesamplesdemo.fragment.CardContentFragment;
 
 public class MainActivity extends AppCompatActivity {
-
     private DrawerLayout mDrawerLayout;
+    private CardContentFragment cardContentFragment;
+    private String mCurrentFilter = "";
+    final String STATE_FILTER = "filterSelected";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +32,26 @@ public class MainActivity extends AppCompatActivity {
         // Set behavior of Navigation drawer
         navigationView.setNavigationItemSelectedListener(new NavigationViewListener());
         // Add our card fragment
-        getFragmentManager().beginTransaction()
-                .add(R.id.container, new CardContentFragment())
-                .commit();
+        cardContentFragment = new CardContentFragment();
+        getFragmentManager().beginTransaction().replace(R.id.container, cardContentFragment).commit();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // Save the filter
+        outState.putString(STATE_FILTER, mCurrentFilter);
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore the filter
+        mCurrentFilter = savedInstanceState.getString(STATE_FILTER);
+        // Apply the filter to the view
+        cardContentFragment.filter(mCurrentFilter);
     }
 
     @Override
@@ -69,12 +88,39 @@ public class MainActivity extends AppCompatActivity {
     private class NavigationViewListener implements NavigationView.OnNavigationItemSelectedListener {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            // Set item in checked state
-            item.setChecked(true);
-            // TODO: handle navigation
-            // Closing drawer on item click
+            switch (item.getItemId()) {
+                case R.id.component:
+                    filterBehaviour(item, "component");
+                    break;
+                case R.id.design:
+                    filterBehaviour(item, "design");
+                    break;
+                case R.id.game:
+                    filterBehaviour(item, "game");
+                    break;
+                case R.id.feedback:
+                    break;
+                case R.id.about:
+                    break;
+                case R.id.settings:
+                    break;
+                default:
+                    break;
+            }
             mDrawerLayout.closeDrawers();
             return true;
+        }
+
+        private void filterBehaviour(MenuItem item, String constraint) {
+            if (!item.isChecked()) {
+                item.setChecked(true);
+                mCurrentFilter = constraint;
+                cardContentFragment.filter(constraint);
+            } else {
+                item.setChecked(false);
+                mCurrentFilter = "";
+                cardContentFragment.filter("");
+            }
         }
     }
 

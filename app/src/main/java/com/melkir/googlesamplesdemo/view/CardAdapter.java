@@ -4,42 +4,58 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 import com.melkir.googlesamplesdemo.R;
 import com.melkir.googlesamplesdemo.activity.DetailActivity;
+import com.melkir.googlesamplesdemo.model.Module;
+import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> implements Filterable {
 
     public static final String TAG = CardAdapter.class.getSimpleName();
+
+    private List<Module> mModules;
+    private CardFilter cardFilter;
+
+    /**
+     * Adapter to display recycler view.
+     */
+    public CardAdapter(Context context) {
+        this.mModules = initModules(context);
+        this.cardFilter = new CardFilter(this, mModules);
+    }
 
     /**
      * Provide a reference to the type of views we are using (custom ViewHolder)
      */
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView picture;
         private final TextView name;
         private final TextView description;
 
         ViewHolder(View view) {
             super(view);
-            picture = (ImageView) view.findViewById(R.id.card_image);
             name = (TextView) view.findViewById(R.id.card_title);
+            picture = (ImageView) view.findViewById(R.id.card_image);
             description = (TextView) view.findViewById(R.id.card_text);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     final Context context = view.getContext();
                     final Intent intent = new Intent(context, DetailActivity.class);
-                    intent.putExtra(DetailActivity.EXTRA_POSITION, getAdapterPosition());
+                    intent.putExtra(DetailActivity.MODULE, mModules.get(getAdapterPosition()));
                     context.startActivity(intent);
                 }
             });
@@ -47,29 +63,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ActivityLauncher.start(view.getContext(), getAdapterPosition());
+                    ActivityLauncher.start(view.getContext(),
+                            mModules.get(getAdapterPosition()).getAction());
                 }
             });
         }
-    }
-
-    private final String[] mModules;
-    private final String[] mModuleDesc;
-    private final Drawable[] mModulePictures;
-
-    /**
-     * Adapter to display recycler view.
-     */
-    public CardAdapter(Context context) {
-        Resources resources = context.getResources();
-        mModules = resources.getStringArray(R.array.modules);
-        mModuleDesc = resources.getStringArray(R.array.modules_desc);
-        TypedArray a = resources.obtainTypedArray(R.array.modules_picture);
-        mModulePictures = new Drawable[a.length()];
-        for (int i = 0; i < mModulePictures.length; i++) {
-            mModulePictures[i] = a.getDrawable(i);
-        }
-        a.recycle();
     }
 
     @Override
@@ -80,14 +78,43 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.picture.setImageDrawable(mModulePictures[position % mModulePictures.length]);
-        holder.name.setText(mModules[position % mModules.length]);
-        holder.description.setText(mModuleDesc[position % mModuleDesc.length]);
+        Module module = mModules.get(position);
+        holder.picture.setImageResource(module.getPicture());
+        holder.name.setText(module.getTitle());
+        holder.description.setText(module.getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return mModules.length;
+        return mModules.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return cardFilter;
+    }
+
+    public void setList(List<Module> list) {
+        this.mModules = list;
+    }
+
+    private List<Module> initModules(Context context) {
+        List<Module> modules = new ArrayList<>();
+        Resources resources = context.getResources();
+        final String[] mModulesTitle = resources.getStringArray(R.array.modules_title);
+        final String[] mModulesDesc = resources.getStringArray(R.array.modules_desc);
+        final String[] mModulesCategory = resources.getStringArray(R.array.modules_category);
+        final String[] mModulesLink = resources.getStringArray(R.array.modules_link);
+        final String[] mModulesAction = resources.getStringArray(R.array.modules_action);
+        final TypedArray a = resources.obtainTypedArray(R.array.modules_picture);
+        for (int i = 0; i < mModulesTitle.length; ++i) {
+            String[] categories = mModulesCategory[i].split(";");
+            Module module = new Module(mModulesTitle[i], mModulesDesc[i], mModulesLink[i],
+                    mModulesAction[i], categories, a.getResourceId(i, R.drawable.card_demo));
+            modules.add(module);
+        }
+        a.recycle();
+        return modules;
     }
 
 }

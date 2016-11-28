@@ -15,35 +15,35 @@ import com.melkir.vision.googlyeyes.GooglyEyesActivity;
 
 public class ActivityLauncher {
 
-    public static void start(Context context, int position) {
+    public static void start(Context context, String action) {
         Intent intent = new Intent();
-        switch (position) {
-            case 0:
+        switch (action) {
+            case "barcode":
                 intent.setClass(context, BarcodeReaderActivity.class);
                 break;
-            case 1:
+            case "face":
                 intent.setClass(context, FaceTrackerActivity.class);
                 break;
-            case 2:
+            case "googly":
                 intent.setClass(context, GooglyEyesActivity.class);
                 break;
-            case 3:
+            case "accelerometer":
                 intent.setClass(context, AccelerometerPlayActivity.class);
                 break;
-            case 4:
+            case "ourStreets":
                 intent.setClass(context, OurStreetsActivity.class);
                 break;
-            case 5:
+            case "materialDesign":
                 intent.setClass(context, MaterialDesignActivity.class);
                 break;
-            case 6:
+            case "tts":
                 intent.setClass(context, TextToSpeechActivity.class);
                 break;
-            case 7:
+            case "aiExperiments":
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("https://aiexperiments.withgoogle.com/"));
                 break;
-            case 8:
+            case "halloweenDoodle":
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("https://www.google.com/doodles/halloween-2016"));
                 break;
