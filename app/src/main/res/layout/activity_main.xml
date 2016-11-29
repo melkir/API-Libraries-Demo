@@ -28,6 +28,27 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/menu_navigation" />
+        app:menu="@menu/menu_navigation">
+
+        <Button
+            android:id="@+id/sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:onClick="signIn"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/sign_in" />
+
+        <Button
+            android:id="@+id/sign_out_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:onClick="signOut"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/sign_out"
+            android:visibility="gone" />
+
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

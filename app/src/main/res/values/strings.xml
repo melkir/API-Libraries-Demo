@@ -10,4 +10,8 @@
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
         deserunt mollit anim id est laborum.
     </string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="sign_in_cancelled">Sign in cancelled</string>
+    <string name="no_internet_connection">No internet connection</string>
 </resources>
