@@ -13,6 +13,7 @@
     <string name="action_about">About</string>
     <string name="category">Category</string>
     <string name="card_title_description">Description</string>
+    <string name="action_search">Search</string>
 
     <string name="detail_desc" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do

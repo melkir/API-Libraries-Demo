@@ -124,7 +124,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
+            Toast.makeText(getApplication(), "Not implemented yet", Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == android.R.id.home) {
             mDrawerLayout.openDrawer(GravityCompat.START);
@@ -231,4 +232,5 @@ public class MainActivity extends AppCompatActivity {
         TextView view = (TextView) mNavigationView.getMenu().findItem(itemId).getActionView();
         view.setText(count > 0 ? String.valueOf(count) : null);
     }
+
 }
