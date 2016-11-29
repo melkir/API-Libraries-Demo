@@ -27,7 +27,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> im
     public static final String TAG = CardAdapter.class.getSimpleName();
 
     private List<Module> mModules;
-    private CardFilter cardFilter;
+    private final CardFilter cardFilter;
 
     /**
      * Adapter to display recycler view.

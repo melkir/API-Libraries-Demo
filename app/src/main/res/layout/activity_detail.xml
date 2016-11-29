@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/md_keylines"
-                android:text="Description"
+                android:text="@string/card_title_description"
                 android:textSize="@dimen/article_titles" />
 
             <TextView

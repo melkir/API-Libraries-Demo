@@ -7,7 +7,7 @@ import com.melkir.googlesamplesdemo.model.Module;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardFilter extends Filter {
+class CardFilter extends Filter {
     private final CardAdapter mAdapter;
     private final List<Module> mOriginalList;
     private final List<Module> mFilteredList;

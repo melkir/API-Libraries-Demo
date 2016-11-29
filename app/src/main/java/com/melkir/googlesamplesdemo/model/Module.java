@@ -4,9 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Module implements Parcelable {
-    private String mTitle, mDescription, mLink, mAction;
-    private String[] mCategories;
-    private int mPictureRsc;
+    private final String mTitle, mDescription, mLink, mAction;
+    private final String[] mCategories;
+    private final int mPictureRsc;
 
     public Module(String title, String description, String link, String action,
                   String[] categories, int pictureRsc) {

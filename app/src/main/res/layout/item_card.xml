@@ -15,7 +15,6 @@
 
         <ImageView
             android:id="@+id/card_image"
-            android:contentDescription="Image of the module"
             android:layout_width="match_parent"
             android:layout_height="@dimen/card_image_height"
             android:scaleType="centerCrop"
@@ -43,8 +42,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textSize="@dimen/article_subheading"
-            tools:text="Module description"
-            android:text="Module description" />
+            tools:text="Module description" />
 
         <Button
             android:id="@+id/action_launch"
