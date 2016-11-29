@@ -115,9 +115,4 @@
         <item>aiExperiments</item>
         <item>halloweenDoodle</item>
     </string-array>
-    <string-array name="categories">
-        <item>component</item>
-        <item>game</item>
-        <item>design</item>
-    </string-array>
 </resources>

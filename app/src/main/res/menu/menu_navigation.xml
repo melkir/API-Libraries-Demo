@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/component"
-            android:icon="@drawable/ic_build"
-            android:title="Component" />
-        <item
-            android:id="@+id/design"
-            android:icon="@drawable/ic_favorite"
-            android:title="Design" />
-        <item
-            android:id="@+id/game"
-            android:icon="@drawable/ic_game"
-            android:title="Game" />
-    </group>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:checkableBehavior="none">
+    <item android:title="@string/category">
+        <menu>
+            <group
+                android:id="@+id/group_filter"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/component"
+                    android:icon="@drawable/ic_build"
+                    android:title="@string/filter_component"
+                    app:actionLayout="@layout/menu_counter" />
+                <item
+                    android:id="@+id/design"
+                    android:icon="@drawable/ic_favorite"
+                    android:title="@string/filter_design"
+                    app:actionLayout="@layout/menu_counter" />
+                <item
+                    android:id="@+id/game"
+                    android:icon="@drawable/ic_game"
+                    android:title="@string/filter_game"
+                    app:actionLayout="@layout/menu_counter" />
+            </group>
+        </menu>
+    </item>
+
+    <group
+        android:id="@+id/group_activity"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings"
-            android:title="Settings" />
+            android:title="@string/action_settings" />
         <item
             android:id="@+id/feedback"
             android:icon="@drawable/ic_feedback"
-            android:title="Send feedback" />
+            android:title="@string/action_send_feedback" />
         <item
             android:id="@+id/about"
             android:icon="@drawable/ic_info"
-            android:title="About" />
+            android:title="@string/action_about" />
     </group>
 </menu>

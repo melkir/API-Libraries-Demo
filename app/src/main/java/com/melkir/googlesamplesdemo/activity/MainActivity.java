@@ -2,6 +2,7 @@ package com.melkir.googlesamplesdemo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mUsername;
     private TextView mEmail;
     private CircleImageView mProfilePicture;
+    private NavigationView mNavigationView;
 
     private static final String STATE_FILTER = "filterSelected";
     private static final int RC_SIGN_IN = 9001;
@@ -57,15 +59,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Adding Toolbar to Main screen
         addToolbar();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         // Set behavior of Navigation drawer
-        navigationView.setNavigationItemSelectedListener(new NavigationViewListener());
+        mNavigationView.setNavigationItemSelectedListener(new NavigationViewListener());
         // Retrieve component from Navigation view header
-        mNavHeader = navigationView.getHeaderView(0);
+        mNavHeader = mNavigationView.getHeaderView(0);
         mUsername = (TextView) mNavHeader.findViewById(R.id.name);
         mEmail = (TextView) mNavHeader.findViewById(R.id.email);
         mProfilePicture = (CircleImageView) mNavHeader.findViewById(R.id.profile_picture);
+        // Add counter on menu item
+        initMenuCounters();
         // Add our card fragment
         cardContentFragment = new CardContentFragment();
         getFragmentManager().beginTransaction().replace(R.id.container, cardContentFragment).commit();
@@ -215,5 +219,16 @@ public class MainActivity extends AppCompatActivity {
             showSnackbar(getString(R.string.no_internet_connection));
         }
         updateUI(FirebaseAuth.getInstance().getCurrentUser());
+    }
+
+    private void initMenuCounters() {
+        setMenuCounter(R.id.component, 6);
+        setMenuCounter(R.id.design, 2);
+        setMenuCounter(R.id.game, 3);
+    }
+
+    private void setMenuCounter(@IdRes int itemId, int count) {
+        TextView view = (TextView) mNavigationView.getMenu().findItem(itemId).getActionView();
+        view.setText(count > 0 ? String.valueOf(count) : null);
     }
 }
