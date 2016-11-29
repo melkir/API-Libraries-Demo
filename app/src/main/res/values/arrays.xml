@@ -97,11 +97,11 @@
         <item>@drawable/googly_eyes</item>
         <item>@drawable/giant_emoji</item>
         <item>@drawable/accelerometer_play</item>
+        <item>@drawable/out_streets</item>
+        <item>@drawable/material_design</item>
+        <item>@drawable/tts</item>
         <item>@drawable/card_demo</item>
-        <item>@drawable/card_demo</item>
-        <item>@drawable/card_demo</item>
-        <item>@drawable/card_demo</item>
-        <item>@drawable/card_demo</item>
+        <item>@drawable/halloween_doodle</item>
     </string-array>
     <string-array name="modules_action">
         <item>barcode</item>
