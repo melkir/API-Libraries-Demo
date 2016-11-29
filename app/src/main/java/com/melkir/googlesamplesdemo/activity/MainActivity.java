@@ -11,12 +11,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ui.ResultCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,10 +32,20 @@ import com.melkir.googlesamplesdemo.fragment.CardContentFragment;
 
 import java.util.Collections;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends AppCompatActivity {
+
+    public static final String TAG = MainActivity.class.getSimpleName();
+
     private DrawerLayout mDrawerLayout;
     private CardContentFragment cardContentFragment;
     private String mCurrentFilter = "";
+
+    private TextView mUsername;
+    private TextView mEmail;
+    private CircleImageView mProfilePicture;
+
     private static final String STATE_FILTER = "filterSelected";
     private static final int RC_SIGN_IN = 9001;
 
@@ -40,12 +53,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         // Adding Toolbar to Main screen
         addToolbar();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         // Set behavior of Navigation drawer
         navigationView.setNavigationItemSelectedListener(new NavigationViewListener());
+        // Retrieve component from Navigation view header
+        View header = navigationView.getHeaderView(0);
+        mUsername = (TextView) header.findViewById(R.id.name);
+        mEmail = (TextView) header.findViewById(R.id.email);
+        mProfilePicture = (CircleImageView) header.findViewById(R.id.profile_picture);
         // Add our card fragment
         cardContentFragment = new CardContentFragment();
         getFragmentManager().beginTransaction().replace(R.id.container, cardContentFragment).commit();
@@ -60,9 +79,16 @@ public class MainActivity extends AppCompatActivity {
             // show sign-out button, hide the sign-in button
             signInButton.setVisibility(View.GONE);
             signOutButton.setVisibility(View.VISIBLE);
+            mUsername.setText(user.getDisplayName());
+            mEmail.setText(user.getEmail());
+            // load the user profile picture
+            Glide.with(this).load(user.getPhotoUrl()).into(mProfilePicture);
         } else {
             signInButton.setVisibility(View.VISIBLE);
             signOutButton.setVisibility(View.GONE);
+            mUsername.setText("");
+            mEmail.setText("");
+            mProfilePicture.setImageResource(R.drawable.ic_account);
         }
     }
 
@@ -179,8 +205,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // Sign in canceled
-        if (resultCode == RESULT_CANCELED) {
+        if (resultCode == RESULT_OK) {
+            Log.d(TAG, "User logged in");
+        } else if (resultCode == RESULT_CANCELED) {
             showSnackbar(getString(R.string.sign_in_cancelled));
             return;
         } else if (resultCode == ResultCodes.RESULT_NO_NETWORK) {
