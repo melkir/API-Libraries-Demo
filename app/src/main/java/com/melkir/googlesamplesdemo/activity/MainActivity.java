@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private CardContentFragment cardContentFragment;
     private String mCurrentFilter = "";
+    private View mNavHeader;
 
     private TextView mUsername;
     private TextView mEmail;
@@ -61,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
         // Set behavior of Navigation drawer
         navigationView.setNavigationItemSelectedListener(new NavigationViewListener());
         // Retrieve component from Navigation view header
-        View header = navigationView.getHeaderView(0);
-        mUsername = (TextView) header.findViewById(R.id.name);
-        mEmail = (TextView) header.findViewById(R.id.email);
-        mProfilePicture = (CircleImageView) header.findViewById(R.id.profile_picture);
+        mNavHeader = navigationView.getHeaderView(0);
+        mUsername = (TextView) mNavHeader.findViewById(R.id.name);
+        mEmail = (TextView) mNavHeader.findViewById(R.id.email);
+        mProfilePicture = (CircleImageView) mNavHeader.findViewById(R.id.profile_picture);
         // Add our card fragment
         cardContentFragment = new CardContentFragment();
         getFragmentManager().beginTransaction().replace(R.id.container, cardContentFragment).commit();
@@ -158,8 +159,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.about:
                 case R.id.settings:
                 default:
-                    Toast.makeText(getApplicationContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
-                    break;
+                    Toast.makeText(mNavHeader.getContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
+                    return true;
             }
             mDrawerLayout.closeDrawers();
             return true;
