@@ -32,6 +32,6 @@ dependencies {
     compile "com.android.support:design:${appCompatVersion}"
     compile "com.android.support:recyclerview-v7:${appCompatVersion}"
     compile "com.firebase:firebase-client-android:2.5.2"
-    compile "com.google.android.gms:play-services-maps:9.8.0"
+    compile "com.google.android.gms:play-services-maps:10.0.1"
     compile "com.google.maps.android:android-maps-utils:0.4"
 }
