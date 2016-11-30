@@ -13,10 +13,13 @@ android {
     }
     buildTypes {
         debug {
+            multiDexEnabled true
             resValue "string", "google_maps_key", "${MyOurStreetMapApiKey}"
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
+            resValue "string", "google_maps_key", "${MyOurStreetMapApiKey}"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
