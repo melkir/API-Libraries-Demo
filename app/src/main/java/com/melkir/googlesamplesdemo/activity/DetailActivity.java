@@ -1,17 +1,16 @@
 package com.melkir.googlesamplesdemo.activity;
 
+import android.databinding.BindingAdapter;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.melkir.googlesamplesdemo.BR;
 import com.melkir.googlesamplesdemo.R;
 import com.melkir.googlesamplesdemo.model.Module;
-import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -28,33 +27,18 @@ public class DetailActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        ViewDataBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
+
         // Retrieve module from extra
         final Module module = getIntent().getParcelableExtra(MODULE);
 
-        // Set the title on the collapsing toolbar
-        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(module.getTitle());
+        // Bind module data
+        binding.setVariable(BR.module, module);
+    }
 
-        // Set the description text
-        TextView moduleDesc = (TextView) findViewById(R.id.module_desc);
-        moduleDesc.setText(module.getDescription());
-
-        // Set the module link
-        TextView moduleLink = (TextView) findViewById(R.id.module_link);
-        moduleLink.setText(module.getLink());
-
-        // Set the picture
-        ImageView modulePicture = (ImageView) findViewById(R.id.image);
-        modulePicture.setImageResource(module.getPicture());
-
-        // Set the fab icon action
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_action);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityLauncher.start(view.getContext(), module.getAction());
-            }
-        });
+    @BindingAdapter({"android:background"})
+    public static void setImageViewResource(ImageView imageView, int resource) {
+        imageView.setImageResource(resource);
     }
 
 }

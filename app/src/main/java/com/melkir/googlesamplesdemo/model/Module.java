@@ -1,7 +1,13 @@
 package com.melkir.googlesamplesdemo.model;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.view.View;
+
+import com.melkir.googlesamplesdemo.activity.DetailActivity;
+import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 
 public class Module implements Parcelable {
     private final String mTitle, mDescription, mLink, mAction;
@@ -77,4 +83,16 @@ public class Module implements Parcelable {
         parcel.writeStringArray(mCategories);
         parcel.writeInt(mPictureRsc);
     }
+
+    public void onCardClick(View view, Module module) {
+        final Context context = view.getContext();
+        final Intent intent = new Intent(context, DetailActivity.class);
+        intent.putExtra(DetailActivity.MODULE, module);
+        context.startActivity(intent);
+    }
+
+    public void onLaunchClick(View view, String action) {
+        ActivityLauncher.start(view.getContext(), action);
+    }
+
 }

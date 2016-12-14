@@ -100,7 +100,7 @@
         <item>@drawable/out_streets</item>
         <item>@drawable/material_design</item>
         <item>@drawable/tts</item>
-        <item>@drawable/card_demo</item>
+        <item />
         <item>@drawable/halloween_doodle</item>
     </string-array>
     <string-array name="modules_action">

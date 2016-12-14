@@ -28,6 +28,9 @@ android {
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
     }
+    dataBinding {
+        enabled = true
+    }
     repositories {
         maven { url 'https://maven.fabric.io/public' }
     }
@@ -50,7 +53,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.firebaseui:firebase-ui-auth:1.0.1'
-    testCompile 'junit:junit:4.12'
     compile project(path: ':barcode-reader')
     compile project(path: ':face-tracker')
     compile project(path: ':googly-eyes')
@@ -58,7 +60,7 @@ dependencies {
     compile project(path: ':our-streets')
     compile project(path: ':material-design-codelab')
     compile project(path: ':text-to-speech')
+    testCompile 'junit:junit:4.12'
 }
 
 apply plugin: 'com.google.gms.google-services'
-

@@ -1,58 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/card_height"
-    android:layout_gravity="center"
-    android:layout_marginBottom="@dimen/md_keylines"
-    android:layout_marginLeft="@dimen/md_keylines"
-    android:layout_marginRight="@dimen/md_keylines">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <data>
+        <variable
+            name="module"
+            type="com.melkir.googlesamplesdemo.model.Module" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/card_height"
+        android:layout_gravity="center"
+        android:onClick="@{(view) -> module.onCardClick(view, module)}"
+        android:layout_marginBottom="@dimen/md_keylines"
+        android:layout_marginLeft="@dimen/md_keylines"
+        android:layout_marginRight="@dimen/md_keylines">
 
-        <ImageView
-            android:id="@+id/card_image"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/card_image_height"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/card_demo" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/card_title"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/card_title_height"
-            android:layout_alignBottom="@+id/card_image"
-            android:layout_marginStart="@dimen/md_keylines"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/white"
-            tools:text="Module title" />
+            <ImageView
+                android:id="@+id/card_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/card_image_height"
+                android:scaleType="centerCrop"
+                android:src="@{module.picture, default=@drawable/card_demo}" />
 
-        <TextView
-            android:id="@+id/card_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/card_image"
-            android:layout_marginBottom="@dimen/md_keylines"
-            android:layout_marginLeft="@dimen/md_keylines"
-            android:layout_marginRight="@dimen/md_keylines"
-            android:layout_marginTop="@dimen/md_keylines"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textSize="@dimen/article_subheading"
-            tools:text="Module description" />
+            <TextView
+                android:id="@+id/card_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/card_title_height"
+                android:layout_alignBottom="@+id/card_image"
+                android:layout_marginStart="@dimen/md_keylines"
+                android:text="@{module.title}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/white"
+                tools:text="Module title" />
 
-        <Button
-            android:id="@+id/action_launch"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:text="@string/launch" />
+            <TextView
+                android:id="@+id/card_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card_image"
+                android:layout_marginBottom="@dimen/md_keylines"
+                android:layout_marginLeft="@dimen/md_keylines"
+                android:layout_marginRight="@dimen/md_keylines"
+                android:layout_marginTop="@dimen/md_keylines"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{module.description}"
+                android:textSize="@dimen/article_subheading"
+                tools:text="Module description" />
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/action_launch"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(view) -> module.onLaunchClick(view, module.action)}"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/launch" />
 
-</android.support.v7.widget.CardView>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>

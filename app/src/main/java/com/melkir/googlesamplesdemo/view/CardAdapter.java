@@ -1,28 +1,25 @@
 package com.melkir.googlesamplesdemo.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.melkir.googlesamplesdemo.BR;
 import com.melkir.googlesamplesdemo.R;
-import com.melkir.googlesamplesdemo.activity.DetailActivity;
 import com.melkir.googlesamplesdemo.model.Module;
-import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> implements Filterable {
+public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements Filterable {
 
     public static final String TAG = CardAdapter.class.getSimpleName();
 
@@ -37,51 +34,17 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> im
         this.cardFilter = new CardFilter(this, mModules);
     }
 
-    /**
-     * Provide a reference to the type of views we are using (custom ViewHolder)
-     */
-    class ViewHolder extends RecyclerView.ViewHolder {
-        private final ImageView picture;
-        private final TextView name;
-        private final TextView description;
-
-        ViewHolder(View view) {
-            super(view);
-            name = (TextView) view.findViewById(R.id.card_title);
-            picture = (ImageView) view.findViewById(R.id.card_image);
-            description = (TextView) view.findViewById(R.id.card_text);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    final Context context = view.getContext();
-                    final Intent intent = new Intent(context, DetailActivity.class);
-                    intent.putExtra(DetailActivity.MODULE, mModules.get(getAdapterPosition()));
-                    context.startActivity(intent);
-                }
-            });
-            Button button = (Button) itemView.findViewById(R.id.action_launch);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ActivityLauncher.start(view.getContext(),
-                            mModules.get(getAdapterPosition()).getAction());
-                }
-            });
-        }
-    }
-
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card, parent, false);
-        return new ViewHolder(view);
+        return new CardViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(CardViewHolder holder, int position) {
         Module module = mModules.get(position);
-        holder.picture.setImageResource(module.getPicture());
-        holder.name.setText(module.getTitle());
-        holder.description.setText(module.getDescription());
+        holder.getBinding().setVariable(BR.module, module);
+        holder.getBinding().executePendingBindings();
     }
 
     @Override
@@ -96,6 +59,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> im
 
     public void setList(List<Module> list) {
         this.mModules = list;
+    }
+
+    @BindingAdapter({"android:src"})
+    public static void setImageViewResource(ImageView imageView, int resource) {
+        imageView.setImageResource(resource);
     }
 
     private List<Module> initModules(Context context) {
