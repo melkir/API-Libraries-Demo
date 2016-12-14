@@ -19,15 +19,13 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        ViewDataBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
+        // Enable back button
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-
         if (null != getSupportActionBar()) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
-        ViewDataBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
         // Retrieve module from extra
         final Module module = getIntent().getParcelableExtra(MODULE);
