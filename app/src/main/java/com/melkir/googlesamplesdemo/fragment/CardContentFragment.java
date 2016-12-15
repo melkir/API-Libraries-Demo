@@ -46,25 +46,27 @@ public class CardContentFragment extends Fragment {
         mSearchAdapter.edit().replaceAll(modules).commit();
 
         // Set card adapter by default
-        setDefaultView();
+        mRecyclerView.setAdapter(mCardAdapter);
         mRecyclerView.setHasFixedSize(true);
 
         return rootView;
     }
 
     public void cardFilter(String constraint) {
-        mRecyclerView.setAdapter(mCardAdapter);
         this.mCardAdapter.getFilter().filter(constraint);
     }
 
     public void searchFilter(String constraint) {
-        mRecyclerView.setAdapter(mSearchAdapter);
         this.mSearchAdapter.getFilter().filter(constraint);
         mRecyclerView.scrollToPosition(0);
     }
 
-    public void setDefaultView() {
+    public void setCardView() {
         mRecyclerView.setAdapter(mCardAdapter);
+    }
+
+    public void setSearchView() {
+        mRecyclerView.setAdapter(mSearchAdapter);
     }
 
     private List<Module> initModules(Context context) {

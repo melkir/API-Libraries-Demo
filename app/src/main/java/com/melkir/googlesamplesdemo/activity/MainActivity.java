@@ -116,12 +116,21 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         getMenuInflater().inflate(R.menu.main, menu);
 
         final MenuItem searchItem = menu.findItem(R.id.action_search);
+
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCardContentFragment.setSearchView();
+            }
+        });
+
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                mCardContentFragment.setDefaultView();
+                mCardContentFragment.setCardView();
                 return false;
             }
         });
@@ -230,6 +239,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         }
 
         private void filterBehaviour(MenuItem item, String constraint) {
+            mCardContentFragment.setCardView();
             if (!item.isChecked()) {
                 item.setChecked(true);
                 mCurrentFilter = constraint;
