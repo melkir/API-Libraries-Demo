@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private CardContentFragment mCardContentFragment;
     private String mCurrentFilter = "";
     private View mNavHeader;
+    private SearchView mSearchView;
 
     private TextView mUsername;
     private TextView mEmail;
@@ -117,17 +118,17 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         final MenuItem searchItem = menu.findItem(R.id.action_search);
 
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setOnQueryTextListener(this);
+        mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        mSearchView.setOnQueryTextListener(this);
 
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
+        mSearchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCardContentFragment.setSearchView();
             }
         });
 
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+        mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
                 mCardContentFragment.setCardView();
@@ -157,7 +158,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        return false;
+        mSearchView.clearFocus();
+        return true;
     }
 
     public void signIn(View view) {
