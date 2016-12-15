@@ -5,10 +5,10 @@ import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-class CardViewHolder extends RecyclerView.ViewHolder {
+class SearchViewHolder extends RecyclerView.ViewHolder {
     private ViewDataBinding binding;
 
-    CardViewHolder(View itemView) {
+    SearchViewHolder(View itemView) {
         super(itemView);
         binding = DataBindingUtil.bind(itemView);
     }
@@ -16,4 +16,5 @@ class CardViewHolder extends RecyclerView.ViewHolder {
     ViewDataBinding getBinding() {
         return binding;
     }
+
 }

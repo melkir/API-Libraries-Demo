@@ -1,6 +1,5 @@
 package com.melkir.googlesamplesdemo.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -33,7 +32,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.melkir.googlesamplesdemo.BuildConfig;
 import com.melkir.googlesamplesdemo.R;
 import com.melkir.googlesamplesdemo.fragment.CardContentFragment;
-import com.melkir.googlesamplesdemo.model.Module;
 
 import java.util.Collections;
 
@@ -83,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        // Save the filter
+        // Save the cardFilter
         outState.putString(STATE_FILTER, mCurrentFilter);
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(outState);
@@ -93,10 +91,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         // Always call the superclass so it can restore the view hierarchy
         super.onRestoreInstanceState(savedInstanceState);
-        // Restore the filter
+        // Restore the cardFilter
         mCurrentFilter = savedInstanceState.getString(STATE_FILTER);
-        // Apply the filter to the view
-        cardContentFragment.filter(mCurrentFilter);
+        // Apply the cardFilter to the view
+        cardContentFragment.cardFilter(mCurrentFilter);
     }
 
     @Override
@@ -116,6 +114,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(this);
+
         return true;
     }
 
@@ -123,8 +126,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_search) {
-            final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-            searchView.setOnQueryTextListener(this);
             return true;
         } else if (id == android.R.id.home) {
             mDrawerLayout.openDrawer(GravityCompat.START);
@@ -133,13 +134,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @Override
-    public boolean onQueryTextSubmit(String query) {
+    public boolean onQueryTextChange(String query) {
+//        Log.d(TAG, "Text changed");
+        cardContentFragment.searchFilter(query);
         return false;
     }
 
     @Override
-    public boolean onQueryTextChange(String newText) {
-        // TODO: Implement search action
+    public boolean onQueryTextSubmit(String query) {
         return false;
     }
 
@@ -161,13 +163,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 updateUI(null);
             }
         });
-    }
-
-    public void onCardClick(View view, Module module) {
-        final Context context = view.getContext();
-        final Intent intent = new Intent(context, DetailActivity.class);
-        intent.putExtra(DetailActivity.MODULE, module);
-        context.startActivity(intent);
     }
 
     private void addToolbar() {
@@ -232,11 +227,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             if (!item.isChecked()) {
                 item.setChecked(true);
                 mCurrentFilter = constraint;
-                cardContentFragment.filter(constraint);
+                cardContentFragment.cardFilter(constraint);
             } else {
                 item.setChecked(false);
                 mCurrentFilter = "";
-                cardContentFragment.filter("");
+                cardContentFragment.cardFilter("");
             }
         }
     }
