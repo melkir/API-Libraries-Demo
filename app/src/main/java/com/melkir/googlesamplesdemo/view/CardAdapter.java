@@ -1,14 +1,14 @@
 package com.melkir.googlesamplesdemo.view;
 
-import android.databinding.BindingAdapter;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.melkir.googlesamplesdemo.BR;
 import com.melkir.googlesamplesdemo.R;
 import com.melkir.googlesamplesdemo.model.Module;
@@ -21,11 +21,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
 
     private List<Module> mModules;
     private final CardFilter cardFilter;
+    private final Context mContext;
 
     /**
      * Adapter to display recycler view.
      */
-    public CardAdapter(List<Module> modules) {
+    public CardAdapter(Context context, List<Module> modules) {
+        this.mContext = context;
         this.mModules = modules;
         this.cardFilter = new CardFilter(this, mModules);
     }
@@ -39,6 +41,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
     @Override
     public void onBindViewHolder(CardViewHolder holder, int position) {
         Module module = mModules.get(position);
+        Glide.with(mContext).load(module.getPicture()).into(holder.getPicture());
+//        holder.getPicture().setImageResource(module.getPicture());
         holder.getBinding().setVariable(BR.module, module);
         holder.getBinding().executePendingBindings();
     }
@@ -55,11 +59,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
 
     public void setList(List<Module> list) {
         this.mModules = list;
-    }
-
-    @BindingAdapter({"android:src"})
-    public static void setImageViewResource(ImageView imageView, int resource) {
-        imageView.setImageResource(resource);
     }
 
 }

@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/card_image_height"
                 android:scaleType="centerCrop"
-                android:src="@{module.picture, default=@drawable/card_demo}" />
+                android:src="@drawable/card_demo" />
 
             <TextView
                 android:id="@+id/card_title"

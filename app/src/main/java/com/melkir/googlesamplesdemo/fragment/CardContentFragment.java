@@ -39,7 +39,7 @@ public class CardContentFragment extends Fragment {
         List<Module> modules = initModules(getActivity());
 
         // Initialize card adapter
-        mCardAdapter = new CardAdapter(modules);
+        mCardAdapter = new CardAdapter(getActivity(), modules);
 
         // Initialize search adapter
         mSearchAdapter = new SearchAdapter(getActivity(), modules);
