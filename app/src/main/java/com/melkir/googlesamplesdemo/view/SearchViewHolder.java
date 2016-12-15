@@ -1,20 +1,21 @@
 package com.melkir.googlesamplesdemo.view;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter;
+import com.melkir.googlesamplesdemo.databinding.SearchBinding;
+import com.melkir.googlesamplesdemo.model.Module;
 
-class SearchViewHolder extends RecyclerView.ViewHolder {
-    private ViewDataBinding binding;
+class SearchViewHolder extends SortedListAdapter.ViewHolder<Module> {
+    private final SearchBinding mBinding;
 
-    SearchViewHolder(View itemView) {
-        super(itemView);
-        binding = DataBindingUtil.bind(itemView);
+    SearchViewHolder(SearchBinding binding, SearchAdapter.Listener listener) {
+        super(binding.getRoot());
+        binding.setListener(listener);
+        mBinding = binding;
     }
 
-    ViewDataBinding getBinding() {
-        return binding;
+    @Override
+    protected void performBind(Module module) {
+        mBinding.setModule(module);
     }
 
 }

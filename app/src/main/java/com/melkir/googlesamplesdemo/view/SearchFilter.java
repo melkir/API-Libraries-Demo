@@ -7,25 +7,25 @@ import com.melkir.googlesamplesdemo.model.Module;
 import java.util.ArrayList;
 import java.util.List;
 
-class SearchFilter extends Filter {
+public class SearchFilter extends Filter {
     private final SearchAdapter mAdapter;
     private final List<Module> mOriginalList;
     private final List<Module> mFilteredList;
 
-    SearchFilter(SearchAdapter mAdapter, List<Module> mOriginalList) {
-        this.mAdapter = mAdapter;
-        this.mOriginalList = mOriginalList;
+    SearchFilter(SearchAdapter searchAdapter, List<Module> modules) {
+        this.mAdapter = searchAdapter;
+        this.mOriginalList = modules;
         this.mFilteredList = new ArrayList<>();
     }
 
     @Override
-    protected FilterResults performFiltering(CharSequence charSequence) {
+    protected FilterResults performFiltering(CharSequence constraint) {
         mFilteredList.clear();
         final FilterResults results = new FilterResults();
-        if (0 == charSequence.length()) {
+        if (0 == constraint.length()) {
             mFilteredList.addAll(mOriginalList);
         } else {
-            final String filterPattern = charSequence.toString().toLowerCase();
+            final String filterPattern = constraint.toString().toLowerCase().trim();
             for (final Module module : mOriginalList) {
                 if (module.getTitle().toLowerCase().contains(filterPattern)) {
                     mFilteredList.add(module);
@@ -39,7 +39,6 @@ class SearchFilter extends Filter {
 
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
-        mAdapter.setList(mFilteredList);
-        mAdapter.notifyDataSetChanged();
+        mAdapter.edit().replaceAll(mFilteredList).commit();
     }
 }

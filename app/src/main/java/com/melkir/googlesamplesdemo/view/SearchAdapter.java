@@ -1,52 +1,67 @@
 package com.melkir.googlesamplesdemo.view;
 
-import android.support.v7.widget.RecyclerView;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
 import android.widget.Filterable;
 
-import com.melkir.googlesamplesdemo.BR;
-import com.melkir.googlesamplesdemo.R;
+import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter;
+import com.melkir.googlesamplesdemo.activity.DetailActivity;
+import com.melkir.googlesamplesdemo.databinding.SearchBinding;
 import com.melkir.googlesamplesdemo.model.Module;
 
+import java.util.Comparator;
 import java.util.List;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> implements Filterable {
+public class SearchAdapter extends SortedListAdapter<Module> implements Filterable {
 
-    private List<Module> mModules;
-    private final SearchFilter searchFilter;
+    public interface Listener {
+        void onModuleClicked(Module module);
+    }
 
-    public SearchAdapter(List<Module> modules) {
-        this.mModules = modules;
-        this.searchFilter = new SearchFilter(this, mModules);
+    private final Listener mListener;
+    private final SearchFilter mSearchFilter;
+
+    public SearchAdapter(final Context context, List<Module> modules) {
+        super(context, Module.class, TITLE_COMPARATOR);
+        this.mSearchFilter = new SearchFilter(this, modules);
+        mListener = new Listener() {
+            @Override
+            public void onModuleClicked(Module module) {
+                final Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra(DetailActivity.MODULE, module);
+                context.startActivity(intent);
+            }
+        };
     }
 
     @Override
-    public SearchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search, parent, false);
-        return new SearchViewHolder(view);
+    protected ViewHolder<? extends Module> onCreateViewHolder(LayoutInflater inflater, ViewGroup parent, int i) {
+        final SearchBinding binding = SearchBinding.inflate(inflater, parent, false);
+        return new SearchViewHolder(binding, mListener);
     }
 
     @Override
-    public void onBindViewHolder(SearchViewHolder holder, int position) {
-        Module module = mModules.get(position);
-        holder.getBinding().setVariable(BR.module, module);
-        holder.getBinding().executePendingBindings();
+    protected boolean areItemsTheSame(Module item1, Module item2) {
+        return item1.getId() == item2.getId();
     }
 
     @Override
-    public int getItemCount() {
-        return mModules.size();
-    }
-
-    public void setList(List<Module> list) {
-        this.mModules = list;
+    protected boolean areItemContentsTheSame(Module oldItem, Module newItem) {
+        return oldItem.equals(newItem);
     }
 
     @Override
-    public Filter getFilter() {
-        return searchFilter;
+    public SearchFilter getFilter() {
+        return mSearchFilter;
     }
+
+    public static final Comparator<Module> TITLE_COMPARATOR = new Comparator<Module>() {
+        @Override
+        public int compare(Module a, Module b) {
+            return a.getTitle().compareTo(b.getTitle());
+        }
+    };
+
 }

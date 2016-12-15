@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private DrawerLayout mDrawerLayout;
-    private CardContentFragment cardContentFragment;
+    private CardContentFragment mCardContentFragment;
     private String mCurrentFilter = "";
     private View mNavHeader;
 
@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         // Add counter on menu item
         initMenuCounters();
         // Add our card fragment
-        cardContentFragment = new CardContentFragment();
-        getFragmentManager().beginTransaction().replace(R.id.container, cardContentFragment).commit();
+        mCardContentFragment = new CardContentFragment();
+        getFragmentManager().beginTransaction().replace(R.id.container, mCardContentFragment).commit();
         // Update the UI if the user is logged
         updateUI(FirebaseAuth.getInstance().getCurrentUser());
     }
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         // Restore the cardFilter
         mCurrentFilter = savedInstanceState.getString(STATE_FILTER);
         // Apply the cardFilter to the view
-        cardContentFragment.cardFilter(mCurrentFilter);
+        mCardContentFragment.cardFilter(mCurrentFilter);
     }
 
     @Override
@@ -118,6 +118,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         final MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                mCardContentFragment.setDefaultView();
+                return false;
+            }
+        });
 
         return true;
     }
@@ -135,9 +142,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextChange(String query) {
-//        Log.d(TAG, "Text changed");
-        cardContentFragment.searchFilter(query);
-        return false;
+        mCardContentFragment.searchFilter(query);
+        return true;
     }
 
     @Override
@@ -227,11 +233,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             if (!item.isChecked()) {
                 item.setChecked(true);
                 mCurrentFilter = constraint;
-                cardContentFragment.cardFilter(constraint);
+                mCardContentFragment.cardFilter(constraint);
             } else {
                 item.setChecked(false);
                 mCurrentFilter = "";
-                cardContentFragment.cardFilter("");
+                mCardContentFragment.cardFilter("");
             }
         }
     }

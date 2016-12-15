@@ -26,31 +26,45 @@ public class CardContentFragment extends Fragment {
 
     private CardAdapter mCardAdapter;
     private SearchAdapter mSearchAdapter;
+    private RecyclerView mRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_card, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        // Initialize list of module
         List<Module> modules = initModules(getActivity());
-        this.mCardAdapter = new CardAdapter(modules);
-//        this.mSearchAdapter = new SearchAdapter(modules);
 
-        recyclerView.setAdapter(this.mCardAdapter);
-//        recyclerView.setAdapter(this.mSearchAdapter);
-        recyclerView.setHasFixedSize(true);
+        // Initialize card adapter
+        mCardAdapter = new CardAdapter(modules);
+
+        // Initialize search adapter
+        mSearchAdapter = new SearchAdapter(getActivity(), modules);
+        mSearchAdapter.edit().replaceAll(modules).commit();
+
+        // Set card adapter by default
+        setDefaultView();
+        mRecyclerView.setHasFixedSize(true);
 
         return rootView;
     }
 
     public void cardFilter(String constraint) {
+        mRecyclerView.setAdapter(mCardAdapter);
         this.mCardAdapter.getFilter().filter(constraint);
     }
 
     public void searchFilter(String constraint) {
+        mRecyclerView.setAdapter(mSearchAdapter);
         this.mSearchAdapter.getFilter().filter(constraint);
+        mRecyclerView.scrollToPosition(0);
+    }
+
+    public void setDefaultView() {
+        mRecyclerView.setAdapter(mCardAdapter);
     }
 
     private List<Module> initModules(Context context) {
@@ -64,7 +78,7 @@ public class CardContentFragment extends Fragment {
         final TypedArray a = resources.obtainTypedArray(R.array.modules_picture);
         for (int i = 0; i < mModulesTitle.length; ++i) {
             String[] categories = mModulesCategory[i].split(";");
-            Module module = new Module(mModulesTitle[i], mModulesDesc[i], mModulesLink[i],
+            Module module = new Module(i, mModulesTitle[i], mModulesDesc[i], mModulesLink[i],
                     mModulesAction[i], categories, a.getResourceId(i, R.drawable.card_demo));
             modules.add(module);
         }

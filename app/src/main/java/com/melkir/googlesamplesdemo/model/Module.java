@@ -6,16 +6,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.View;
 
+import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter;
 import com.melkir.googlesamplesdemo.activity.DetailActivity;
 import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 
-public class Module implements Parcelable {
+public class Module implements Parcelable, SortedListAdapter.ViewModel {
     private final String mTitle, mDescription, mLink, mAction;
     private final String[] mCategories;
     private final int mPictureRsc;
+    private final int mId;
 
-    public Module(String title, String description, String link, String action,
+    public Module(int id, String title, String description, String link, String action,
                   String[] categories, int pictureRsc) {
+        this.mId = id;
         this.mTitle = title;
         this.mDescription = description;
         this.mLink = link;
@@ -25,6 +28,7 @@ public class Module implements Parcelable {
     }
 
     private Module(Parcel in) {
+        mId = in.readInt();
         mTitle = in.readString();
         mDescription = in.readString();
         mLink = in.readString();
@@ -44,6 +48,10 @@ public class Module implements Parcelable {
             return new Module[size];
         }
     };
+
+    public int getId() {
+        return mId;
+    }
 
     public String getTitle() {
         return mTitle;
@@ -76,6 +84,7 @@ public class Module implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(mId);
         parcel.writeString(mTitle);
         parcel.writeString(mDescription);
         parcel.writeString(mLink);
@@ -93,6 +102,21 @@ public class Module implements Parcelable {
 
     public void onLaunchClick(View view, String action) {
         ActivityLauncher.start(view.getContext(), action);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Module module = (Module) o;
+        return mId == module.mId && mTitle.equals(module.mTitle);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = mTitle.hashCode();
+        result = 31 * result + mId;
+        return result;
     }
 
 }
