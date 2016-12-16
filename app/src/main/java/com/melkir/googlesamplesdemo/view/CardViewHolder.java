@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import com.melkir.googlesamplesdemo.R;
 
 class CardViewHolder extends RecyclerView.ViewHolder {
-    private ViewDataBinding binding;
+    private final ViewDataBinding binding;
     private final ImageView picture;
 
     CardViewHolder(View itemView) {

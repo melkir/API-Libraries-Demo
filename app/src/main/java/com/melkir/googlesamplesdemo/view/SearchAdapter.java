@@ -57,7 +57,7 @@ public class SearchAdapter extends SortedListAdapter<Module> implements Filterab
         return mSearchFilter;
     }
 
-    public static final Comparator<Module> TITLE_COMPARATOR = new Comparator<Module>() {
+    private static final Comparator<Module> TITLE_COMPARATOR = new Comparator<Module>() {
         @Override
         public int compare(Module a, Module b) {
             return a.getTitle().compareTo(b.getTitle());
