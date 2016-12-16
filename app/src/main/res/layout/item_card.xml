@@ -39,7 +39,7 @@
                 tools:text="Module title" />
 
             <TextView
-                android:id="@+id/card_text"
+                android:id="@+id/card_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/card_image"
@@ -54,7 +54,7 @@
                 tools:text="Module description" />
 
             <Button
-                android:id="@+id/action_launch"
+                android:id="@+id/card_launch"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
