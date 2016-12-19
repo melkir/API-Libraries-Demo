@@ -1,5 +1,6 @@
 package com.melkir.googlesamplesdemo.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.res.Resources;
@@ -31,18 +32,19 @@ public class CardContentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_card, container, false);
+        final Activity activity = getActivity();
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
         // Initialize list of module
-        List<Module> modules = initModules(getActivity());
+        List<Module> modules = initModules(activity);
 
         // Initialize card adapter
-        mCardAdapter = new CardAdapter(getActivity(), modules);
+        mCardAdapter = new CardAdapter(activity, modules);
 
         // Initialize search adapter
-        mSearchAdapter = new SearchAdapter(getActivity(), modules);
+        mSearchAdapter = new SearchAdapter(activity, modules);
         mSearchAdapter.edit().replaceAll(modules).commit();
 
         // Set card adapter by default
