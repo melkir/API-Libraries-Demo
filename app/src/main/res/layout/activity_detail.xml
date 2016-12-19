@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="module" type="com.melkir.googlesamplesdemo.model.Module" />
+
+        <variable
+            name="module"
+            type="com.melkir.googlesamplesdemo.model.Module" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -33,7 +36,7 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <ImageView
-                    android:id="@+id/card_image"
+                    android:id="@+id/module_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@{module.picture}"
@@ -75,7 +78,7 @@
                     android:textSize="@dimen/article_titles" />
 
                 <TextView
-                    android:id="@+id/card_description"
+                    android:id="@+id/module_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/md_keylines"
@@ -83,7 +86,7 @@
                     tools:text="@string/detail_desc" />
 
                 <TextView
-                    android:id="@+id/card_link"
+                    android:id="@+id/module_link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:autoLink="web"

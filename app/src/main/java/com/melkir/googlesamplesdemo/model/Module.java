@@ -1,13 +1,10 @@
 package com.melkir.googlesamplesdemo.model;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.View;
 
 import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter;
-import com.melkir.googlesamplesdemo.activity.DetailActivity;
 import com.melkir.googlesamplesdemo.util.ActivityLauncher;
 
 public class Module implements Parcelable, SortedListAdapter.ViewModel {
@@ -91,13 +88,6 @@ public class Module implements Parcelable, SortedListAdapter.ViewModel {
         parcel.writeString(mAction);
         parcel.writeStringArray(mCategories);
         parcel.writeInt(mPictureRsc);
-    }
-
-    public void onCardClick(View view, Module module) {
-        final Context context = view.getContext();
-        final Intent intent = new Intent(context, DetailActivity.class);
-        intent.putExtra(DetailActivity.MODULE, module);
-        context.startActivity(intent);
     }
 
     public void onLaunchClick(View view, String action) {

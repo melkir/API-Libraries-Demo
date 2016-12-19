@@ -22,6 +22,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
     private List<Module> mModules;
     private final CardFilter cardFilter;
     private final Context mContext;
+    private CardHandler mHandler;
 
     /**
      * Adapter to display recycler view.
@@ -29,6 +30,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
     public CardAdapter(Context context, List<Module> modules) {
         this.mContext = context;
         this.mModules = modules;
+        this.mHandler = new CardHandler();
         this.cardFilter = new CardFilter(this, mModules);
     }
 
@@ -44,6 +46,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
         Glide.with(mContext).load(module.getPicture()).into(holder.getPicture());
 //        holder.getPicture().setImageResource(module.getPicture());
         holder.getBinding().setVariable(BR.module, module);
+        holder.getBinding().setVariable(BR.handler, mHandler);
         holder.getBinding().executePendingBindings();
     }
 
