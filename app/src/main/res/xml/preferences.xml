@@ -3,9 +3,9 @@
     <PreferenceCategory android:title="Account">
         <Preference
             android:key="disconnect"
-            android:summary="Detach your Google account from this app"
+            android:summary="@string/disconnect_summary"
             android:enabled="false"
-            android:title="Disconnect" />
+            android:title="@string/disconnect_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

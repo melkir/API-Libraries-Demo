@@ -14,6 +14,8 @@
     <string name="category">Category</string>
     <string name="card_title_description">Description</string>
     <string name="action_search">Search</string>
+    <string name="disconnect_summary">Detach your Google account from this app</string>
+    <string name="disconnect_title">Disconnect</string>
 
     <string name="detail_desc" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
