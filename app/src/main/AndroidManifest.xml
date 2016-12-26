@@ -13,6 +13,7 @@
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -23,11 +24,16 @@
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.Base" />
 
+        <!-- settings activity -->
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/SettingsTheme"/>
+
         <!-- google maps api key for our streets dependency -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
-
     </application>
 
 </manifest>

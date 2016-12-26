@@ -229,9 +229,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 case R.id.game:
                     filterBehaviour(item, "game");
                     break;
+                case R.id.settings:
+                    Intent intent = new Intent(getApplication(), SettingsActivity.class);
+                    startActivity(intent);
+                    break;
                 case R.id.feedback:
                 case R.id.about:
-                case R.id.settings:
                 default:
                     Toast.makeText(mNavHeader.getContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
                     return true;

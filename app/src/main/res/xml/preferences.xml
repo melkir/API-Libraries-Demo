@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Account">
+        <Preference
+            android:key="disconnect"
+            android:summary="Detach your Google account from this app"
+            android:enabled="false"
+            android:title="Disconnect" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
