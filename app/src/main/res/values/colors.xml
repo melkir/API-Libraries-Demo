@@ -4,5 +4,6 @@
     <color name="primary_dark">#1976D2</color> <!-- Dark Blue -->
     <color name="accent">#FFC107</color> <!-- Yellow -->
     <color name="white">#FFFFFF</color>
+    <color name="grey">#333333</color>
     <color name="dark_grey">#424242</color>
 </resources>
