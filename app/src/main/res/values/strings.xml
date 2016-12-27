@@ -21,7 +21,12 @@
     <string name="feedback_title">Contact support</string>
     <string name="err_msg_field">This field is required</string>
     <string name="feedback_thanks">Thank You!</string>
+    <string name="app_description">Android example collection for developers and designers</string>
+    <string name="contributor">Contributor</string>
+    <string name="contributor_text">Illustrations by Cassandra Vion</string>
 
+    <string name="copyright" translatable="false">Copyright 2016</string>
+    <string name="author" translatable="false">Thibault Vieux</string>
     <string name="detail_desc" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis

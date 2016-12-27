@@ -28,12 +28,19 @@
         <activity
             android:name=".activity.SettingsActivity"
             android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/SettingsTheme"/>
+            android:theme="@style/AppTheme.ActionBar" />
+
+        <!-- about activity -->
+        <activity
+            android:name=".activity.AboutActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme.ActionBar" />
 
         <!-- google maps api key for our streets dependency -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
+
     </application>
 
 </manifest>

@@ -237,6 +237,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     showFeedbackDialog();
                     break;
                 case R.id.about:
+                    startAboutActivity();
+                    break;
                 default:
                     Toast.makeText(mNavHeader.getContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
                     return true;
@@ -257,15 +259,20 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 mCardContentFragment.cardFilter("");
             }
         }
-    }
 
-    private void startSettingsActivity() {
-        Intent intent = new Intent(getApplication(), SettingsActivity.class);
-        startActivity(intent);
-    }
+        private void startAboutActivity() {
+            Intent intent = new Intent(getApplication(), AboutActivity.class);
+            startActivity(intent);
+        }
 
-    private void showFeedbackDialog() {
-        new FeedbackDialogFragment().show(getFragmentManager(), "feedback");
+        private void startSettingsActivity() {
+            Intent intent = new Intent(getApplication(), SettingsActivity.class);
+            startActivity(intent);
+        }
+
+        private void showFeedbackDialog() {
+            new FeedbackDialogFragment().show(getFragmentManager(), "feedback");
+        }
     }
 
     private void showSnackbar(String message) {

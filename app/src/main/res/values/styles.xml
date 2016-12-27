@@ -13,7 +13,7 @@
 
     <style name="AppTheme" parent="AppTheme.Base" />
 
-    <style name="SettingsTheme" parent="Theme.AppCompat">
+    <style name="AppTheme.ActionBar" parent="Theme.AppCompat">
         <!-- Main theme colors -->
         <!--   your app branding color for the app bar -->
         <item name="colorPrimary">@color/primary</item>
