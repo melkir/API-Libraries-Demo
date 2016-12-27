@@ -32,6 +32,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.melkir.googlesamplesdemo.BuildConfig;
 import com.melkir.googlesamplesdemo.R;
 import com.melkir.googlesamplesdemo.fragment.CardContentFragment;
+import com.melkir.googlesamplesdemo.fragment.FeedbackDialogFragment;
 
 import java.util.Collections;
 
@@ -230,10 +231,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     filterBehaviour(item, "game");
                     break;
                 case R.id.settings:
-                    Intent intent = new Intent(getApplication(), SettingsActivity.class);
-                    startActivity(intent);
+                    startSettingsActivity();
                     break;
                 case R.id.feedback:
+                    showFeedbackDialog();
+                    break;
                 case R.id.about:
                 default:
                     Toast.makeText(mNavHeader.getContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
@@ -255,6 +257,15 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 mCardContentFragment.cardFilter("");
             }
         }
+    }
+
+    private void startSettingsActivity() {
+        Intent intent = new Intent(getApplication(), SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void showFeedbackDialog() {
+        new FeedbackDialogFragment().show(getFragmentManager(), "feedback");
     }
 
     private void showSnackbar(String message) {

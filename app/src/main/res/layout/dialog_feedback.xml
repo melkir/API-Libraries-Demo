@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/abc_dialog_padding_top_material"
+    android:paddingLeft="@dimen/abc_dialog_padding_material"
+    android:paddingRight="@dimen/abc_dialog_padding_material"
+    android:paddingTop="@dimen/abc_dialog_padding_top_material"
+    tools:ignore="PrivateResource">
+
+    <TextView
+        android:id="@+id/feedback_title"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/abc_dialog_padding_top_material"
+        android:text="@string/feedback_title" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_subject"
+        android:layout_width="match_parent"
+        android:paddingBottom="5dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/input_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/subject"
+            android:inputType="textShortMessage" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/input_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/message"
+            android:inputType="textMultiLine" />
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>

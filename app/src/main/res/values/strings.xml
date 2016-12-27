@@ -16,6 +16,11 @@
     <string name="action_search">Search</string>
     <string name="disconnect_summary">Detach your Google account from this app</string>
     <string name="disconnect_title">Disconnect</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="feedback_title">Contact support</string>
+    <string name="err_msg_field">This field is required</string>
+    <string name="feedback_thanks">Thank You!</string>
 
     <string name="detail_desc" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
