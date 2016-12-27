@@ -136,11 +136,12 @@ public class FeedbackDialogFragment extends DialogFragment {
     }
 
     private void sendEmail(String subject, String body) {
-//        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-//        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, "melkir13@gmail.com");
-//        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mInputSubject.getText().toString());
-//        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, mInputContent.getText().toString());
-//        emailIntent.setType("text/email");
-//        context.startActivity(Intent.createChooser(emailIntent, "Send e-mail..."));
+//        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+//        String[] recipients = new String[]{"melkir13@gmail.com"};
+//        emailIntent.setData(Uri.parse("mailto:"));
+//        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, recipients);
+//        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+//        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
+//        startActivity(Intent.createChooser(emailIntent, "Send feedback"));
     }
 }
