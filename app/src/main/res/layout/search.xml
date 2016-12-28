@@ -1,26 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <variable name="listener" type="com.melkir.googlesamplesdemo.view.SearchAdapter.Listener" />
-        <variable name="module" type="com.melkir.googlesamplesdemo.model.Module" />
+
+        <variable
+            name="listener"
+            type="com.melkir.googlesamplesdemo.view.SearchAdapter.Listener" />
+
+        <variable
+            name="module"
+            type="com.melkir.googlesamplesdemo.model.Module" />
     </data>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
+        android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
-        android:onClick="@{view -> listener.onModuleClicked(module)}">
+        android:onClick="@{view -> listener.onModuleClicked(module)}"
+        android:padding="@dimen/md_keylines">
 
-        <TextView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_avatar"
+            android:layout_width="@dimen/avator_size"
+            android:layout_height="@dimen/avator_size"
+            tools:src="@drawable/our_streets"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="8dp"
-            android:text="@{module.title}" />
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/md_keylines"
+            android:layout_toEndOf="@+id/item_avatar"
+            android:orientation="vertical">
 
-    </FrameLayout>
+            <TextView
+                android:id="@+id/item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{module.title}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textSize="@dimen/article_subheading"
+                tools:text="Module title" />
+
+            <TextView
+                android:id="@+id/item_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{module.description}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/medium_grey"
+                android:textSize="@dimen/list_body"
+                tools:text="Module description" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </layout>
