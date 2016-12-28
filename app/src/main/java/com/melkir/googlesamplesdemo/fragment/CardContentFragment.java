@@ -3,9 +3,11 @@ package com.melkir.googlesamplesdemo.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,7 +37,13 @@ public class CardContentFragment extends Fragment {
         final Activity activity = getActivity();
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
+
+        int orientation = activity.getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        } else {
+            mRecyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
+        }
 
         // Initialize list of module
         List<Module> modules = initModules(activity);

@@ -97,10 +97,10 @@
         <item>@drawable/googly_eyes</item>
         <item>@drawable/giant_emoji</item>
         <item>@drawable/accelerometer_play</item>
-        <item>@drawable/out_streets</item>
+        <item>@drawable/our_streets</item>
         <item>@drawable/material_design</item>
         <item>@drawable/tts</item>
-        <item />
+        <item>@drawable/ai_experiments</item>
         <item>@drawable/halloween_doodle</item>
     </string-array>
     <string-array name="modules_action">

@@ -41,6 +41,11 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <!-- set glide to high image quality -->
+        <meta-data
+            android:name="com.melkir.googlesamplesdemo.util.GlideConfiguration"
+            android:value="GlideModule" />
+
     </application>
 
 </manifest>

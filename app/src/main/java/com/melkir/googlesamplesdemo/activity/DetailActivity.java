@@ -24,6 +24,7 @@ public class DetailActivity extends AppCompatActivity {
         // Enable back button
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         if (null != getSupportActionBar()) {
+            getSupportActionBar().setTitle("");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 

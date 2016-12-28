@@ -31,21 +31,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/card_image_height"
                 android:scaleType="centerCrop"
-                android:src="@drawable/material_design" />
+                android:src="@drawable/card_demo" />
 
             <TextView
                 android:id="@+id/card_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/card_image"
+                android:paddingBottom="2dp"
                 android:paddingLeft="@dimen/md_keylines"
                 android:paddingRight="@dimen/md_keylines"
-                android:paddingTop="16dp"
-                android:paddingBottom="2dp"
+                android:paddingTop="@dimen/md_keylines"
                 android:text="@{module.title}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textSize="@dimen/article_titles"
                 android:textColor="@color/white"
+                android:textSize="@dimen/article_titles"
                 tools:text="Module title" />
 
             <TextView
@@ -53,24 +53,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/card_title"
-                android:paddingLeft="@dimen/md_keylines"
-                android:paddingRight="@dimen/md_keylines"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:paddingLeft="@dimen/md_keylines"
+                android:paddingRight="@dimen/md_keylines"
+                android:paddingBottom="@dimen/md_keylines"
                 android:text="@{module.description}"
                 android:textSize="@dimen/article_subheading"
                 tools:text="Module description" />
-
-            <Button
-                android:id="@+id/card_launch"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{(view) -> module.onLaunchClick(view, module.action)}"
-                android:text="@string/launch"
-                android:layout_below="@+id/card_description"
-                android:layout_alignParentEnd="true"
-                android:padding="8dp" />
 
         </RelativeLayout>
 
