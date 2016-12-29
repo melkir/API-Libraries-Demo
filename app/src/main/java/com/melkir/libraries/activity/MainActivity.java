@@ -1,4 +1,4 @@
-package com.melkir.googlesamplesdemo.activity;
+package com.melkir.libraries.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,10 +29,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.melkir.googlesamplesdemo.BuildConfig;
-import com.melkir.googlesamplesdemo.R;
-import com.melkir.googlesamplesdemo.fragment.CardContentFragment;
-import com.melkir.googlesamplesdemo.fragment.FeedbackDialogFragment;
+import com.melkir.libraries.BuildConfig;
+import com.melkir.libraries.R;
+import com.melkir.libraries.fragment.CardContentFragment;
+import com.melkir.libraries.fragment.FeedbackDialogFragment;
 
 import java.util.Collections;
 

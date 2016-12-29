@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.melkir.googlesamplesdemo">
+    package="com.melkir.libraries">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
 
         <!-- main activity -->
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="com.melkir.libraries.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,20 +20,20 @@
 
         <!-- detail activity -->
         <activity
-            android:name=".activity.DetailActivity"
-            android:parentActivityName=".activity.MainActivity"
+            android:name="com.melkir.libraries.activity.DetailActivity"
+            android:parentActivityName="com.melkir.libraries.activity.MainActivity"
             android:theme="@style/AppTheme.Base" />
 
         <!-- settings activity -->
         <activity
-            android:name=".activity.SettingsActivity"
-            android:parentActivityName=".activity.MainActivity"
+            android:name="com.melkir.libraries.activity.SettingsActivity"
+            android:parentActivityName="com.melkir.libraries.activity.MainActivity"
             android:theme="@style/AppTheme.ActionBar" />
 
         <!-- about activity -->
         <activity
-            android:name=".activity.AboutActivity"
-            android:parentActivityName=".activity.MainActivity"
+            android:name="com.melkir.libraries.activity.AboutActivity"
+            android:parentActivityName="com.melkir.libraries.activity.MainActivity"
             android:theme="@style/AppTheme.ActionBar" />
 
         <!-- google maps api key for our streets dependency -->
@@ -43,7 +43,7 @@
 
         <!-- set glide to high image quality -->
         <meta-data
-            android:name="com.melkir.googlesamplesdemo.util.GlideConfiguration"
+            android:name="com.melkir.libraries.util.GlideConfiguration"
             android:value="GlideModule" />
 
     </application>

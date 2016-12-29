@@ -1,4 +1,4 @@
-package com.melkir.googlesamplesdemo.view;
+package com.melkir.libraries.view;
 
 import android.content.Context;
 import android.view.View;
@@ -6,9 +6,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter;
-import com.melkir.googlesamplesdemo.R;
-import com.melkir.googlesamplesdemo.databinding.SearchBinding;
-import com.melkir.googlesamplesdemo.model.Module;
+import com.melkir.libraries.R;
+import com.melkir.libraries.databinding.SearchBinding;
+import com.melkir.libraries.model.Module;
 
 public class SearchViewHolder extends SortedListAdapter.ViewHolder<Module> {
     private final SearchBinding binding;

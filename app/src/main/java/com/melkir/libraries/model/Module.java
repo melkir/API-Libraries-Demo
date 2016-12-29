@@ -1,11 +1,11 @@
-package com.melkir.googlesamplesdemo.model;
+package com.melkir.libraries.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.View;
 
 import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter;
-import com.melkir.googlesamplesdemo.util.ActivityLauncher;
+import com.melkir.libraries.util.ActivityLauncher;
 
 public class Module implements Parcelable, SortedListAdapter.ViewModel {
     private final String mTitle, mDescription, mLink, mAction;

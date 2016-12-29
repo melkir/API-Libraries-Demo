@@ -1,11 +1,11 @@
-package com.melkir.googlesamplesdemo.view;
+package com.melkir.libraries.view;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.melkir.googlesamplesdemo.activity.DetailActivity;
-import com.melkir.googlesamplesdemo.model.Module;
+import com.melkir.libraries.activity.DetailActivity;
+import com.melkir.libraries.model.Module;
 
 public class CardHandler {
 

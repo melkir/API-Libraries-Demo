@@ -6,11 +6,11 @@
 
         <variable
             name="listener"
-            type="com.melkir.googlesamplesdemo.view.SearchAdapter.Listener" />
+            type="com.melkir.libraries.view.SearchAdapter.Listener" />
 
         <variable
             name="module"
-            type="com.melkir.googlesamplesdemo.model.Module" />
+            type="com.melkir.libraries.model.Module" />
     </data>
 
     <RelativeLayout

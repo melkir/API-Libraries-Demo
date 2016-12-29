@@ -1,8 +1,8 @@
-package com.melkir.googlesamplesdemo.view;
+package com.melkir.libraries.view;
 
 import android.widget.Filter;
 
-import com.melkir.googlesamplesdemo.model.Module;
+import com.melkir.libraries.model.Module;
 
 import java.util.ArrayList;
 import java.util.List;

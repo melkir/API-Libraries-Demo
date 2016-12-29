@@ -1,4 +1,4 @@
-package com.melkir.googlesamplesdemo.fragment;
+package com.melkir.libraries.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.melkir.googlesamplesdemo.R;
+import com.melkir.libraries.R;
 
 public class FeedbackDialogFragment extends DialogFragment {
 

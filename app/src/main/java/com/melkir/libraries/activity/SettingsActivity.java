@@ -1,9 +1,9 @@
-package com.melkir.googlesamplesdemo.activity;
+package com.melkir.libraries.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.melkir.googlesamplesdemo.fragment.SettingsFragment;
+import com.melkir.libraries.fragment.SettingsFragment;
 
 public class SettingsActivity extends AppCompatActivity {
 

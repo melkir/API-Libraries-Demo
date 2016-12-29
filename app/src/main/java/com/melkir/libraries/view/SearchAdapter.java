@@ -1,4 +1,4 @@
-package com.melkir.googlesamplesdemo.view;
+package com.melkir.libraries.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.Filterable;
 
 import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter;
-import com.melkir.googlesamplesdemo.activity.DetailActivity;
-import com.melkir.googlesamplesdemo.databinding.SearchBinding;
-import com.melkir.googlesamplesdemo.model.Module;
+import com.melkir.libraries.activity.DetailActivity;
+import com.melkir.libraries.databinding.SearchBinding;
+import com.melkir.libraries.model.Module;
 
 import java.util.Comparator;
 import java.util.List;

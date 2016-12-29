@@ -21,6 +21,7 @@
 }
 -keep class com.firebase.** { *; }
 -keep class org.apache.** { *; }
+-keep public class * implements com.bumptech.glide.module.GlideModule
 -keepnames class com.fasterxml.jackson.** { *; }
 -keepnames class javax.servlet.** { *; }
 -keepnames class org.ietf.jgss.** { *; }

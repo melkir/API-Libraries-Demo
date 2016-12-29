@@ -1,4 +1,4 @@
-package com.melkir.googlesamplesdemo.fragment;
+package com.melkir.libraries.fragment;
 
 import android.os.Bundle;
 import android.preference.Preference;
@@ -12,7 +12,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.melkir.googlesamplesdemo.R;
+import com.melkir.libraries.R;
 
 public class SettingsFragment extends PreferenceFragment {
 

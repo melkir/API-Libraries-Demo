@@ -1,4 +1,4 @@
-package com.melkir.googlesamplesdemo.fragment;
+package com.melkir.libraries.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -14,10 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.melkir.googlesamplesdemo.R;
-import com.melkir.googlesamplesdemo.model.Module;
-import com.melkir.googlesamplesdemo.view.CardAdapter;
-import com.melkir.googlesamplesdemo.view.SearchAdapter;
+import com.melkir.libraries.R;
+import com.melkir.libraries.model.Module;
+import com.melkir.libraries.view.CardAdapter;
+import com.melkir.libraries.view.SearchAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

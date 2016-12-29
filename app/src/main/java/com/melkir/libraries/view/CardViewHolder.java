@@ -1,4 +1,4 @@
-package com.melkir.googlesamplesdemo.view;
+package com.melkir.libraries.view;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.melkir.googlesamplesdemo.R;
+import com.melkir.libraries.R;
 
 public class CardViewHolder extends RecyclerView.ViewHolder {
     private final ViewDataBinding binding;

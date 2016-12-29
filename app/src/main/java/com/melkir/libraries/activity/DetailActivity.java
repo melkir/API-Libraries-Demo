@@ -1,4 +1,4 @@
-package com.melkir.googlesamplesdemo.activity;
+package com.melkir.libraries.activity;
 
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
@@ -8,9 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
-import com.melkir.googlesamplesdemo.BR;
-import com.melkir.googlesamplesdemo.R;
-import com.melkir.googlesamplesdemo.model.Module;
+import com.melkir.libraries.BR;
+import com.melkir.libraries.R;
+import com.melkir.libraries.model.Module;
 
 public class DetailActivity extends AppCompatActivity {
 

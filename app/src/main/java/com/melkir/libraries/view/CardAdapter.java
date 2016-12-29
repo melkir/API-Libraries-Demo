@@ -1,4 +1,4 @@
-package com.melkir.googlesamplesdemo.view;
+package com.melkir.libraries.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,9 +9,9 @@ import android.widget.Filter;
 import android.widget.Filterable;
 
 import com.bumptech.glide.Glide;
-import com.melkir.googlesamplesdemo.BR;
-import com.melkir.googlesamplesdemo.R;
-import com.melkir.googlesamplesdemo.model.Module;
+import com.melkir.libraries.BR;
+import com.melkir.libraries.R;
+import com.melkir.libraries.model.Module;
 
 import java.util.List;
 

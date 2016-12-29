@@ -1,4 +1,4 @@
-package com.melkir.googlesamplesdemo.util;
+package com.melkir.libraries.util;
 
 import android.content.Context;
 import android.content.Intent;
