@@ -15,4 +15,5 @@
     <dimen name="navheader_height">168dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_body">14sp</dimen>
+    <dimen name="app_bar_height">256dp</dimen>
 </resources>
