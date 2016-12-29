@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.melkir.materialdesigncodelab">
+    package="com.melkir.materialdesigncodelabs">
 
     <application android:allowBackup="true">
         <activity
-            android:name=".MaterialDesignActivity"
+            android:name="com.melkir.materialdesigncodelabs.MaterialDesignActivity"
             android:label="Material Design Codelab"
             android:theme="@style/MaterialAppTheme">
         </activity>
         <activity
-            android:name=".DetailActivity"
-            android:parentActivityName=".MaterialDesignActivity"
+            android:name="com.melkir.materialdesigncodelabs.DetailActivity"
+            android:parentActivityName="com.melkir.materialdesigncodelabs.MaterialDesignActivity"
             android:theme="@style/MaterialAppTheme.Base">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MaterialDesignActivity" />
+                android:value="com.melkir.materialdesigncodelabs.MaterialDesignActivity" />
         </activity>
     </application>
 

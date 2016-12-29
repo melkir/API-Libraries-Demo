@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.widget.Toast;
 
 import com.melkir.accelerometerplay.AccelerometerPlayActivity;
-import com.melkir.materialdesigncodelab.MaterialDesignActivity;
+import com.melkir.materialdesigncodelabs.MaterialDesignActivity;
 import com.melkir.ourstreets.activity.OurStreetsActivity;
 import com.melkir.texttospeech.TextToSpeechActivity;
 import com.melkir.vision.barcodereader.BarcodeReaderActivity;

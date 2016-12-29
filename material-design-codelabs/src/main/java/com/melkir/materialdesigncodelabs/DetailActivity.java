@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.melkir.materialdesigncodelab;
+package com.melkir.materialdesigncodelabs;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;

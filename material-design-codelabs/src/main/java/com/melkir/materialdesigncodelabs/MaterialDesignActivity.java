@@ -1,4 +1,4 @@
-package com.melkir.materialdesigncodelab;
+package com.melkir.materialdesigncodelabs;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -20,9 +20,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.melkir.materialdesigncodelab.fragment.CardContentFragment;
-import com.melkir.materialdesigncodelab.fragment.ListContentFragment;
-import com.melkir.materialdesigncodelab.fragment.TileContentFragment;
+import com.melkir.materialdesigncodelabs.fragment.CardContentFragment;
+import com.melkir.materialdesigncodelabs.fragment.ListContentFragment;
+import com.melkir.materialdesigncodelabs.fragment.TileContentFragment;
 
 import java.util.ArrayList;
 import java.util.List;
