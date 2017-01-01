@@ -7,8 +7,8 @@ android {
         applicationId "com.melkir.libraries"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 2
-        versionName "1.4.0"
+        versionCode 3
+        versionName "1.5.0"
     }
     buildTypes {
         debug {
