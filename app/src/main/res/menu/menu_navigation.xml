@@ -33,10 +33,10 @@
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings"
             android:title="@string/action_settings" />
-        <item
-            android:id="@+id/feedback"
-            android:icon="@drawable/ic_feedback"
-            android:title="@string/action_send_feedback" />
+        <!--<item-->
+            <!--android:id="@+id/feedback"-->
+            <!--android:icon="@drawable/ic_feedback"-->
+            <!--android:title="@string/action_send_feedback" />-->
         <item
             android:id="@+id/about"
             android:icon="@drawable/ic_info"
