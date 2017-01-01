@@ -233,9 +233,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 case R.id.settings:
                     startSettingsActivity();
                     break;
-                case R.id.feedback:
-                    showFeedbackDialog();
-                    break;
+//                case R.id.feedback:
+//                    showFeedbackDialog();
+//                    break;
                 case R.id.about:
                     startAboutActivity();
                     break;
