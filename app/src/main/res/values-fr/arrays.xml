@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="modules_title">
+        <item>Lecteur de code barres</item>
+        <item>Suivi du visage</item>
+        <item>Googly Eyes</item>
+        <item>Emoji géant</item>
+        <item>Accéléromètre</item>
+        <item>OurStreets</item>
+        <item>Material Design Codelabs</item>
+        <item>Texte par synthèse vocale </item>
+        <item>Expérimentations d\'IA</item>
+        <item>Halloween Doodle</item>
+    </string-array>
+    <string-array name="modules_category">
+        <item>component</item>
+        <item>component</item>
+        <item>component</item>
+        <item>component</item>
+        <item>game;component</item>
+        <item>design</item>
+        <item>design</item>
+        <item>component</item>
+        <item>game</item>
+        <item>game</item>
+    </string-array>
+    <string-array name="modules_desc">
+        <item>
+            L\'API Vision détecte les codes barres en temps réel quelque soit l\'orientation du téléphone.
+            Elle permet également de détecter plusieurs codes barres et formats en simultané.
+        </item>
+        <item>
+            L\'API Vision détecte les visages humains sur des photos, des vidéos ou des flux en direct.
+            Elle détecte et suit des repères faciaux tels que les yeux, le nez et la bouche tout en
+            fournissant des informations supplémentaires en fonction de la forme des traits du visage.
+            Les sujets ont-ils les yeux ouverts ? Sont-ils souriants ?
+            Ainsi avec ces technologies, vous pouvez par exemple éditer des photos et des vidéos,
+            ajouter des effets et décorations sur vos flux vidéos, créer une application avec un mode
+            mains libres ou réagir lorsqu\'une personne cligne des yeux ou sourit.
+        </item>
+        <item>
+        	L\'API Vision utilise l\'appareil photo afin de suivre les visages et superposer des
+            graphiques animés Googly Eyes sur les yeux. Elle détecte également si les yeux sont ouverts
+            ou fermés pour y ajouter une animation lorsque le sujet cligne des yeux.
+        </item>
+        <item>
+        	Emoji Géant est une application d\'expérimentation d\'openFrameworks qui permet de traduire
+            vos expressions faciales sur un emoji géant. Elle a été réalisé en 3 semaines lors de la
+            Google I/O 2016. "Nous avons pensé qu\'il pourrait être amusant de représenter les
+            expressions d\'une personne en emoji. Nous nous sommes donc mis à la recherche
+            d\'une solution. Ceci en est le résultat".
+        </item>
+        <item>
+        	Cet exemple démontre comment utiliser les données de l\'accéléromètre pour simuler un
+            support physique. Plusieurs objets sont placés en libre mouvement sur une surface virtuelle.
+        	En fonction des vecteurs d\'accélération lors du déplacement de l\'appareil, les
+            particules se déplacent sur le support.
+        </item>
+        <item>
+        	Avec OurStreets, venez découvrir de magnifiques vues 360 degrés à travers le monde entier.
+            L\'application posséde une jolie interface material design et présente les transitions partagés.
+            Les données de OurStreets sont stockées sur Firebase afin de pouvoir les modifier sans avoir
+            à déployer une nouvelle version, de plus cela permet de réduire la taille initiale de l\'application.
+        </item>
+        <item>
+            Material design est un concept visuel d\'interaction et de mouvement pour vos applications.
+            Cet exemple utilise la bibliothèque Android Design Support pour en faire sa présentation.
+        </item>
+        <item>
+        	Synthèse vocale (TTS), permet de faire "parler" du texte à votre appareil Android dans
+            plusieurs langues.
+        </item>
+        <item>
+            Découvrez l\'apprentissage automatique en jouant avec les images, la langue, la musique,
+            le code et plus encore.
+        </item>
+        <item>
+            Prenez votre baguette et aidez à repousser une catastrophe fantomatique. Appuyez sur
+            jouer pour lancer des sorts, sauver vos amis et aider à rétablir la paix à l\'Académie
+            Magic Cat.
+        </item>
+    </string-array>
+    <string-array name="modules_link">
+        <item>https://developers.google.com/vision</item>
+        <item>https://developers.google.com/vision"</item>
+        <item>https://developers.google.com/vision"</item>
+        <item>https://github.com/googlecreativelab/giantemoji</item>
+        <item>https://github.com/googlesamples/android-AccelerometerPlay"</item>
+        <item>https://github.com/googlesamples/android-OurStreets"</item>
+        <item>https://github.com/googlecodelabs/android-design-library"</item>
+        <item>https://goo.gl/aDs0bM</item>
+        <item>https://aiexperiments.withgoogle.com"</item>
+        <item>https://www.google.com/doodles/halloween-2016"</item>
+    </string-array>
+    <string-array name="modules_picture">
+        <item>@drawable/barcode_scanner</item>
+        <item>@drawable/face_tracker</item>
+        <item>@drawable/googly_eyes</item>
+        <item>@drawable/giant_emoji</item>
+        <item>@drawable/accelerometer_play</item>
+        <item>@drawable/our_streets</item>
+        <item>@drawable/material_design</item>
+        <item>@drawable/tts</item>
+        <item>@drawable/ai_experiments</item>
+        <item>@drawable/halloween_doodle</item>
+    </string-array>
+    <string-array name="modules_action">
+        <item>barcode</item>
+        <item>face</item>
+        <item>googly</item>
+        <item>gmoji</item>
+        <item>accelerometer</item>
+        <item>ourStreets</item>
+        <item>materialDesign</item>
+        <item>tts</item>
+        <item>aiExperiments</item>
+        <item>halloweenDoodle</item>
+    </string-array>
+</resources>

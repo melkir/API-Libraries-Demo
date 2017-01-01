@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">API Libraries Demo</string>
+    <string name="action_settings">Réglages</string>
+    <string name="launch">Lancer</string>
+    <string name="sign_in">Se connecter</string>
+    <string name="sign_out">Se déconnecter</string>
+    <string name="sign_in_cancelled">Connection annulé</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="filter_component">Composant</string>
+    <string name="filter_design">Design</string>
+    <string name="filter_game">Jeux</string>
+    <string name="action_send_feedback">Envoyer un commentaire</string>
+    <string name="action_about">A propos</string>
+    <string name="category">Catégories</string>
+    <string name="card_title_description">Description</string>
+    <string name="action_search">Rechercher</string>
+    <string name="disconnect_summary">Délier votre compte Google de l\'application</string>
+    <string name="disconnect_title">Délier</string>
+    <string name="subject">Sujet</string>
+    <string name="message">Message</string>
+    <string name="feedback_title">Contacter le support</string>
+    <string name="err_msg_field">Ce champs est requis</string>
+    <string name="feedback_thanks">Merci!</string>
+    <string name="app_description">Conçu pour les développeurs et les concepteurs, cette application
+        fournit une collection d\'exemples de bibliothèques tierces sur Android. Ces exemples sont
+        inspirés de code sources présents sur le site Android Developers.</string>
+    <string name="contributor">Contributeur</string>
+    <string name="contributor_text">Illustrations par Cassandra Vion</string>
+</resources>
