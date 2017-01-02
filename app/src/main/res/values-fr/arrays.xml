@@ -46,9 +46,9 @@
         <item>
         	Emoji Géant est une application d\'expérimentation d\'openFrameworks qui permet de traduire
             vos expressions faciales sur un emoji géant. Elle a été réalisé en 3 semaines lors de la
-            Google I/O 2016. "Nous avons pensé qu\'il pourrait être amusant de représenter les
+            Google I/O 2016. \"Nous avons pensé qu\'il pourrait être amusant de représenter les
             expressions d\'une personne en emoji. Nous nous sommes donc mis à la recherche
-            d\'une solution. Ceci en est le résultat".
+            d\'une solution. Ceci en est le résultat\".
         </item>
         <item>
         	Cet exemple démontre comment utiliser les données de l\'accéléromètre pour simuler un
