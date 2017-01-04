@@ -2,10 +2,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="Account">
         <Preference
+            android:enabled="false"
             android:key="disconnect"
             android:summary="@string/disconnect_summary"
-            android:enabled="false"
             android:title="@string/disconnect_title" />
     </PreferenceCategory>
-
+    <ListPreference
+        android:entries="@array/languages"
+        android:entryValues="@array/languageValues"
+        android:key="language"
+        android:title="@string/language" />
 </PreferenceScreen>

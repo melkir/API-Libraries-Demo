@@ -1,6 +1,7 @@
 package com.melkir.libraries.fragment;
 
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.annotation.NonNull;
@@ -13,18 +14,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.melkir.libraries.R;
+import com.melkir.libraries.util.LocaleHelper;
 
 public class SettingsFragment extends PreferenceFragment {
-
+    public static boolean onBackButtonRecreateView = false;
     Preference mDisconnect;
+    ListPreference mLanguage;
+    ActionBar mActionBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (null != actionBar) {
-            actionBar.setTitle(R.string.action_settings);
+        mActionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (null != mActionBar) {
+            mActionBar.setTitle(R.string.action_settings);
         }
 
         // Load the preferences from an XML resource
@@ -49,6 +53,17 @@ public class SettingsFragment extends PreferenceFragment {
             mDisconnect.setOnPreferenceClickListener(null);
             mDisconnect.setEnabled(false);
         }
+
+        String currentLanguage = LocaleHelper.getLanguage(getActivity());
+        mLanguage = (ListPreference) getPreferenceManager().findPreference("language");
+        mLanguage.setValue(currentLanguage);
+        mLanguage.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                updateView((String) newValue);
+                return true;
+            }
+        });
     }
 
     private void displayTaskResult(Task<Void> task) {
@@ -58,6 +73,14 @@ public class SettingsFragment extends PreferenceFragment {
         } else {
             Toast.makeText(getActivity(), "An error occurred, please check your internet connection", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void updateView(String languageCode) {
+        onBackButtonRecreateView = true;
+        LocaleHelper.setLocale(getActivity(), languageCode);
+        setPreferenceScreen(null);
+        addPreferencesFromResource(R.xml.preferences);
+        mActionBar.setTitle(R.string.action_settings);
     }
 
 }

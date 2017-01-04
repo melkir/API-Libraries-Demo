@@ -12,7 +12,7 @@
         <item>AI Experiments</item>
         <item>Halloween Doodle</item>
     </string-array>
-    <string-array name="modules_category">
+    <string-array name="modules_category" translatable="false">
         <item>component</item>
         <item>component</item>
         <item>component</item>
@@ -79,7 +79,7 @@
             save your friends, and help restore the peace at the Magic Cat Academy.
         </item>
     </string-array>
-    <string-array name="modules_link">
+    <string-array name="modules_link" translatable="false">
         <item>https://developers.google.com/vision</item>
         <item>https://developers.google.com/vision"</item>
         <item>https://developers.google.com/vision"</item>
@@ -91,7 +91,7 @@
         <item>https://aiexperiments.withgoogle.com"</item>
         <item>https://www.google.com/doodles/halloween-2016"</item>
     </string-array>
-    <string-array name="modules_picture">
+    <string-array name="modules_picture" translatable="false">
         <item>@drawable/barcode_scanner</item>
         <item>@drawable/face_tracker</item>
         <item>@drawable/googly_eyes</item>
@@ -103,7 +103,7 @@
         <item>@drawable/ai_experiments</item>
         <item>@drawable/halloween_doodle</item>
     </string-array>
-    <string-array name="modules_action">
+    <string-array name="modules_action" translatable="false">
         <item>barcode</item>
         <item>face</item>
         <item>googly</item>
@@ -114,5 +114,13 @@
         <item>tts</item>
         <item>aiExperiments</item>
         <item>halloweenDoodle</item>
+    </string-array>
+    <string-array name="languageValues" translatable="false">
+        <item>en</item>
+        <item>fr</item>
+    </string-array>
+    <string-array name="languages">
+        <item>English</item>
+        <item>French</item>
     </string-array>
 </resources>

@@ -26,4 +26,5 @@
         inspirés de code sources présents sur le site Android Developers.</string>
     <string name="contributor">Contributeur</string>
     <string name="contributor_text">Illustrations par Cassandra Vion</string>
+    <string name="language">Langue</string>
 </resources>

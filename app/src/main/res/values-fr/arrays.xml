@@ -12,18 +12,6 @@
         <item>Expérimentations d\'IA</item>
         <item>Halloween Doodle</item>
     </string-array>
-    <string-array name="modules_category">
-        <item>component</item>
-        <item>component</item>
-        <item>component</item>
-        <item>component</item>
-        <item>game;component</item>
-        <item>design</item>
-        <item>design</item>
-        <item>component</item>
-        <item>game</item>
-        <item>game</item>
-    </string-array>
     <string-array name="modules_desc">
         <item>
             L\'API Vision détecte les codes barres en temps réel quelque soit l\'orientation du téléphone.
@@ -80,40 +68,8 @@
             Magic Cat.
         </item>
     </string-array>
-    <string-array name="modules_link">
-        <item>https://developers.google.com/vision</item>
-        <item>https://developers.google.com/vision"</item>
-        <item>https://developers.google.com/vision"</item>
-        <item>https://github.com/googlecreativelab/giantemoji</item>
-        <item>https://github.com/googlesamples/android-AccelerometerPlay"</item>
-        <item>https://github.com/googlesamples/android-OurStreets"</item>
-        <item>https://github.com/googlecodelabs/android-design-library"</item>
-        <item>https://goo.gl/aDs0bM</item>
-        <item>https://aiexperiments.withgoogle.com"</item>
-        <item>https://www.google.com/doodles/halloween-2016"</item>
-    </string-array>
-    <string-array name="modules_picture">
-        <item>@drawable/barcode_scanner</item>
-        <item>@drawable/face_tracker</item>
-        <item>@drawable/googly_eyes</item>
-        <item>@drawable/giant_emoji</item>
-        <item>@drawable/accelerometer_play</item>
-        <item>@drawable/our_streets</item>
-        <item>@drawable/material_design</item>
-        <item>@drawable/tts</item>
-        <item>@drawable/ai_experiments</item>
-        <item>@drawable/halloween_doodle</item>
-    </string-array>
-    <string-array name="modules_action">
-        <item>barcode</item>
-        <item>face</item>
-        <item>googly</item>
-        <item>gmoji</item>
-        <item>accelerometer</item>
-        <item>ourStreets</item>
-        <item>materialDesign</item>
-        <item>tts</item>
-        <item>aiExperiments</item>
-        <item>halloweenDoodle</item>
+    <string-array name="languages">
+        <item>Anglais</item>
+        <item>Français</item>
     </string-array>
 </resources>

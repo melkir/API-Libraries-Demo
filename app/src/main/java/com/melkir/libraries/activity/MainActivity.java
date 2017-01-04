@@ -1,5 +1,6 @@
 package com.melkir.libraries.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -33,6 +34,7 @@ import com.melkir.libraries.BuildConfig;
 import com.melkir.libraries.R;
 import com.melkir.libraries.fragment.CardContentFragment;
 import com.melkir.libraries.fragment.FeedbackDialogFragment;
+import com.melkir.libraries.util.LocaleHelper;
 
 import java.util.Collections;
 
@@ -111,6 +113,20 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             showSnackbar(getString(R.string.no_internet_connection));
         }
         updateUI(FirebaseAuth.getInstance().getCurrentUser());
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!LocaleHelper.updateViewNeeded) return;
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        recreate();
+        LocaleHelper.updateViewNeeded = false;
     }
 
     @Override
