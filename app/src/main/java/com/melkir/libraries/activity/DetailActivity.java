@@ -6,6 +6,7 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.melkir.libraries.BR;
@@ -26,6 +27,7 @@ public class DetailActivity extends AppCompatActivity {
         if (null != getSupportActionBar()) {
             getSupportActionBar().setTitle("");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
         }
 
         // Retrieve module from extra
@@ -40,4 +42,12 @@ public class DetailActivity extends AppCompatActivity {
         imageView.setImageResource(resource);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed(); //Call the back button's method
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

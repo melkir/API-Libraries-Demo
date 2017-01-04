@@ -21,7 +21,6 @@
         <!-- detail activity -->
         <activity
             android:name="com.melkir.libraries.activity.DetailActivity"
-            android:parentActivityName="com.melkir.libraries.activity.MainActivity"
             android:theme="@style/AppTheme.Base" />
 
         <!-- settings activity -->
