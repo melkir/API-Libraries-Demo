@@ -18,9 +18,8 @@ import com.melkir.libraries.util.LocaleHelper;
 
 public class SettingsFragment extends PreferenceFragment {
     public static boolean onBackButtonRecreateView = false;
-    Preference mDisconnect;
-    ListPreference mLanguage;
-    ActionBar mActionBar;
+    private Preference mDisconnect;
+    private ActionBar mActionBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,9 +54,9 @@ public class SettingsFragment extends PreferenceFragment {
         }
 
         String currentLanguage = LocaleHelper.getLanguage(getActivity());
-        mLanguage = (ListPreference) getPreferenceManager().findPreference("language");
-        mLanguage.setValue(currentLanguage);
-        mLanguage.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+        ListPreference language = (ListPreference) getPreferenceManager().findPreference("language");
+        language.setValue(currentLanguage);
+        language.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 updateView((String) newValue);

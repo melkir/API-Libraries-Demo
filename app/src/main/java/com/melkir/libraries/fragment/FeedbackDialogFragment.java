@@ -108,7 +108,7 @@ public class FeedbackDialogFragment extends DialogFragment {
     }
 
     private class MyTextWatcher implements TextWatcher {
-        private View view;
+        private final View view;
 
         private MyTextWatcher(View view) {
             this.view = view;

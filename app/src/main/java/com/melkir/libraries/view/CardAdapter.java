@@ -22,7 +22,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
     private List<Module> mModules;
     private final CardFilter cardFilter;
     private final Context mContext;
-    private CardHandler mHandler;
+    private final CardHandler mHandler;
 
     /**
      * Adapter to display recycler view.
