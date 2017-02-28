@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
-            name="handler"
-            type="com.melkir.libraries.view.CardHandler" />
-
         <variable
             name="module"
             type="com.melkir.libraries.model.Module" />
@@ -19,8 +14,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/md_keylines"
         android:layout_marginLeft="@dimen/md_keylines"
-        android:layout_marginRight="@dimen/md_keylines"
-        android:onClick="@{(view) -> handler.onCardClick(view, module)}">
+        android:layout_marginRight="@dimen/md_keylines">
 
         <RelativeLayout
             android:layout_width="match_parent"

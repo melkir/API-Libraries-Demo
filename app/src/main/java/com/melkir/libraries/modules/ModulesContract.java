@@ -6,16 +6,16 @@ import com.melkir.libraries.model.Module;
 
 import java.util.List;
 
-/**
- * Created by melkir on 28/02/17.
- */
-
 public interface ModulesContract {
     interface View extends BaseView<Presenter> {
         void showModules(List<Module> modules);
+
+        void showModuleDetailsUi(Module module);
     }
 
     interface Presenter extends BasePresenter {
         void loadModules();
+
+        void openModuleDetails(Module clickedModule);
     }
 }

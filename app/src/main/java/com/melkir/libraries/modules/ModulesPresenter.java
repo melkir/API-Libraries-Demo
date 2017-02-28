@@ -8,10 +8,6 @@ import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * Created by melkir on 28/02/17.
- */
-
 public class ModulesPresenter implements ModulesContract.Presenter {
     private final ModulesDataSource mModulesRepository;
     private final ModulesContract.View mModulesView;
@@ -27,6 +23,12 @@ public class ModulesPresenter implements ModulesContract.Presenter {
     public void loadModules() {
         List<Module> modules = mModulesRepository.getModules();
         mModulesView.showModules(modules);
+    }
+
+    @Override
+    public void openModuleDetails(@NonNull Module requestedModule) {
+        checkNotNull(requestedModule, "requestedModule cannot be null!");
+        mModulesView.showModuleDetailsUi(requestedModule);
     }
 
     @Override
