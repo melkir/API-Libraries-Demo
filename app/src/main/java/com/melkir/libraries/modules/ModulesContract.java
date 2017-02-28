@@ -10,6 +10,8 @@ public interface ModulesContract {
     interface View extends BaseView<Presenter> {
         void showModules(List<Module> modules);
 
+        void showNoModules();
+
         void showModuleDetailsUi(Module module);
 
         void filter(ModuleFilterType requestType);

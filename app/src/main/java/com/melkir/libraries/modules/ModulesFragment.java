@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.melkir.libraries.BR;
@@ -34,6 +35,8 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
 
     private ModulesContract.Presenter mPresenter;
     private ModulesAdapter mModulesAdapter;
+    private RecyclerView mModulesView;
+    private TextView mNoModulesView;
 
     public ModulesFragment() {
         // Requires empty public constructor
@@ -65,16 +68,30 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_card, container, false);
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view);
-        handleOrientationBehaviour(recyclerView);
-        recyclerView.setAdapter(mModulesAdapter);
-        recyclerView.setHasFixedSize(true);
+        // Set up modules view
+        mModulesView = (RecyclerView) root.findViewById(R.id.recycler_view);
+        handleOrientationBehaviour(mModulesView);
+        mModulesView.setAdapter(mModulesAdapter);
+        mModulesView.setHasFixedSize(true);
+
+        // Set up no modules view
+        mNoModulesView = (TextView) root.findViewById(R.id.noModules);
+
         return root;
     }
 
     @Override
     public void showModules(List<Module> modules) {
         mModulesAdapter.replaceData(modules);
+
+        mModulesView.setVisibility(View.VISIBLE);
+        mNoModulesView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showNoModules() {
+        mModulesView.setVisibility(View.GONE);
+        mNoModulesView.setVisibility(View.VISIBLE);
     }
 
     @Override

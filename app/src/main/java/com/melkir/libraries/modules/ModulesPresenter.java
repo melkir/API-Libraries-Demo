@@ -27,7 +27,8 @@ public class ModulesPresenter implements ModulesContract.Presenter {
     @Override
     public void loadModules() {
         List<Module> modules = mModulesRepository.getModules();
-        mModulesView.showModules(modules);
+        if (modules.isEmpty()) mModulesView.showNoModules();
+        else mModulesView.showModules(modules);
     }
 
     @Override

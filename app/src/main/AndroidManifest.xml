@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
 
         <!-- main activity -->
-        <activity android:name="com.melkir.libraries.activity.MainActivity">
+        <activity android:name="com.melkir.libraries.modules.ModulesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

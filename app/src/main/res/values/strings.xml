@@ -28,6 +28,7 @@
     <string name="contributor">Contributor</string>
     <string name="contributor_text">Illustrations by Cassandra Vion</string>
     <string name="language">Language</string>
+    <string name="no_data_available">No module found</string>
 
     <string name="copyright" translatable="false">Copyright 2016</string>
     <string name="author" translatable="false">Thibault Vieux</string>
