@@ -12,19 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.melkir.libraries.R;
-import com.melkir.libraries.model.Module;
-import com.melkir.libraries.modules.ModulesContract;
-import com.melkir.libraries.modules.ModulesPresenter;
-import com.melkir.libraries.data.ModulesRepository;
 import com.melkir.libraries.view.CardAdapter;
 import com.melkir.libraries.view.SearchAdapter;
-
-import java.util.List;
 
 /**
  * Provides UI for the view with Cards.
  */
-public class CardContentFragment extends Fragment implements ModulesContract.View {
+public class CardContentFragment extends Fragment {
 
     private CardAdapter mCardAdapter;
     private SearchAdapter mSearchAdapter;
@@ -45,9 +39,9 @@ public class CardContentFragment extends Fragment implements ModulesContract.Vie
             mRecyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
         }
 
-        ModulesPresenter presenter = new ModulesPresenter(new ModulesRepository(activity), this);
+//        ModulesPresenter presenter = new ModulesPresenter(new ModulesRepository(activity), this);
 
-        presenter.start();
+//        presenter.start();
 
         return rootView;
     }
@@ -68,22 +62,26 @@ public class CardContentFragment extends Fragment implements ModulesContract.Vie
     public void setSearchView() {
         mRecyclerView.setAdapter(mSearchAdapter);
     }
-
-    @Override
-    public void showModules(List<Module> modules) {
-        // Initialize card adapter
-        mCardAdapter = new CardAdapter(activity, modules);
-
-        // Initialize search adapter
-        mSearchAdapter = new SearchAdapter(activity, modules);
-        mSearchAdapter.edit().replaceAll(modules).commit();
-
-        // Set card adapter by default
-        mRecyclerView.setAdapter(mCardAdapter);
-        mRecyclerView.setHasFixedSize(true);
-    }
-
-    @Override
-    public void setPresenter(ModulesContract.Presenter presenter) {
-    }
+//
+//    @Override
+//    public void showModules(List<Module> modules) {
+//        // Initialize card adapter
+//        mCardAdapter = new CardAdapter(activity, modules);
+//
+//        // Initialize search adapter
+//        mSearchAdapter = new SearchAdapter(activity, modules);
+//        mSearchAdapter.edit().replaceAll(modules).commit();
+//
+//        // Set card adapter by default
+//        mRecyclerView.setAdapter(mCardAdapter);
+//        mRecyclerView.setHasFixedSize(true);
+//    }
+//
+//    @Override
+//    public void showModuleDetailsUi(Module module) {
+//    }
+//
+//    @Override
+//    public void setPresenter(ModulesContract.Presenter presenter) {
+//    }
 }
