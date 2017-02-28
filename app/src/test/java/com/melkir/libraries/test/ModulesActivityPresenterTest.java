@@ -5,15 +5,18 @@ import com.melkir.libraries.model.Module;
 import com.melkir.libraries.modules.ModulesContract;
 import com.melkir.libraries.modules.ModulesPresenter;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ModulesActivityPresenterTest {
@@ -24,28 +27,32 @@ public class ModulesActivityPresenterTest {
     @Mock
     ModulesContract.View view;
 
+    private ModulesPresenter presenter;
+    private final List<Module> MANY_MODULES = Arrays.asList(new Module(), new Module(), new Module());
+
+    @Before
+    public void setUp() {
+        presenter = new ModulesPresenter(modulesRepository, view);
+    }
+
     @Test
     public void shouldPassModulesToView() {
         // arrange
-        List<Module> moduleList = Arrays.asList(new Module(), new Module(), new Module());
-        Mockito.when(modulesRepository.getModules()).thenReturn(moduleList);
+        when(modulesRepository.getModules()).thenReturn(MANY_MODULES);
 
         // act
-        ModulesPresenter presenter = new ModulesPresenter(modulesRepository, view);
         presenter.loadModules();
 
         // assert
-        Mockito.verify(view).showModules(moduleList);
+        verify(view).showModules(MANY_MODULES);
     }
 
     @Test
     public void shouldHandleNoModulesFound() {
-        List<Module> emptyModuleList = Collections.emptyList();
-        Mockito.when(modulesRepository.getModules()).thenReturn(emptyModuleList);
+        when(modulesRepository.getModules()).thenReturn(Collections.<Module>emptyList());
 
-        ModulesPresenter presenter = new ModulesPresenter(modulesRepository, view);
         presenter.loadModules();
 
-        Mockito.verify(view).showNoModules();
+        verify(view).showNoModules();
     }
 }
