@@ -11,11 +11,17 @@ public interface ModulesContract {
         void showModules(List<Module> modules);
 
         void showModuleDetailsUi(Module module);
+
+        void filter(ModuleFilterType requestType);
     }
 
     interface Presenter extends BasePresenter {
         void loadModules();
 
         void openModuleDetails(Module clickedModule);
+
+        void setFiltering(ModuleFilterType requestType);
+
+        ModuleFilterType getFiltering();
     }
 }

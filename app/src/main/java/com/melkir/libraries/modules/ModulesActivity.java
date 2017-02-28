@@ -21,6 +21,8 @@ import com.melkir.libraries.data.ModulesRepository;
 import com.melkir.libraries.util.ActivityUtils;
 
 public class ModulesActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+    private static final String CURRENT_FILTERING_KEY = "CURRENT_FILTERING_KEY";
+
     private ModulesPresenter mModulesPresenter;
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
@@ -49,6 +51,20 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
 
         // Create the presenter
         mModulesPresenter = new ModulesPresenter(new ModulesRepository(this), modulesFragment);
+
+        // Load previously saved state, if available.
+        if (savedInstanceState != null) {
+            ModuleFilterType currentFiltering =
+                    (ModuleFilterType) savedInstanceState.getSerializable(CURRENT_FILTERING_KEY);
+            mModulesPresenter.loadModules();
+            mModulesPresenter.setFiltering(currentFiltering);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(CURRENT_FILTERING_KEY, mModulesPresenter.getFiltering());
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -89,13 +105,13 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        // TODO Implement filter
+        // TODO Implement query filter
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        // TODO Implement filter
+        // TODO Implement query filter
         return false;
     }
 
@@ -105,10 +121,13 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
             switch (item.getItemId()) {
                 // TODO Implement navigation
                 case R.id.component:
+                    mModulesPresenter.setFiltering(ModuleFilterType.COMPONENT);
                     break;
                 case R.id.design:
+                    mModulesPresenter.setFiltering(ModuleFilterType.DESIGN);
                     break;
                 case R.id.game:
+                    mModulesPresenter.setFiltering(ModuleFilterType.GAME);
                     break;
                 case R.id.settings:
                     break;

@@ -14,6 +14,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -83,6 +85,11 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
         context.startActivity(intent);
     }
 
+    @Override
+    public void filter(ModuleFilterType requestType) {
+        mModulesAdapter.getFilter().filter(requestType.getValue());
+    }
+
     ModuleItemListener mItemListener = new ModuleItemListener() {
         @Override
         public void onModuleClick(Module clickedModule) {
@@ -99,13 +106,15 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
         }
     }
 
-    private static class ModulesAdapter extends RecyclerView.Adapter<ModulesViewHolder> {
+    public static class ModulesAdapter extends RecyclerView.Adapter<ModulesViewHolder> implements Filterable {
         private List<Module> mModules;
-        private ModuleItemListener mItemListener;
+        private ModulesFilter mItemFilter;
+        private final ModuleItemListener mItemListener;
 
-        public ModulesAdapter(List<Module> modules, ModuleItemListener mItemListener) {
+        public ModulesAdapter(List<Module> modules, ModuleItemListener itemListener) {
             setList(modules);
-            this.mItemListener = mItemListener;
+            mItemListener = itemListener;
+            mItemFilter = new ModulesFilter(this, mModules);
         }
 
         @Override
@@ -127,10 +136,16 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
         public void replaceData(List<Module> modules) {
             setList(modules);
             notifyDataSetChanged();
+            mItemFilter.setOriginalList(modules);
         }
 
-        private void setList(List<Module> modules) {
+        public void setList(List<Module> modules) {
             mModules = checkNotNull(modules);
+        }
+
+        @Override
+        public Filter getFilter() {
+            return mItemFilter;
         }
     }
 
@@ -147,7 +162,8 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
         void bind(final Module module, final ModuleItemListener listener) {
             Glide.with(picture.getContext()).load(module.getPicture()).into(picture);
             itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
+                @Override
+                public void onClick(View v) {
                     listener.onModuleClick(module);
                 }
             });
