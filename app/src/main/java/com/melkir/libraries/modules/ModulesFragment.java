@@ -31,7 +31,7 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ModulesFragment extends Fragment implements ModulesContract.View {
-    public static final String TAG = ModulesFragment.class.getSimpleName();
+    private static final String TAG = ModulesFragment.class.getSimpleName();
 
     private ModulesContract.Presenter mPresenter;
     private ModulesAdapter mModulesAdapter;

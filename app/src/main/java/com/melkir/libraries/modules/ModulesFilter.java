@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ModulesFilter extends Filter {
-    public static final String TAG = ModulesFilter.class.getSimpleName();
+    private static final String TAG = ModulesFilter.class.getSimpleName();
 
     private final ModulesFragment.ModulesAdapter mAdapter;
     private final List<Module> mFilteredList;

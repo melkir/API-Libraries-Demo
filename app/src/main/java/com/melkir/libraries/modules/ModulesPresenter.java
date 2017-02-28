@@ -11,7 +11,7 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ModulesPresenter implements ModulesContract.Presenter {
-    public static final String TAG = ModulesPresenter.class.getSimpleName();
+    private static final String TAG = ModulesPresenter.class.getSimpleName();
 
     private final ModulesDataSource mModulesRepository;
     private final ModulesContract.View mModulesView;
