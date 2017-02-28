@@ -2,10 +2,7 @@ package com.melkir.libraries.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,25 +13,28 @@ import android.view.ViewGroup;
 
 import com.melkir.libraries.R;
 import com.melkir.libraries.model.Module;
+import com.melkir.libraries.modules.ModulesContract;
+import com.melkir.libraries.modules.ModulesPresenter;
+import com.melkir.libraries.data.ModulesRepository;
 import com.melkir.libraries.view.CardAdapter;
 import com.melkir.libraries.view.SearchAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Provides UI for the view with Cards.
  */
-public class CardContentFragment extends Fragment {
+public class CardContentFragment extends Fragment implements ModulesContract.View {
 
     private CardAdapter mCardAdapter;
     private SearchAdapter mSearchAdapter;
     private RecyclerView mRecyclerView;
+    private Activity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_card, container, false);
-        final Activity activity = getActivity();
+        activity = getActivity();
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
 
@@ -45,19 +45,9 @@ public class CardContentFragment extends Fragment {
             mRecyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
         }
 
-        // Initialize list of module
-        List<Module> modules = initModules(activity);
+        ModulesPresenter presenter = new ModulesPresenter(new ModulesRepository(activity), this);
 
-        // Initialize card adapter
-        mCardAdapter = new CardAdapter(activity, modules);
-
-        // Initialize search adapter
-        mSearchAdapter = new SearchAdapter(activity, modules);
-        mSearchAdapter.edit().replaceAll(modules).commit();
-
-        // Set card adapter by default
-        mRecyclerView.setAdapter(mCardAdapter);
-        mRecyclerView.setHasFixedSize(true);
+        presenter.start();
 
         return rootView;
     }
@@ -79,23 +69,21 @@ public class CardContentFragment extends Fragment {
         mRecyclerView.setAdapter(mSearchAdapter);
     }
 
-    private List<Module> initModules(Context context) {
-        List<Module> modules = new ArrayList<>();
-        Resources resources = context.getResources();
-        final String[] mModulesTitle = resources.getStringArray(R.array.modules_title);
-        final String[] mModulesDesc = resources.getStringArray(R.array.modules_desc);
-        final String[] mModulesCategory = resources.getStringArray(R.array.modules_category);
-        final String[] mModulesLink = resources.getStringArray(R.array.modules_link);
-        final String[] mModulesAction = resources.getStringArray(R.array.modules_action);
-        final TypedArray a = resources.obtainTypedArray(R.array.modules_picture);
-        for (int i = 0; i < mModulesTitle.length; ++i) {
-            String[] categories = mModulesCategory[i].split(";");
-            Module module = new Module(i, mModulesTitle[i], mModulesDesc[i], mModulesLink[i],
-                    mModulesAction[i], categories, a.getResourceId(i, R.drawable.card_demo));
-            modules.add(module);
-        }
-        a.recycle();
-        return modules;
+    @Override
+    public void showModules(List<Module> modules) {
+        // Initialize card adapter
+        mCardAdapter = new CardAdapter(activity, modules);
+
+        // Initialize search adapter
+        mSearchAdapter = new SearchAdapter(activity, modules);
+        mSearchAdapter.edit().replaceAll(modules).commit();
+
+        // Set card adapter by default
+        mRecyclerView.setAdapter(mCardAdapter);
+        mRecyclerView.setHasFixedSize(true);
     }
 
+    @Override
+    public void setPresenter(ModulesContract.Presenter presenter) {
+    }
 }
