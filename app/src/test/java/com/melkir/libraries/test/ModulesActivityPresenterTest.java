@@ -5,68 +5,47 @@ import com.melkir.libraries.model.Module;
 import com.melkir.libraries.modules.ModulesContract;
 import com.melkir.libraries.modules.ModulesPresenter;
 
-import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ModulesActivityPresenterTest {
+
+    @Mock
+    ModulesDataSource modulesRepository;
+
+    @Mock
+    ModulesContract.View view;
 
     @Test
     public void shouldPassModulesToView() {
         // arrange
-        ModulesContract.View view = new MockView();
-        MockModulesRepository modulesRepository = new MockModulesRepository(true);
+        List<Module> moduleList = Arrays.asList(new Module(), new Module(), new Module());
+        Mockito.when(modulesRepository.getModules()).thenReturn(moduleList);
+
         // act
         ModulesPresenter presenter = new ModulesPresenter(modulesRepository, view);
         presenter.loadModules();
+
         // assert
-        Assert.assertEquals(true, ((MockView) view).passed);
+        Mockito.verify(view).showModules(moduleList);
     }
 
     @Test
     public void shouldHandleNoModulesFound() {
-        // arrange
-        ModulesContract.View view = new MockView();
-        MockModulesRepository modulesRepository = new MockModulesRepository(false);
-        // act
+        List<Module> emptyModuleList = Collections.emptyList();
+        Mockito.when(modulesRepository.getModules()).thenReturn(emptyModuleList);
+
         ModulesPresenter presenter = new ModulesPresenter(modulesRepository, view);
         presenter.loadModules();
-        // assert
-        Assert.assertEquals(true, ((MockView) view).noModules);
-    }
 
-    private class MockView implements ModulesContract.View {
-        boolean passed;
-        boolean noModules;
-
-        @Override
-        public void showModules(List<Module> moduleList) {
-            if (3 == moduleList.size()) passed = true;
-            else if (0 == moduleList.size()) noModules = true;
-        }
-
-        @Override
-        public void setPresenter(ModulesContract.Presenter presenter) {
-        }
-    }
-
-    private class MockModulesRepository implements ModulesDataSource {
-        private boolean returnSomeModules;
-
-        public MockModulesRepository(boolean returnSomeModules) {
-            this.returnSomeModules = returnSomeModules;
-        }
-
-        @Override
-        public List<Module> getModules() {
-            if (returnSomeModules) {
-                return Arrays.asList(new Module(), new Module(), new Module());
-            } else {
-                return Collections.emptyList();
-            }
-        }
+        Mockito.verify(view).showNoModules();
     }
 }
