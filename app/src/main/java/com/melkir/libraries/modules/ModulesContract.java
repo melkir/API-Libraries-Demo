@@ -15,6 +15,12 @@ public interface ModulesContract {
         void showModuleDetailsUi(Module module);
 
         void filter(ModulesType requestType);
+
+        void filter(String requestTitle);
+
+        void showCardsView();
+
+        void showSearchView();
     }
 
     interface Presenter extends BasePresenter {
@@ -23,6 +29,10 @@ public interface ModulesContract {
         void openModuleDetails(Module clickedModule);
 
         void setFiltering(ModulesType requestType);
+
+        void setFiltering(String requestTitle);
+
+        ModulesContract.View getView();
 
         ModulesType getFiltering();
     }

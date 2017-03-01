@@ -21,6 +21,8 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardsViewHolder> implements Filterable {
+    private static final String TAG = CardsAdapter.class.getSimpleName();
+
     private List<Module> mModules;
     private CardsFilter mItemFilter;
     private final ModulesFragment.ModuleItemListener mItemListener;
@@ -28,7 +30,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardsViewHol
     public CardsAdapter(List<Module> modules, ModulesFragment.ModuleItemListener itemListener) {
         setList(modules);
         mItemListener = itemListener;
-        mItemFilter = new CardsFilter(this, modules);
+        mItemFilter = new CardsFilter(this, mModules);
     }
 
     @Override
@@ -49,8 +51,8 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardsViewHol
 
     public void replaceData(List<Module> modules) {
         setList(modules);
+//        mItemFilter.notifyDataChanged(modules);
         notifyDataSetChanged();
-        mItemFilter.setOriginalList(modules);
     }
 
     public void setList(List<Module> modules) {

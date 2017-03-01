@@ -16,10 +16,11 @@ import android.widget.TextView;
 
 import com.melkir.libraries.R;
 import com.melkir.libraries.activity.DetailActivity;
-import com.melkir.libraries.modules.adapters.CardsAdapter;
 import com.melkir.libraries.model.Module;
+import com.melkir.libraries.modules.adapters.CardsAdapter;
+import com.melkir.libraries.modules.adapters.SearchAdapter;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,11 +31,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ModulesFragment extends Fragment implements ModulesContract.View {
     private static final String TAG = ModulesFragment.class.getSimpleName();
 
-    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
-    @BindView(R.id.noModules) TextView mNoCardsView;
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.noModules)
+    TextView mNoCardsView;
 
     private ModulesContract.Presenter mPresenter;
     private CardsAdapter mCardsAdapter;
+    private SearchAdapter mSearchAdapter;
 
     public ModulesFragment() {
         // Requires empty public constructor
@@ -47,7 +51,11 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCardsAdapter = new CardsAdapter(new ArrayList<Module>(0), mItemListener);
+        List<Module> modules = Collections.emptyList();
+//        ModulesRepository modulesRepository = new ModulesRepository(getContext());
+//        List<Module> modules = modulesRepository.getModules();
+        mCardsAdapter = new CardsAdapter(modules, mItemListener);
+        mSearchAdapter = new SearchAdapter(getContext(), modules, mItemListener);
     }
 
     @Override
@@ -87,15 +95,16 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     @Override
     public void showModules(List<Module> modules) {
         mCardsAdapter.replaceData(modules);
+        mSearchAdapter.replaceData(modules);
 
-//        mRecyclerView.setVisibility(View.VISIBLE);
-//        mNoCardsView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+        mNoCardsView.setVisibility(View.GONE);
     }
 
     @Override
     public void showNoModules() {
-//        mRecyclerView.setVisibility(View.GONE);
-//        mNoCardsView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
+        mNoCardsView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -108,7 +117,22 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
 
     @Override
     public void filter(ModulesType requestType) {
-        mCardsAdapter.getFilter().filter(requestType.getValue());
+//        mCardsAdapter.getFilter().filter(requestType.getValue());
+    }
+
+    @Override
+    public void filter(String requestTitle) {
+//        mSearchAdapter.getFilter().filter(requestTitle);
+    }
+
+    @Override
+    public void showCardsView() {
+        mRecyclerView.setAdapter(mCardsAdapter);
+    }
+
+    @Override
+    public void showSearchView() {
+        mRecyclerView.setAdapter(mSearchAdapter);
     }
 
     private final ModuleItemListener mItemListener = new ModuleItemListener() {

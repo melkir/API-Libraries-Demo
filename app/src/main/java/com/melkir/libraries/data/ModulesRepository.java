@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModulesRepository implements ModulesDataSource {
+    private static final String TAG = ModulesRepository.class.getSimpleName();
     private List<Module> modules;
 
     public ModulesRepository(Context context) {

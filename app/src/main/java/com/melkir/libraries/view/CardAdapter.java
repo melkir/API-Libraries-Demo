@@ -9,7 +9,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 
 import com.bumptech.glide.Glide;
-import com.melkir.libraries.BR;
 import com.melkir.libraries.R;
 import com.melkir.libraries.model.Module;
 
@@ -45,7 +44,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> implements
         Module module = mModules.get(position);
         Glide.with(mContext).load(module.getPicture()).into(holder.getPicture());
 //        holder.getPicture().setImageResource(module.getPicture());
-        holder.getBinding().setVariable(BR.module, module);
+//        holder.getBinding().setVariable(BR.module, module);
 //        holder.getBinding().setVariable(BR.handler, mHandler);
         holder.getBinding().executePendingBindings();
     }

@@ -1,13 +1,11 @@
 package com.melkir.libraries.modules.adapters;
 
-import android.util.Log;
 import android.widget.Filter;
 
 import com.melkir.libraries.model.Module;
 import com.melkir.libraries.modules.ModulesType;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 class CardsFilter extends Filter {
@@ -20,7 +18,7 @@ class CardsFilter extends Filter {
 
     public CardsFilter(CardsAdapter cardsAdapter, List<Module> modules) {
         this.mAdapter = cardsAdapter;
-        this.mOriginalList = new LinkedList<>(modules);
+        this.mOriginalList = modules;
         this.mFilteredList = new ArrayList<>();
     }
 
@@ -29,7 +27,6 @@ class CardsFilter extends Filter {
         mFilteredList.clear();
         final FilterResults results = new FilterResults();
         final String filter = charSequence.toString().toLowerCase().trim();
-        Log.d(TAG, "Size: " + mOriginalList.size());
         if (filter.equals(ModulesType.ALL_CATEGORIES.toString()) || 0 == filter.length()) {
             mFilteredList.addAll(mOriginalList);
         } else {
@@ -50,10 +47,6 @@ class CardsFilter extends Filter {
         mAdapter.notifyDataSetChanged();
     }
 
-    void setOriginalList(List<Module> originalList) {
-        this.mOriginalList = originalList;
-    }
-
     private <T> boolean contains(final T[] array, final T v) {
         if (v == null) {
             for (final T e : array) if (e == null) return true;
@@ -63,4 +56,7 @@ class CardsFilter extends Filter {
         return false;
     }
 
+    void notifyDataChanged(List<Module> originalList) {
+        this.mOriginalList = new ArrayList<>(originalList);
+    }
 }

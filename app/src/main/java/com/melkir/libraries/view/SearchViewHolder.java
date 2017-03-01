@@ -17,7 +17,7 @@ public class SearchViewHolder extends SortedListAdapter.ViewHolder<Module> {
 
     SearchViewHolder(SearchBinding binding, SearchAdapter.Listener listener) {
         super(binding.getRoot());
-        binding.setListener(listener);
+//        binding.setListener(listener);
         this.binding = binding;
         final View rootView = binding.getRoot();
         this.context = rootView.getContext();

@@ -61,6 +61,16 @@ public class ModulesPresenter implements ModulesContract.Presenter {
     }
 
     @Override
+    public void setFiltering(String requestTitle) {
+        mModulesView.filter(requestTitle);
+    }
+
+    @Override
+    public ModulesContract.View getView() {
+        return mModulesView;
+    }
+
+    @Override
     public ModulesType getFiltering() {
         return mCurrentFiltering;
     }

@@ -23,13 +23,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ModulesActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
-    private static final String CURRENT_FILTERING_KEY = "CURRENT_FILTERING_KEY";
     private static final String TAG = ModulesActivity.class.getSimpleName();
+
+    private static final String CURRENT_FILTERING_KEY = "CURRENT_FILTERING_KEY";
     private ModulesPresenter mModulesPresenter;
 
-    @BindView(R.id.nav_view) NavigationView mNavigationView;
-    @BindView(R.id.drawer) DrawerLayout mDrawerLayout;
-    @BindView(R.id.toolbar) Toolbar mToolbar;
+    @BindView(R.id.nav_view)
+    NavigationView mNavigationView;
+    @BindView(R.id.drawer)
+    DrawerLayout mDrawerLayout;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     private SearchView mSearchView;
     private View mNavHeader;
@@ -55,20 +59,20 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
 
         // Create the presenter
         mModulesPresenter = new ModulesPresenter(new ModulesRepository(this), modulesFragment);
-
-        // Load previously saved state, if available.
-        if (savedInstanceState != null) {
-            ModulesType currentFiltering =
-                    (ModulesType) savedInstanceState.getSerializable(CURRENT_FILTERING_KEY);
-            mModulesPresenter.loadModules();
-            mModulesPresenter.setFiltering(currentFiltering);
-        }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(CURRENT_FILTERING_KEY, mModulesPresenter.getFiltering());
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        ModulesType currentFiltering =
+                (ModulesType) savedInstanceState.getSerializable(CURRENT_FILTERING_KEY);
+        mModulesPresenter.setFiltering(currentFiltering);
     }
 
     @Override
@@ -80,7 +84,22 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         mSearchView.setOnQueryTextListener(this);
 
-        return super.onCreateOptionsMenu(menu);
+        mSearchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mModulesPresenter.getView().showSearchView();
+            }
+        });
+
+        mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                mModulesPresenter.getView().showCardsView();
+                return false;
+            }
+        });
+
+        return true;
     }
 
     @Override
@@ -107,14 +126,14 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        // TODO Implement query filter
-        return false;
+        mSearchView.clearFocus();
+        return true;
     }
 
     @Override
-    public boolean onQueryTextChange(String newText) {
-        // TODO Implement query filter
-        return false;
+    public boolean onQueryTextChange(String query) {
+        mModulesPresenter.setFiltering(query);
+        return true;
     }
 
     private class NavigationViewListener implements NavigationView.OnNavigationItemSelectedListener {
