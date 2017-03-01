@@ -1,7 +1,5 @@
 package com.melkir.libraries.modules;
 
-import android.util.Log;
-
 import com.android.annotations.NonNull;
 import com.melkir.libraries.data.ModulesDataSource;
 import com.melkir.libraries.model.Module;
@@ -57,7 +55,6 @@ public class ModulesPresenter implements ModulesContract.Presenter {
         mCurrentFiltering = mCurrentFiltering == requestModuleFilterType ?
                 ModulesType.ALL_CATEGORIES : requestModuleFilterType;
         mModulesView.filter(mCurrentFiltering);
-        Log.d(TAG, "Filter active: " + mCurrentFiltering);
     }
 
     @Override
