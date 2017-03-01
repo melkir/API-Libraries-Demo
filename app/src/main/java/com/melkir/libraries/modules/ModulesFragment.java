@@ -3,8 +3,6 @@ package com.melkir.libraries.modules;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,15 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.melkir.libraries.BR;
 import com.melkir.libraries.R;
 import com.melkir.libraries.activity.DetailActivity;
+import com.melkir.libraries.cards.CardsAdapter;
+import com.melkir.libraries.cards.CardsFilterType;
 import com.melkir.libraries.model.Module;
 
 import java.util.ArrayList;
@@ -40,7 +35,7 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     @BindView(R.id.noModules) TextView mNoModulesView;
 
     private ModulesContract.Presenter mPresenter;
-    private ModulesAdapter mModulesAdapter;
+    private CardsAdapter mCardsAdapter;
 
     public ModulesFragment() {
         // Requires empty public constructor
@@ -53,7 +48,7 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mModulesAdapter = new ModulesAdapter(new ArrayList<Module>(0), mItemListener);
+        mCardsAdapter = new CardsAdapter(new ArrayList<Module>(0), mItemListener);
     }
 
     @Override
@@ -75,7 +70,7 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
         ButterKnife.bind(this, root);
 
         handleOrientationBehaviour(mModulesView);
-        mModulesView.setAdapter(mModulesAdapter);
+        mModulesView.setAdapter(mCardsAdapter);
         mModulesView.setHasFixedSize(true);
 
         return root;
@@ -83,7 +78,7 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
 
     @Override
     public void showModules(List<Module> modules) {
-        mModulesAdapter.replaceData(modules);
+        mCardsAdapter.replaceData(modules);
 
 //        mModulesView.setVisibility(View.VISIBLE);
 //        mNoModulesView.setVisibility(View.GONE);
@@ -104,11 +99,11 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     }
 
     @Override
-    public void filter(ModuleFilterType requestType) {
-        mModulesAdapter.getFilter().filter(requestType.getValue());
+    public void filter(CardsFilterType requestType) {
+        mCardsAdapter.getFilter().filter(requestType.getValue());
     }
 
-    ModuleItemListener mItemListener = new ModuleItemListener() {
+    private final ModuleItemListener mItemListener = new ModuleItemListener() {
         @Override
         public void onModuleClick(Module clickedModule) {
             mPresenter.openModuleDetails(clickedModule);
@@ -121,72 +116,6 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         } else {
             recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        }
-    }
-
-    public static class ModulesAdapter extends RecyclerView.Adapter<ModulesViewHolder> implements Filterable {
-        private List<Module> mModules;
-        private ModulesFilter mItemFilter;
-        private final ModuleItemListener mItemListener;
-
-        public ModulesAdapter(List<Module> modules, ModuleItemListener itemListener) {
-            setList(modules);
-            mItemListener = itemListener;
-            mItemFilter = new ModulesFilter(this, mModules);
-        }
-
-        @Override
-        public ModulesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card, parent, false);
-            return new ModulesViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(ModulesViewHolder holder, int position) {
-            holder.bind(mModules.get(position), mItemListener);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mModules.size();
-        }
-
-        public void replaceData(List<Module> modules) {
-            setList(modules);
-            notifyDataSetChanged();
-            mItemFilter.setOriginalList(modules);
-        }
-
-        public void setList(List<Module> modules) {
-            mModules = checkNotNull(modules);
-        }
-
-        @Override
-        public Filter getFilter() {
-            return mItemFilter;
-        }
-    }
-
-    private static class ModulesViewHolder extends RecyclerView.ViewHolder {
-        private final ViewDataBinding binding;
-        private final ImageView picture;
-
-        public ModulesViewHolder(View itemView) {
-            super(itemView);
-            picture = (ImageView) itemView.findViewById(R.id.card_image);
-            binding = DataBindingUtil.bind(itemView);
-        }
-
-        void bind(final Module module, final ModuleItemListener listener) {
-            Glide.with(picture.getContext()).load(module.getPicture()).into(picture);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onModuleClick(module);
-                }
-            });
-            binding.setVariable(BR.module, module);
-            binding.executePendingBindings();
         }
     }
 

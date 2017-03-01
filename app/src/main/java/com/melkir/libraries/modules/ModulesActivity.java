@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.melkir.libraries.R;
+import com.melkir.libraries.cards.CardsFilterType;
 import com.melkir.libraries.data.ModulesRepository;
 import com.melkir.libraries.util.ActivityUtils;
 
@@ -57,8 +58,8 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
 
         // Load previously saved state, if available.
         if (savedInstanceState != null) {
-            ModuleFilterType currentFiltering =
-                    (ModuleFilterType) savedInstanceState.getSerializable(CURRENT_FILTERING_KEY);
+            CardsFilterType currentFiltering =
+                    (CardsFilterType) savedInstanceState.getSerializable(CURRENT_FILTERING_KEY);
             mModulesPresenter.loadModules();
             mModulesPresenter.setFiltering(currentFiltering);
         }
@@ -122,13 +123,13 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
             switch (item.getItemId()) {
                 // TODO Implement navigation
                 case R.id.component:
-                    mModulesPresenter.setFiltering(ModuleFilterType.COMPONENT);
+                    mModulesPresenter.setFiltering(CardsFilterType.COMPONENT);
                     break;
                 case R.id.design:
-                    mModulesPresenter.setFiltering(ModuleFilterType.DESIGN);
+                    mModulesPresenter.setFiltering(CardsFilterType.DESIGN);
                     break;
                 case R.id.game:
-                    mModulesPresenter.setFiltering(ModuleFilterType.GAME);
+                    mModulesPresenter.setFiltering(CardsFilterType.GAME);
                     break;
                 case R.id.settings:
                     break;

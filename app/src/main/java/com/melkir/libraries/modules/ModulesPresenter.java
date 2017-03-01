@@ -3,6 +3,7 @@ package com.melkir.libraries.modules;
 import android.util.Log;
 
 import com.android.annotations.NonNull;
+import com.melkir.libraries.cards.CardsFilterType;
 import com.melkir.libraries.data.ModulesDataSource;
 import com.melkir.libraries.model.Module;
 
@@ -15,7 +16,7 @@ public class ModulesPresenter implements ModulesContract.Presenter {
 
     private final ModulesDataSource mModulesRepository;
     private final ModulesContract.View mModulesView;
-    private ModuleFilterType mCurrentFiltering = ModuleFilterType.ALL_CATEGORIES;
+    private CardsFilterType mCurrentFiltering = CardsFilterType.ALL_CATEGORIES;
 
     public ModulesPresenter(@NonNull ModulesDataSource modulesRepository, @NonNull
             ModulesContract.View modulesView) {
@@ -45,23 +46,23 @@ public class ModulesPresenter implements ModulesContract.Presenter {
     /**
      * Sets the current module filtering type.
      *
-     * @param requestModuleFilterType Can be {@link ModuleFilterType#ALL_CATEGORIES},
-     *                                {@link ModuleFilterType#COMPONENT},
-     *                                {@link ModuleFilterType#GAME}, or
-     *                                {@link ModuleFilterType#DESIGN}
+     * @param requestModuleFilterType Can be {@link CardsFilterType#ALL_CATEGORIES},
+     *                                {@link CardsFilterType#COMPONENT},
+     *                                {@link CardsFilterType#GAME}, or
+     *                                {@link CardsFilterType#DESIGN}
      */
     @Override
-    public void setFiltering(ModuleFilterType requestModuleFilterType) {
+    public void setFiltering(CardsFilterType requestModuleFilterType) {
         // restore all categories filter if the requested category filter is active
         // otherwise select the requested category
         mCurrentFiltering = mCurrentFiltering == requestModuleFilterType ?
-                ModuleFilterType.ALL_CATEGORIES : requestModuleFilterType;
+                CardsFilterType.ALL_CATEGORIES : requestModuleFilterType;
         mModulesView.filter(mCurrentFiltering);
         Log.d(TAG, "Filter active: " + mCurrentFiltering);
     }
 
     @Override
-    public ModuleFilterType getFiltering() {
+    public CardsFilterType getFiltering() {
         return mCurrentFiltering;
     }
 }
