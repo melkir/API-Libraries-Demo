@@ -1,4 +1,4 @@
-package com.melkir.libraries.cards;
+package com.melkir.libraries.modules.adapters;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.melkir.libraries.BR;
 import com.melkir.libraries.R;
 import com.melkir.libraries.model.Module;
+import com.melkir.libraries.modules.ModulesFragment;
 
 import java.util.List;
 
@@ -22,12 +23,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardsViewHolder> implements Filterable {
     private List<Module> mModules;
     private CardsFilter mItemFilter;
-    private final CardsFragment.ModuleItemListener mItemListener;
+    private final ModulesFragment.ModuleItemListener mItemListener;
 
-    public CardsAdapter(List<Module> modules, CardsFragment.ModuleItemListener itemListener) {
+    public CardsAdapter(List<Module> modules, ModulesFragment.ModuleItemListener itemListener) {
         setList(modules);
         mItemListener = itemListener;
-        mItemFilter = new CardsFilter(this, mModules);
+        mItemFilter = new CardsFilter(this, modules);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardsViewHol
             binding = DataBindingUtil.bind(itemView);
         }
 
-        void bind(final Module module, final CardsFragment.ModuleItemListener listener) {
+        void bind(final Module module, final ModulesFragment.ModuleItemListener listener) {
             Glide.with(picture.getContext()).load(module.getPicture()).into(picture);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

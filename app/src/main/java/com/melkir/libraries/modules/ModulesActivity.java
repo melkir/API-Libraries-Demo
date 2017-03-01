@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.melkir.libraries.R;
-import com.melkir.libraries.cards.CardsFragment;
 import com.melkir.libraries.data.ModulesRepository;
 import com.melkir.libraries.util.ActivityUtils;
 
@@ -25,6 +24,7 @@ import butterknife.ButterKnife;
 
 public class ModulesActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private static final String CURRENT_FILTERING_KEY = "CURRENT_FILTERING_KEY";
+    private static final String TAG = ModulesActivity.class.getSimpleName();
     private ModulesPresenter mModulesPresenter;
 
     @BindView(R.id.nav_view) NavigationView mNavigationView;
@@ -46,15 +46,15 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         // Set the behavior of the navigation drawer
         mNavigationView.setNavigationItemSelectedListener(new NavigationViewListener());
 
-        CardsFragment cardsFragment = (CardsFragment) getSupportFragmentManager().findFragmentById(R.id.container);
-        if (cardsFragment == null) {
+        ModulesFragment modulesFragment = (ModulesFragment) getSupportFragmentManager().findFragmentById(R.id.container);
+        if (modulesFragment == null) {
             // Create the fragment
-            cardsFragment = CardsFragment.newInstance();
-            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), cardsFragment, R.id.container);
+            modulesFragment = ModulesFragment.newInstance();
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), modulesFragment, R.id.container);
         }
 
         // Create the presenter
-        mModulesPresenter = new ModulesPresenter(new ModulesRepository(this), cardsFragment);
+        mModulesPresenter = new ModulesPresenter(new ModulesRepository(this), modulesFragment);
 
         // Load previously saved state, if available.
         if (savedInstanceState != null) {
@@ -120,19 +120,20 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
     private class NavigationViewListener implements NavigationView.OnNavigationItemSelectedListener {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            boolean flipState = !item.isChecked();
             switch (item.getItemId()) {
                 // TODO Implement navigation
                 case R.id.component:
                     mModulesPresenter.setFiltering(ModulesType.COMPONENT);
-                    item.setChecked(!item.isChecked());
+                    item.setChecked(flipState);
                     break;
                 case R.id.design:
                     mModulesPresenter.setFiltering(ModulesType.DESIGN);
-                    item.setChecked(!item.isChecked());
+                    item.setChecked(flipState);
                     break;
                 case R.id.game:
                     mModulesPresenter.setFiltering(ModulesType.GAME);
-                    item.setChecked(!item.isChecked());
+                    item.setChecked(flipState);
                     break;
                 case R.id.settings:
                     break;

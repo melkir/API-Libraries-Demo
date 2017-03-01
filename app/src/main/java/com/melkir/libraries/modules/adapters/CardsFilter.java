@@ -1,4 +1,4 @@
-package com.melkir.libraries.cards;
+package com.melkir.libraries.modules.adapters;
 
 import android.util.Log;
 import android.widget.Filter;

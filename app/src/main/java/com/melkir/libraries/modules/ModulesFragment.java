@@ -1,4 +1,4 @@
-package com.melkir.libraries.cards;
+package com.melkir.libraries.modules;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,9 +16,8 @@ import android.widget.TextView;
 
 import com.melkir.libraries.R;
 import com.melkir.libraries.activity.DetailActivity;
+import com.melkir.libraries.modules.adapters.CardsAdapter;
 import com.melkir.libraries.model.Module;
-import com.melkir.libraries.modules.ModulesContract;
-import com.melkir.libraries.modules.ModulesType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,21 +27,21 @@ import butterknife.ButterKnife;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class CardsFragment extends Fragment implements ModulesContract.View {
-    private static final String TAG = CardsFragment.class.getSimpleName();
+public class ModulesFragment extends Fragment implements ModulesContract.View {
+    private static final String TAG = ModulesFragment.class.getSimpleName();
 
-    @BindView(R.id.recycler_view) RecyclerView mCardsView;
+    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
     @BindView(R.id.noModules) TextView mNoCardsView;
 
     private ModulesContract.Presenter mPresenter;
     private CardsAdapter mCardsAdapter;
 
-    public CardsFragment() {
+    public ModulesFragment() {
         // Requires empty public constructor
     }
 
-    public static CardsFragment newInstance() {
-        return new CardsFragment();
+    public static ModulesFragment newInstance() {
+        return new ModulesFragment();
     }
 
     @Override
@@ -69,9 +68,9 @@ public class CardsFragment extends Fragment implements ModulesContract.View {
         View root = inflater.inflate(R.layout.fragment_card, container, false);
         ButterKnife.bind(this, root);
 
-        handleOrientationBehaviour(mCardsView);
-        mCardsView.setAdapter(mCardsAdapter);
-        mCardsView.setHasFixedSize(true);
+        handleOrientationBehaviour(mRecyclerView);
+        mRecyclerView.setAdapter(mCardsAdapter);
+        mRecyclerView.setHasFixedSize(true);
 
         return root;
     }
@@ -89,13 +88,13 @@ public class CardsFragment extends Fragment implements ModulesContract.View {
     public void showModules(List<Module> modules) {
         mCardsAdapter.replaceData(modules);
 
-//        mCardsView.setVisibility(View.VISIBLE);
+//        mRecyclerView.setVisibility(View.VISIBLE);
 //        mNoCardsView.setVisibility(View.GONE);
     }
 
     @Override
     public void showNoModules() {
-//        mCardsView.setVisibility(View.GONE);
+//        mRecyclerView.setVisibility(View.GONE);
 //        mNoCardsView.setVisibility(View.VISIBLE);
     }
 
