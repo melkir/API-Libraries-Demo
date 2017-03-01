@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.melkir.libraries.R;
+import com.melkir.libraries.cards.CardsFragment;
 import com.melkir.libraries.data.ModulesRepository;
 import com.melkir.libraries.util.ActivityUtils;
 
@@ -45,20 +46,20 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         // Set the behavior of the navigation drawer
         mNavigationView.setNavigationItemSelectedListener(new NavigationViewListener());
 
-        ModulesFragment modulesFragment = (ModulesFragment) getSupportFragmentManager().findFragmentById(R.id.container);
-        if (modulesFragment == null) {
+        CardsFragment cardsFragment = (CardsFragment) getSupportFragmentManager().findFragmentById(R.id.container);
+        if (cardsFragment == null) {
             // Create the fragment
-            modulesFragment = ModulesFragment.newInstance();
-            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), modulesFragment, R.id.container);
+            cardsFragment = CardsFragment.newInstance();
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), cardsFragment, R.id.container);
         }
 
         // Create the presenter
-        mModulesPresenter = new ModulesPresenter(new ModulesRepository(this), modulesFragment);
+        mModulesPresenter = new ModulesPresenter(new ModulesRepository(this), cardsFragment);
 
         // Load previously saved state, if available.
         if (savedInstanceState != null) {
-            ModuleFilterType currentFiltering =
-                    (ModuleFilterType) savedInstanceState.getSerializable(CURRENT_FILTERING_KEY);
+            ModulesType currentFiltering =
+                    (ModulesType) savedInstanceState.getSerializable(CURRENT_FILTERING_KEY);
             mModulesPresenter.loadModules();
             mModulesPresenter.setFiltering(currentFiltering);
         }
@@ -122,13 +123,13 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
             switch (item.getItemId()) {
                 // TODO Implement navigation
                 case R.id.component:
-                    mModulesPresenter.setFiltering(ModuleFilterType.COMPONENT);
+                    mModulesPresenter.setFiltering(ModulesType.COMPONENT);
                     break;
                 case R.id.design:
-                    mModulesPresenter.setFiltering(ModuleFilterType.DESIGN);
+                    mModulesPresenter.setFiltering(ModulesType.DESIGN);
                     break;
                 case R.id.game:
-                    mModulesPresenter.setFiltering(ModuleFilterType.GAME);
+                    mModulesPresenter.setFiltering(ModulesType.GAME);
                     break;
                 case R.id.settings:
                     break;

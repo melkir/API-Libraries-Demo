@@ -14,7 +14,7 @@ public interface ModulesContract {
 
         void showModuleDetailsUi(Module module);
 
-        void filter(ModuleFilterType requestType);
+        void filter(ModulesType requestType);
     }
 
     interface Presenter extends BasePresenter {
@@ -22,8 +22,8 @@ public interface ModulesContract {
 
         void openModuleDetails(Module clickedModule);
 
-        void setFiltering(ModuleFilterType requestType);
+        void setFiltering(ModulesType requestType);
 
-        ModuleFilterType getFiltering();
+        ModulesType getFiltering();
     }
 }

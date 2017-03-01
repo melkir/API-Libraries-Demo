@@ -1,14 +1,14 @@
 package com.melkir.libraries.modules;
 
-public enum ModuleFilterType {
+public enum ModulesType {
     COMPONENT("component"),
     GAME("game"),
     DESIGN("design"),
     ALL_CATEGORIES("all_categories");
 
-    private String value;
+    private final String value;
 
-    ModuleFilterType(String value) {
+    ModulesType(String value) {
         this.value = value;
     }
 

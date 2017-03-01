@@ -15,7 +15,7 @@ public class ModulesPresenter implements ModulesContract.Presenter {
 
     private final ModulesDataSource mModulesRepository;
     private final ModulesContract.View mModulesView;
-    private ModuleFilterType mCurrentFiltering = ModuleFilterType.ALL_CATEGORIES;
+    private ModulesType mCurrentFiltering = ModulesType.ALL_CATEGORIES;
 
     public ModulesPresenter(@NonNull ModulesDataSource modulesRepository, @NonNull
             ModulesContract.View modulesView) {
@@ -45,23 +45,23 @@ public class ModulesPresenter implements ModulesContract.Presenter {
     /**
      * Sets the current module filtering type.
      *
-     * @param requestModuleFilterType Can be {@link ModuleFilterType#ALL_CATEGORIES},
-     *                                {@link ModuleFilterType#COMPONENT},
-     *                                {@link ModuleFilterType#GAME}, or
-     *                                {@link ModuleFilterType#DESIGN}
+     * @param requestModuleFilterType Can be {@link ModulesType#ALL_CATEGORIES},
+     *                                {@link ModulesType#COMPONENT},
+     *                                {@link ModulesType#GAME}, or
+     *                                {@link ModulesType#DESIGN}
      */
     @Override
-    public void setFiltering(ModuleFilterType requestModuleFilterType) {
+    public void setFiltering(ModulesType requestModuleFilterType) {
         // restore all categories filter if the requested category filter is active
         // otherwise select the requested category
         mCurrentFiltering = mCurrentFiltering == requestModuleFilterType ?
-                ModuleFilterType.ALL_CATEGORIES : requestModuleFilterType;
+                ModulesType.ALL_CATEGORIES : requestModuleFilterType;
         mModulesView.filter(mCurrentFiltering);
         Log.d(TAG, "Filter active: " + mCurrentFiltering);
     }
 
     @Override
-    public ModuleFilterType getFiltering() {
+    public ModulesType getFiltering() {
         return mCurrentFiltering;
     }
 }

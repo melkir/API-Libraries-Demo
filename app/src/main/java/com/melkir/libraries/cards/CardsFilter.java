@@ -1,24 +1,25 @@
-package com.melkir.libraries.modules;
+package com.melkir.libraries.cards;
 
 import android.util.Log;
 import android.widget.Filter;
 
 import com.melkir.libraries.model.Module;
+import com.melkir.libraries.modules.ModulesType;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ModulesFilter extends Filter {
-    private static final String TAG = ModulesFilter.class.getSimpleName();
+class CardsFilter extends Filter {
+    private static final String TAG = CardsFilter.class.getSimpleName();
 
-    private final ModulesFragment.ModulesAdapter mAdapter;
+    private final CardsAdapter mAdapter;
     private final List<Module> mFilteredList;
 
     private List<Module> mOriginalList;
 
-    public ModulesFilter(ModulesFragment.ModulesAdapter modulesAdapter, List<Module> modules) {
-        this.mAdapter = modulesAdapter;
+    public CardsFilter(CardsAdapter cardsAdapter, List<Module> modules) {
+        this.mAdapter = cardsAdapter;
         this.mOriginalList = new LinkedList<>(modules);
         this.mFilteredList = new ArrayList<>();
     }
@@ -29,7 +30,7 @@ public class ModulesFilter extends Filter {
         final FilterResults results = new FilterResults();
         final String filter = charSequence.toString().toLowerCase().trim();
         Log.d(TAG, "Size: " + mOriginalList.size());
-        if (filter.equals(ModuleFilterType.ALL_CATEGORIES.toString()) || 0 == filter.length()) {
+        if (filter.equals(ModulesType.ALL_CATEGORIES.toString()) || 0 == filter.length()) {
             mFilteredList.addAll(mOriginalList);
         } else {
             for (final Module module : mOriginalList) {
