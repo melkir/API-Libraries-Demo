@@ -124,12 +124,15 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
                 // TODO Implement navigation
                 case R.id.component:
                     mModulesPresenter.setFiltering(ModulesType.COMPONENT);
+                    item.setChecked(!item.isChecked());
                     break;
                 case R.id.design:
                     mModulesPresenter.setFiltering(ModulesType.DESIGN);
+                    item.setChecked(!item.isChecked());
                     break;
                 case R.id.game:
                     mModulesPresenter.setFiltering(ModulesType.GAME);
+                    item.setChecked(!item.isChecked());
                     break;
                 case R.id.settings:
                     break;
