@@ -3,7 +3,6 @@ package com.melkir.libraries.modules;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,24 +19,28 @@ import com.melkir.libraries.R;
 import com.melkir.libraries.data.ModulesRepository;
 import com.melkir.libraries.util.ActivityUtils;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ModulesActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private static final String CURRENT_FILTERING_KEY = "CURRENT_FILTERING_KEY";
-
     private ModulesPresenter mModulesPresenter;
-    private NavigationView mNavigationView;
-    private DrawerLayout mDrawerLayout;
-    private View mNavHeader;
+
+    @BindView(R.id.nav_view) NavigationView mNavigationView;
+    @BindView(R.id.drawer) DrawerLayout mDrawerLayout;
+    @BindView(R.id.toolbar) Toolbar mToolbar;
+
     private SearchView mSearchView;
+    private View mNavHeader;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setToolbar((Toolbar) findViewById(R.id.toolbar));
-
-        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        ButterKnife.bind(this);
         mNavHeader = mNavigationView.getHeaderView(0);
+
+        configureToolbar();
 
         // Set the behavior of the navigation drawer
         mNavigationView.setNavigationItemSelectedListener(new NavigationViewListener());
@@ -90,15 +93,13 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         return super.onOptionsItemSelected(item);
     }
 
-    private void setToolbar(Toolbar toolbar) {
+    private void configureToolbar() {
         // Adding Toolbar to Main screen
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mToolbar);
         // Adding menu icon to Toolbar
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null) {
-            VectorDrawableCompat indicator = VectorDrawableCompat.create(getResources(),
-                    R.drawable.ic_menu, getTheme());
-            supportActionBar.setHomeAsUpIndicator(indicator);
+            supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
     }

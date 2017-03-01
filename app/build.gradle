@@ -51,6 +51,8 @@ dependencies {
     compile 'com.firebaseui:firebase-ui-auth:1.0.1'
     compile 'com.github.wrdlbrnft:sorted-list-adapter:0.1.0.5'
     compile 'com.google.guava:guava:20.0'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile project(path: ':barcode-reader')
     compile project(path: ':face-tracker')
     compile project(path: ':googly-eyes')

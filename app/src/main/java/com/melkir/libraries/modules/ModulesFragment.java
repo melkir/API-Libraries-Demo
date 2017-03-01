@@ -28,15 +28,19 @@ import com.melkir.libraries.model.Module;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ModulesFragment extends Fragment implements ModulesContract.View {
     private static final String TAG = ModulesFragment.class.getSimpleName();
 
+    @BindView(R.id.recycler_view) RecyclerView mModulesView;
+    @BindView(R.id.noModules) TextView mNoModulesView;
+
     private ModulesContract.Presenter mPresenter;
     private ModulesAdapter mModulesAdapter;
-    private RecyclerView mModulesView;
-    private TextView mNoModulesView;
 
     public ModulesFragment() {
         // Requires empty public constructor
@@ -68,14 +72,11 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_card, container, false);
-        // Set up modules view
-        mModulesView = (RecyclerView) root.findViewById(R.id.recycler_view);
+        ButterKnife.bind(this, root);
+
         handleOrientationBehaviour(mModulesView);
         mModulesView.setAdapter(mModulesAdapter);
         mModulesView.setHasFixedSize(true);
-
-        // Set up no modules view
-        mNoModulesView = (TextView) root.findViewById(R.id.noModules);
 
         return root;
     }
@@ -84,14 +85,14 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     public void showModules(List<Module> modules) {
         mModulesAdapter.replaceData(modules);
 
-        mModulesView.setVisibility(View.VISIBLE);
-        mNoModulesView.setVisibility(View.GONE);
+//        mModulesView.setVisibility(View.VISIBLE);
+//        mNoModulesView.setVisibility(View.GONE);
     }
 
     @Override
     public void showNoModules() {
-        mModulesView.setVisibility(View.GONE);
-        mNoModulesView.setVisibility(View.VISIBLE);
+//        mModulesView.setVisibility(View.GONE);
+//        mNoModulesView.setVisibility(View.VISIBLE);
     }
 
     @Override
