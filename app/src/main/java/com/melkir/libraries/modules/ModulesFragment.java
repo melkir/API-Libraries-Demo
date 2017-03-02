@@ -52,8 +52,6 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         List<Module> modules = Collections.emptyList();
-//        ModulesRepository modulesRepository = new ModulesRepository(getContext());
-//        List<Module> modules = modulesRepository.getModules();
         mCardsAdapter = new CardsAdapter(modules, mItemListener);
         mSearchAdapter = new SearchAdapter(getContext(), modules, mItemListener);
     }
