@@ -125,12 +125,12 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     }
 
     @Override
-    public void showCardsView() {
+    public void showCardsViewUi() {
         mRecyclerView.setAdapter(mCardsAdapter);
     }
 
     @Override
-    public void showSearchView() {
+    public void showSearchViewUi() {
         mRecyclerView.setAdapter(mSearchAdapter);
     }
 

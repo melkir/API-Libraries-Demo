@@ -63,8 +63,13 @@ public class ModulesPresenter implements ModulesContract.Presenter {
     }
 
     @Override
-    public ModulesContract.View getView() {
-        return mModulesView;
+    public void setDisplayTypeCards() {
+        mModulesView.showCardsViewUi();
+    }
+
+    @Override
+    public void setDisplayTypeSearch() {
+        mModulesView.showSearchViewUi();
     }
 
     @Override

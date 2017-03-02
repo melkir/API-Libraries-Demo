@@ -156,14 +156,14 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         mSearchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mModulesPresenter.getView().showSearchView();
+                mModulesPresenter.setDisplayTypeSearch();
             }
         });
 
         mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                mModulesPresenter.getView().showCardsView();
+                mModulesPresenter.setDisplayTypeCards();
                 return false;
             }
         });
