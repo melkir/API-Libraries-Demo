@@ -1,7 +1,7 @@
 package com.melkir.libraries.test;
 
 import com.melkir.libraries.data.ModulesDataSource;
-import com.melkir.libraries.model.Module;
+import com.melkir.libraries.data.Module;
 import com.melkir.libraries.modules.ModulesContract;
 import com.melkir.libraries.modules.ModulesPresenter;
 

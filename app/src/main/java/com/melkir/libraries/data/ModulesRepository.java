@@ -6,7 +6,6 @@ import android.content.res.TypedArray;
 import android.util.Log;
 
 import com.melkir.libraries.R;
-import com.melkir.libraries.model.Module;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,7 @@ package com.melkir.libraries.modules;
 
 import com.melkir.libraries.BasePresenter;
 import com.melkir.libraries.BaseView;
-import com.melkir.libraries.model.Module;
+import com.melkir.libraries.data.Module;
 
 import java.util.List;
 

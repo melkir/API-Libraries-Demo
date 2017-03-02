@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.melkir.libraries.R;
 import com.melkir.libraries.activity.DetailActivity;
-import com.melkir.libraries.model.Module;
+import com.melkir.libraries.data.Module;
 import com.melkir.libraries.modules.adapters.CardsAdapter;
 import com.melkir.libraries.modules.adapters.SearchAdapter;
 

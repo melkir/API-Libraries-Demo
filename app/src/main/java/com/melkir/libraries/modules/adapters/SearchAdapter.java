@@ -8,9 +8,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter;
-import com.melkir.libraries.R;
+import com.melkir.libraries.data.Module;
 import com.melkir.libraries.databinding.SearchBinding;
-import com.melkir.libraries.model.Module;
 import com.melkir.libraries.modules.ModulesFragment;
 
 import java.util.ArrayList;
@@ -80,20 +79,19 @@ public class SearchAdapter extends SortedListAdapter<Module> {
     };
 
     private class SearchViewHolder extends SortedListAdapter.ViewHolder<Module> {
-        private final ImageView picture;
         private final SearchBinding binding;
         private ModulesFragment.ModuleItemListener listener;
 
         SearchViewHolder(SearchBinding binding, ModulesFragment.ModuleItemListener listener) {
             super(binding.getRoot());
-            picture = (ImageView) itemView.findViewById(R.id.item_avatar);
             this.binding = binding;
             this.listener = listener;
         }
 
         @Override
         protected void performBind(final Module module) {
-            Glide.with(picture.getContext()).load(module.getPicture()).into(picture);
+            ImageView avatar = binding.itemAvatar;
+            Glide.with(avatar.getContext()).load(module.getPicture()).into(avatar);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

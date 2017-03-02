@@ -2,7 +2,7 @@ package com.melkir.libraries.modules;
 
 import com.android.annotations.NonNull;
 import com.melkir.libraries.data.ModulesDataSource;
-import com.melkir.libraries.model.Module;
+import com.melkir.libraries.data.Module;
 
 import java.util.List;
 

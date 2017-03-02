@@ -7,7 +7,7 @@
 
         <variable
             name="module"
-            type="com.melkir.libraries.model.Module" />
+            type="com.melkir.libraries.data.Module" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout

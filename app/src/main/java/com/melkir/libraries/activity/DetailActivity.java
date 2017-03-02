@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.melkir.libraries.BR;
 import com.melkir.libraries.R;
-import com.melkir.libraries.model.Module;
+import com.melkir.libraries.data.Module;
 
 public class DetailActivity extends AppCompatActivity {
 

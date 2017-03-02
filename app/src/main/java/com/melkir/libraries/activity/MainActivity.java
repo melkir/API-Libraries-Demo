@@ -32,7 +32,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.melkir.libraries.BuildConfig;
 import com.melkir.libraries.R;
-import com.melkir.libraries.fragment.CardContentFragment;
 import com.melkir.libraries.fragment.FeedbackDialogFragment;
 import com.melkir.libraries.util.LocaleHelper;
 
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private DrawerLayout mDrawerLayout;
-    private CardContentFragment mCardContentFragment;
+    //    private CardContentFragment mCardContentFragment;
     private String mCurrentFilter = "";
     private View mNavHeader;
     private SearchView mSearchView;
@@ -77,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         // Add counter on menu item
         initMenuCounters();
         // Add our card fragment
-        mCardContentFragment = new CardContentFragment();
-        getFragmentManager().beginTransaction().replace(R.id.container, mCardContentFragment).commit();
+//        mCardContentFragment = new CardContentFragment();
+//        getFragmentManager().beginTransaction().replace(R.id.container, mCardContentFragment).commit();
         // Update the UI if the user is logged
         updateUI(FirebaseAuth.getInstance().getCurrentUser());
     }
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         // Restore the cardFilter
         mCurrentFilter = savedInstanceState.getString(STATE_FILTER);
         // Apply the cardFilter to the view
-        mCardContentFragment.cardFilter(mCurrentFilter);
+//        mCardContentFragment.cardFilter(mCurrentFilter);
     }
 
     @Override
@@ -141,14 +140,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         mSearchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCardContentFragment.setSearchView();
+//                mCardContentFragment.setSearchView();
             }
         });
 
         mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                mCardContentFragment.setCardView();
+//                mCardContentFragment.setCardView();
                 return false;
             }
         });
@@ -169,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextChange(String query) {
-        mCardContentFragment.searchFilter(query);
+//        mCardContentFragment.searchFilter(query);
         return true;
     }
 
@@ -238,13 +237,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.component:
-                    filterBehaviour(item, "component");
+//                    filterBehaviour(item, "component");
                     break;
                 case R.id.design:
-                    filterBehaviour(item, "design");
+//                    filterBehaviour(item, "design");
                     break;
                 case R.id.game:
-                    filterBehaviour(item, "game");
+//                    filterBehaviour(item, "game");
                     break;
                 case R.id.settings:
                     startSettingsActivity();
@@ -263,18 +262,18 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             return true;
         }
 
-        private void filterBehaviour(MenuItem item, String constraint) {
-            mCardContentFragment.setCardView();
-            if (!item.isChecked()) {
-                item.setChecked(true);
-                mCurrentFilter = constraint;
-                mCardContentFragment.cardFilter(constraint);
-            } else {
-                item.setChecked(false);
-                mCurrentFilter = "";
-                mCardContentFragment.cardFilter("");
-            }
-        }
+//        private void filterBehaviour(MenuItem item, String constraint) {
+//            mCardContentFragment.setCardView();
+//            if (!item.isChecked()) {
+//                item.setChecked(true);
+//                mCurrentFilter = constraint;
+//                mCardContentFragment.cardFilter(constraint);
+//            } else {
+//                item.setChecked(false);
+//                mCurrentFilter = "";
+//                mCardContentFragment.cardFilter("");
+//            }
+//        }
 
         private void startAboutActivity() {
             Intent intent = new Intent(getApplication(), AboutActivity.class);

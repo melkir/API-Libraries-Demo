@@ -1,4 +1,4 @@
-package com.melkir.libraries.model;
+package com.melkir.libraries.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
