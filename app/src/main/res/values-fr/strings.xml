@@ -27,4 +27,5 @@
     <string name="contributor">Contributeur</string>
     <string name="contributor_text">Illustrations par Cassandra Vion</string>
     <string name="language">Langue</string>
+    <string name="no_data_available">Aucun module trouvé</string>
 </resources>
