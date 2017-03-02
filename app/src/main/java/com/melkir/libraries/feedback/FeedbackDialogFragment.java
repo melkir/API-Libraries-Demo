@@ -1,4 +1,4 @@
-package com.melkir.libraries.fragment;
+package com.melkir.libraries.feedback;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;

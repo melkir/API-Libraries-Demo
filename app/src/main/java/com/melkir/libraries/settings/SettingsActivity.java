@@ -1,9 +1,8 @@
-package com.melkir.libraries.activity;
+package com.melkir.libraries.settings;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.melkir.libraries.fragment.SettingsFragment;
 import com.melkir.libraries.util.LocaleHelper;
 
 public class SettingsActivity extends AppCompatActivity {

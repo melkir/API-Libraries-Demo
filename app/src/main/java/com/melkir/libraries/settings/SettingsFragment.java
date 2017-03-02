@@ -1,4 +1,4 @@
-package com.melkir.libraries.fragment;
+package com.melkir.libraries.settings;
 
 import android.os.Bundle;
 import android.preference.ListPreference;

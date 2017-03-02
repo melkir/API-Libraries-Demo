@@ -1,4 +1,4 @@
-package com.melkir.libraries.activity;
+package com.melkir.libraries.about;
 
 import android.content.Intent;
 import android.net.Uri;

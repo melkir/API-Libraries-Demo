@@ -25,13 +25,13 @@
 
         <!-- settings activity -->
         <activity
-            android:name="com.melkir.libraries.activity.SettingsActivity"
+            android:name="com.melkir.libraries.settings.SettingsActivity"
             android:parentActivityName="com.melkir.libraries.modules.ModulesActivity"
             android:theme="@style/AppTheme.ActionBar" />
 
         <!-- about activity -->
         <activity
-            android:name="com.melkir.libraries.activity.AboutActivity"
+            android:name="com.melkir.libraries.about.AboutActivity"
             android:parentActivityName="com.melkir.libraries.modules.ModulesActivity"
             android:theme="@style/AppTheme.ActionBar" />
 
