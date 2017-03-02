@@ -39,7 +39,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
 
     @Override
     public void onBindViewHolder(CardViewHolder holder, int position) {
-        holder.bind(mFilteredList.get(position), mItemListener);
+        holder.bind(mFilteredList.get(position));
     }
 
     @Override
@@ -90,13 +90,13 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
             this.binding = binding;
         }
 
-        void bind(final Module module, final ModulesFragment.ModuleItemListener listener) {
+        void bind(final Module module) {
             ImageView picture = binding.cardImage;
             Glide.with(picture.getContext()).load(module.getPicture()).into(picture);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onModuleClick(module);
+                    mItemListener.onModuleClick(module);
                 }
             });
             binding.setModule(module);

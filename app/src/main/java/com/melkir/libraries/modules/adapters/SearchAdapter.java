@@ -34,7 +34,7 @@ public class SearchAdapter extends SortedListAdapter<Module> {
     @Override
     protected ViewHolder<? extends Module> onCreateViewHolder(LayoutInflater inflater, ViewGroup parent, int i) {
         final SearchBinding binding = SearchBinding.inflate(inflater, parent, false);
-        return new SearchViewHolder(binding, mItemListener);
+        return new SearchViewHolder(binding);
     }
 
     @Override
@@ -80,12 +80,10 @@ public class SearchAdapter extends SortedListAdapter<Module> {
 
     private class SearchViewHolder extends SortedListAdapter.ViewHolder<Module> {
         private final SearchBinding binding;
-        private ModulesFragment.ModuleItemListener listener;
 
-        SearchViewHolder(SearchBinding binding, ModulesFragment.ModuleItemListener listener) {
+        SearchViewHolder(SearchBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            this.listener = listener;
         }
 
         @Override
@@ -95,7 +93,7 @@ public class SearchAdapter extends SortedListAdapter<Module> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onModuleClick(module);
+                    mItemListener.onModuleClick(module);
                 }
             });
             binding.setModule(module);
