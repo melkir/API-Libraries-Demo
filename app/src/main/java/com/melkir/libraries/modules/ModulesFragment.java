@@ -121,6 +121,7 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     @Override
     public void filter(String requestTitle) {
         mSearchAdapter.filter(requestTitle);
+        mRecyclerView.scrollToPosition(0);
     }
 
     @Override

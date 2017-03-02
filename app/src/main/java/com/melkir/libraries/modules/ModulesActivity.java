@@ -1,6 +1,7 @@
 package com.melkir.libraries.modules;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -69,10 +70,15 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        ModulesType currentFiltering =
+        final ModulesType currentFiltering =
                 (ModulesType) savedInstanceState.getSerializable(CURRENT_FILTERING_KEY);
-        mModulesPresenter.setFiltering(currentFiltering);
+        // TODO Replace this part with an Observable to apply filtering after getModules have finished
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mModulesPresenter.setFiltering(currentFiltering);
+            }
+        }, 0);
     }
 
     @Override
@@ -144,15 +150,15 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
                 // TODO Implement navigation
                 case R.id.component:
                     mModulesPresenter.setFiltering(ModulesType.COMPONENT);
-                    item.setChecked(flipState);
+//                    item.setChecked(flipState);
                     break;
                 case R.id.design:
                     mModulesPresenter.setFiltering(ModulesType.DESIGN);
-                    item.setChecked(flipState);
+//                    item.setChecked(flipState);
                     break;
                 case R.id.game:
                     mModulesPresenter.setFiltering(ModulesType.GAME);
-                    item.setChecked(flipState);
+//                    item.setChecked(flipState);
                     break;
                 case R.id.settings:
                     break;

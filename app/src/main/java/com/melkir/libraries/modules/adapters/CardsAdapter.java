@@ -3,6 +3,7 @@ package com.melkir.libraries.modules.adapters;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.Holder> {
     }
 
     public void replaceData(List<Module> modules) {
+        Log.d(TAG, "replaceData");
         setList(modules);
         notifyDataSetChanged();
     }
@@ -59,15 +61,18 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.Holder> {
     }
 
     public void filter(String query) {
+        Log.d(TAG, "Query: " + query);
         mFilteredList = new ArrayList<>();
         if (query.equals(ModulesType.ALL_CATEGORIES.toString())) {
             mFilteredList.addAll(mDefaultList);
         } else {
+            Log.d(TAG, "Default list: " + mDefaultList.size());
             for (final Module module: mDefaultList) {
                 if (this.contains(module.getCategories(), query)) {
                     mFilteredList.add(module);
                 }
             }
+            Log.d(TAG, "Filtered list: " + mFilteredList.size());
         }
         notifyDataSetChanged();
     }
