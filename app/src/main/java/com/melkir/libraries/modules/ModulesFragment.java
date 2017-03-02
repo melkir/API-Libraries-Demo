@@ -15,8 +15,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.melkir.libraries.R;
-import com.melkir.libraries.activity.DetailActivity;
 import com.melkir.libraries.data.Module;
+import com.melkir.libraries.moduledetail.ModuleDetailActivity;
 import com.melkir.libraries.modules.adapters.CardsAdapter;
 import com.melkir.libraries.modules.adapters.SearchAdapter;
 
@@ -108,8 +108,8 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     @Override
     public void showModuleDetailsUi(Module module) {
         final Context context = getContext();
-        final Intent intent = new Intent(context, DetailActivity.class);
-        intent.putExtra(DetailActivity.MODULE, module);
+        final Intent intent = new Intent(context, ModuleDetailActivity.class);
+        intent.putExtra(ModuleDetailActivity.MODULE, module);
         context.startActivity(intent);
     }
 

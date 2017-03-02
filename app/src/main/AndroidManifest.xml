@@ -20,7 +20,7 @@
 
         <!-- detail activity -->
         <activity
-            android:name="com.melkir.libraries.activity.DetailActivity"
+            android:name="com.melkir.libraries.moduledetail.ModuleDetailActivity"
             android:theme="@style/AppTheme.Base" />
 
         <!-- settings activity -->
