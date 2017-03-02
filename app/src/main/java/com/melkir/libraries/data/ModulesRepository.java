@@ -3,6 +3,7 @@ package com.melkir.libraries.data;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.util.Log;
 
 import com.melkir.libraries.R;
 import com.melkir.libraries.model.Module;
@@ -15,6 +16,7 @@ public class ModulesRepository implements ModulesDataSource {
     private List<Module> modules;
 
     public ModulesRepository(Context context) {
+        Log.d(TAG, "newModulesRepository");
         modules = loadModulesFromXML(context);
     }
 

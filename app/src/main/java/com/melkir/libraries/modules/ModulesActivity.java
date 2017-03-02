@@ -13,6 +13,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,6 +23,10 @@ import com.melkir.libraries.util.ActivityUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.melkir.libraries.modules.ModulesType.COMPONENT;
+import static com.melkir.libraries.modules.ModulesType.DESIGN;
+import static com.melkir.libraries.modules.ModulesType.GAME;
 
 public class ModulesActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private static final String TAG = ModulesActivity.class.getSimpleName();
@@ -69,16 +74,24 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        final ModulesType currentFiltering =
-                (ModulesType) savedInstanceState.getSerializable(CURRENT_FILTERING_KEY);
+    protected void onRestoreInstanceState(Bundle bundle) {
+        final ModulesType currentFiltering = (ModulesType) bundle.getSerializable(CURRENT_FILTERING_KEY);
         // TODO Replace this part with an Observable to apply filtering after getModules have finished
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 mModulesPresenter.setFiltering(currentFiltering);
             }
-        }, 0);
+        }, 100);
+
+        SubMenu menu = mNavigationView.getMenu().getItem(0).getSubMenu();
+        if (COMPONENT == currentFiltering) {
+            menu.findItem(R.id.component).setChecked(true);
+        } else if (DESIGN == currentFiltering) {
+            menu.findItem(R.id.design).setChecked(true);
+        } else if (GAME == currentFiltering) {
+            menu.findItem(R.id.game).setChecked(true);
+        }
     }
 
     @Override
@@ -146,19 +159,25 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             boolean flipState = !item.isChecked();
+
+            for (int i = 0; i < 3; i++) {
+                MenuItem top = mNavigationView.getMenu().getItem(0).getSubMenu().getItem(i);
+                if (top.isChecked()) top.setChecked(false);
+            }
+
             switch (item.getItemId()) {
                 // TODO Implement navigation
                 case R.id.component:
-                    mModulesPresenter.setFiltering(ModulesType.COMPONENT);
-//                    item.setChecked(flipState);
+                    mModulesPresenter.setFiltering(COMPONENT);
+                    item.setChecked(flipState);
                     break;
                 case R.id.design:
-                    mModulesPresenter.setFiltering(ModulesType.DESIGN);
-//                    item.setChecked(flipState);
+                    mModulesPresenter.setFiltering(DESIGN);
+                    item.setChecked(flipState);
                     break;
                 case R.id.game:
-                    mModulesPresenter.setFiltering(ModulesType.GAME);
-//                    item.setChecked(flipState);
+                    mModulesPresenter.setFiltering(GAME);
+                    item.setChecked(flipState);
                     break;
                 case R.id.settings:
                     break;
