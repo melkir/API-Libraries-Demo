@@ -117,12 +117,12 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
 
     @Override
     public void filter(ModulesType requestType) {
-//        mCardsAdapter.getFilter().filter(requestType.getValue());
+        mCardsAdapter.filter(requestType.toString());
     }
 
     @Override
     public void filter(String requestTitle) {
-//        mSearchAdapter.getFilter().filter(requestTitle);
+        mSearchAdapter.filter(requestTitle);
     }
 
     @Override

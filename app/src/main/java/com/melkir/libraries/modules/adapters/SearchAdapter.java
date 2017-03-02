@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filterable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -14,28 +13,23 @@ import com.melkir.libraries.databinding.SearchBinding;
 import com.melkir.libraries.model.Module;
 import com.melkir.libraries.modules.ModulesFragment;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class SearchAdapter extends SortedListAdapter<Module> implements Filterable {
+public class SearchAdapter extends SortedListAdapter<Module> {
     private static final String TAG = SearchAdapter.class.getSimpleName();
 
     private final ModulesFragment.ModuleItemListener mItemListener;
-    private SearchFilter mSearchFilter;
-    private List<Module> mModules;
+
+    private List<Module> mDefaultList;
 
     public SearchAdapter(Context context, List<Module> modules, ModulesFragment.ModuleItemListener itemListener) {
         super(context, Module.class, TITLE_COMPARATOR);
         setList(modules);
         mItemListener = itemListener;
-        mSearchFilter = new SearchFilter(this, mModules);
-    }
-
-    @Override
-    public SearchFilter getFilter() {
-        return mSearchFilter;
     }
 
     @Override
@@ -55,13 +49,27 @@ public class SearchAdapter extends SortedListAdapter<Module> implements Filterab
     }
 
     public void replaceData(List<Module> modules) {
-        setList(modules);
-//        mSearchFilter.notifyDataChanged(modules);
-        notifyDataSetChanged();
+        mDefaultList = modules;
+        edit().replaceAll(modules).commit();
     }
 
     public void setList(List<Module> modules) {
-        mModules = checkNotNull(modules);
+        mDefaultList = checkNotNull(modules);
+    }
+
+    public void filter(String requestTitle) {
+        List<Module> mFilteredList = new ArrayList<>();
+        if (0 == requestTitle.length()) {
+            mFilteredList.addAll(mDefaultList);
+        } else {
+            String title = requestTitle.toLowerCase();
+            for (Module module : mDefaultList) {
+                if (module.getTitle().toLowerCase().contains(title)) {
+                    mFilteredList.add(module);
+                }
+            }
+        }
+        edit().replaceAll(mFilteredList).commit();
     }
 
     private static final Comparator<Module> TITLE_COMPARATOR = new Comparator<Module>() {
@@ -71,12 +79,12 @@ public class SearchAdapter extends SortedListAdapter<Module> implements Filterab
         }
     };
 
-    class SearchViewHolder extends SortedListAdapter.ViewHolder<Module> {
+    private class SearchViewHolder extends SortedListAdapter.ViewHolder<Module> {
         private final ImageView picture;
         private final SearchBinding binding;
         private ModulesFragment.ModuleItemListener listener;
 
-        public SearchViewHolder(SearchBinding binding, ModulesFragment.ModuleItemListener listener) {
+        SearchViewHolder(SearchBinding binding, ModulesFragment.ModuleItemListener listener) {
             super(binding.getRoot());
             picture = (ImageView) itemView.findViewById(R.id.item_avatar);
             this.binding = binding;
