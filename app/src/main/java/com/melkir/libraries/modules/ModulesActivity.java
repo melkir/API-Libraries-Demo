@@ -1,9 +1,13 @@
 package com.melkir.libraries.modules;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,15 +15,32 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.ui.ResultCodes;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.melkir.libraries.BuildConfig;
 import com.melkir.libraries.R;
+import com.melkir.libraries.activity.AboutActivity;
+import com.melkir.libraries.activity.SettingsActivity;
 import com.melkir.libraries.data.ModulesRepository;
 import com.melkir.libraries.util.ActivityUtils;
+import com.melkir.libraries.util.LocaleHelper;
+
+import java.util.Collections;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +53,7 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
     private static final String TAG = ModulesActivity.class.getSimpleName();
 
     private static final String CURRENT_FILTERING_KEY = "CURRENT_FILTERING_KEY";
+    private static final int RC_SIGN_IN = 9001;
     private ModulesPresenter mModulesPresenter;
 
     @BindView(R.id.nav_view)
@@ -43,18 +65,26 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
 
     private SearchView mSearchView;
     private View mNavHeader;
+    TextView mUsername;
+    TextView mEmail;
+    ImageView mProfilePicture;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mNavHeader = mNavigationView.getHeaderView(0);
 
         configureToolbar();
 
         // Set the behavior of the navigation drawer
         mNavigationView.setNavigationItemSelectedListener(new NavigationViewListener());
+
+        // Set our navigation drawer header
+        mNavHeader = mNavigationView.getHeaderView(0);
+        mUsername = (TextView) mNavHeader.findViewById(R.id.name);
+        mEmail = (TextView) mNavHeader.findViewById(R.id.email);
+        mProfilePicture = (ImageView) mNavHeader.findViewById(R.id.profile_picture);
 
         ModulesFragment modulesFragment = (ModulesFragment) getSupportFragmentManager().findFragmentById(R.id.container);
         if (modulesFragment == null) {
@@ -63,14 +93,34 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), modulesFragment, R.id.container);
         }
 
+        // Add counter on menu item
+        initMenuCounters();
+
         // Create the presenter
         mModulesPresenter = new ModulesPresenter(new ModulesRepository(this), modulesFragment);
+
+        // Update the UI if the user is logged
+        updateUI(FirebaseAuth.getInstance().getCurrentUser());
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(CURRENT_FILTERING_KEY, mModulesPresenter.getFiltering());
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!LocaleHelper.updateViewNeeded) return;
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        recreate();
+        LocaleHelper.updateViewNeeded = false;
     }
 
     @Override
@@ -166,7 +216,6 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
             }
 
             switch (item.getItemId()) {
-                // TODO Implement navigation
                 case R.id.component:
                     mModulesPresenter.setFiltering(COMPONENT);
                     item.setChecked(flipState);
@@ -180,8 +229,12 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
                     item.setChecked(flipState);
                     break;
                 case R.id.settings:
+                    Intent settingsIntent = new Intent(getApplication(), SettingsActivity.class);
+                    startActivity(settingsIntent);
                     break;
                 case R.id.about:
+                    Intent aboutIntent = new Intent(getApplication(), AboutActivity.class);
+                    startActivity(aboutIntent);
                     break;
                 default:
                     Toast.makeText(mNavHeader.getContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
@@ -190,6 +243,75 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
             mDrawerLayout.closeDrawers();
             return true;
         }
+    }
+
+    public void signIn(View view) {
+        startActivityForResult(AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setProviders(Collections.singletonList(
+                        new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build())
+                )
+                .setIsSmartLockEnabled(!BuildConfig.DEBUG)
+                .setTheme(R.style.AppTheme)
+                .build(), RC_SIGN_IN);
+    }
+
+    public void signOut(View view) {
+        AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
+            public void onComplete(@NonNull Task<Void> task) {
+                // user is now signed out
+                updateUI(null);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            Log.d(TAG, "User logged in");
+        } else if (resultCode == RESULT_CANCELED) {
+            showSnackbar(getString(R.string.sign_in_cancelled));
+            return;
+        } else if (resultCode == ResultCodes.RESULT_NO_NETWORK) {
+            showSnackbar(getString(R.string.no_internet_connection));
+        }
+        updateUI(FirebaseAuth.getInstance().getCurrentUser());
+    }
+
+    private void updateUI(FirebaseUser user) {
+        Button signInButton = (Button) findViewById(R.id.sign_in_button);
+        Button signOutButton = (Button) findViewById(R.id.sign_out_button);
+        if (user != null) {
+            // show sign-out button, hide the sign-in button
+            signInButton.setVisibility(View.GONE);
+            signOutButton.setVisibility(View.VISIBLE);
+            mUsername.setText(user.getDisplayName());
+            mEmail.setText(user.getEmail());
+            // load the user profile picture
+            Glide.with(this).load(user.getPhotoUrl()).into(mProfilePicture);
+        } else {
+            signInButton.setVisibility(View.VISIBLE);
+            signOutButton.setVisibility(View.GONE);
+            mUsername.setText("");
+            mEmail.setText("");
+            mProfilePicture.setImageResource(R.drawable.ic_account);
+        }
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar.make(mDrawerLayout, message, Snackbar.LENGTH_SHORT);
+    }
+
+    private void initMenuCounters() {
+        setMenuCounter(R.id.component, 6);
+        setMenuCounter(R.id.design, 2);
+        setMenuCounter(R.id.game, 3);
+    }
+
+    private void setMenuCounter(@IdRes int itemId, int count) {
+        TextView view = (TextView) mNavigationView.getMenu().findItem(itemId).getActionView();
+        view.setText(count > 0 ? String.valueOf(count) : null);
     }
 
 }

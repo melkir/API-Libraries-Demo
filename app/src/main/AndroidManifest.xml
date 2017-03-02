@@ -26,13 +26,13 @@
         <!-- settings activity -->
         <activity
             android:name="com.melkir.libraries.activity.SettingsActivity"
-            android:parentActivityName="com.melkir.libraries.activity.MainActivity"
+            android:parentActivityName="com.melkir.libraries.modules.ModulesActivity"
             android:theme="@style/AppTheme.ActionBar" />
 
         <!-- about activity -->
         <activity
             android:name="com.melkir.libraries.activity.AboutActivity"
-            android:parentActivityName="com.melkir.libraries.activity.MainActivity"
+            android:parentActivityName="com.melkir.libraries.modules.ModulesActivity"
             android:theme="@style/AppTheme.ActionBar" />
 
         <!-- google maps api key for our streets dependency -->
