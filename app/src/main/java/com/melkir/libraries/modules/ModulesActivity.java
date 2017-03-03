@@ -72,7 +72,7 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.modules_activity);
         ButterKnife.bind(this);
 
         configureToolbar();

@@ -7,16 +7,16 @@ import com.melkir.libraries.data.Module;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.melkir.libraries.modules.ModulesContract.*;
 
-public class ModulesPresenter implements ModulesContract.Presenter {
+public class ModulesPresenter implements Presenter {
     private static final String TAG = ModulesPresenter.class.getSimpleName();
 
     private final ModulesDataSource mModulesRepository;
-    private final ModulesContract.View mModulesView;
+    private final View mModulesView;
     private ModulesType mCurrentFiltering = ModulesType.ALL_CATEGORIES;
 
-    public ModulesPresenter(@NonNull ModulesDataSource modulesRepository, @NonNull
-            ModulesContract.View modulesView) {
+    public ModulesPresenter(@NonNull ModulesDataSource modulesRepository, @NonNull View modulesView) {
         mModulesRepository = checkNotNull(modulesRepository, "modulesRepository cannot be null");
         mModulesView = checkNotNull(modulesView, "modulesView cannot be null");
         mModulesView.setPresenter(this);

@@ -71,7 +71,7 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_card, container, false);
+        View root = inflater.inflate(R.layout.card_fragment, container, false);
         ButterKnife.bind(this, root);
 
         handleOrientationBehaviour(mRecyclerView);

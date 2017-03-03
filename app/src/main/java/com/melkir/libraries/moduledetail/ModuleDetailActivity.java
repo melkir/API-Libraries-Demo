@@ -1,16 +1,13 @@
 package com.melkir.libraries.moduledetail;
 
-import android.databinding.BindingAdapter;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
 
 import com.melkir.libraries.R;
 import com.melkir.libraries.data.Module;
-import com.melkir.libraries.databinding.ActivityDetailBinding;
+import com.melkir.libraries.util.ActivityUtils;
 
 public class ModuleDetailActivity extends AppCompatActivity {
 
@@ -19,33 +16,20 @@ public class ModuleDetailActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // bind the module passed given by the parent intent
-        ActivityDetailBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
+        setContentView(R.layout.detail_activity);
 
         // Set up the toolbar with the back button and no title
         setupActionBar();
 
         Module module = getIntent().getParcelableExtra(MODULE);
-        binding.setModule(module);
+        ModuleDetailFragment moduleDetailFragment = (ModuleDetailFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+        if (moduleDetailFragment == null) {
+            moduleDetailFragment = ModuleDetailFragment.newInstance();
 
-        // TODO Attach the module to a fragment instead of the activity
-//        ModuleDetailFragment moduleDetailFragment = (ModuleDetailFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.contentFrame);
-//
-//        if (moduleDetailFragment != null) {
-//            moduleDetailFragment = ModuleDetailFragment.newInstance(MODULE);
-//
-//            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
-//                    moduleDetailFragment, R.id.contentFrame);
-//        }
-//
-//        new ModuleDetailPresenter(module, moduleDetailFragment);
-    }
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), moduleDetailFragment, R.id.contentFrame);
+        }
 
-    @BindingAdapter({"android:background"})
-    public static void setImageViewResource(ImageView imageView, int resource) {
-        imageView.setImageResource(resource);
+        new ModuleDetailPresenter(module, moduleDetailFragment);
     }
 
     @Override
