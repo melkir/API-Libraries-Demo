@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -38,6 +39,13 @@ public class ModulesPresenterTest {
     public void setUp() {
         mModulesPresenter = new ModulesPresenter(mModulesRepository, mModulesView);
         MODULES = Arrays.asList(new Module(), new Module(), new Module());
+    }
+
+    @Test
+    public void shouldLoadModulesFromTheRepositoryOnStart() {
+        mModulesPresenter.start();
+
+        verify(mModulesRepository).getModules();
     }
 
     @Test
@@ -88,6 +96,7 @@ public class ModulesPresenterTest {
     public void clickFilterCategory_FilterByCategory() {
         mModulesPresenter.setFiltering(ModulesType.COMPONENT);
 
+        assertEquals(mModulesPresenter.getFiltering(), ModulesType.COMPONENT);
         verify(mModulesView).filter(ModulesType.COMPONENT);
     }
 
