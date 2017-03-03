@@ -19,43 +19,44 @@ import java.util.List;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class ModulesActivityPresenterTest {
+public class ModulesPresenterTest {
+    private static List<Module> MODULES;
+
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock
-    ModulesDataSource modulesRepository;
+    ModulesDataSource mModulesRepository;
 
     @Mock
-    ModulesContract.View view;
+    ModulesContract.View mModulesView;
 
-    private ModulesPresenter presenter;
-    private final List<Module> MANY_MODULES = Arrays.asList(new Module(), new Module(), new Module());
-    private final List<Module> EMPTY_LIST = Collections.emptyList();
+    private ModulesPresenter mModulesPresenter;
 
     @Before
     public void setUp() {
-        presenter = new ModulesPresenter(modulesRepository, view);
+        mModulesPresenter = new ModulesPresenter(mModulesRepository, mModulesView);
+        MODULES = Arrays.asList(new Module(), new Module(), new Module());
     }
 
     @Test
     public void shouldPassModulesToView() {
         // arrange
-        when(modulesRepository.getModules()).thenReturn(MANY_MODULES);
+        when(mModulesRepository.getModules()).thenReturn(MODULES);
 
         // act
-        presenter.loadModules();
+        mModulesPresenter.loadModules();
 
         // assert
-        verify(view).showModules(MANY_MODULES);
+        verify(mModulesView).showModules(MODULES);
     }
 
     @Test
     public void shouldHandleNoModulesFound() {
-        when(modulesRepository.getModules()).thenReturn(EMPTY_LIST);
+        when(mModulesRepository.getModules()).thenReturn(Collections.emptyList());
 
-        presenter.loadModules();
+        mModulesPresenter.loadModules();
 
-        verify(view).showNoModules();
+        verify(mModulesView).showNoModules();
     }
 }
