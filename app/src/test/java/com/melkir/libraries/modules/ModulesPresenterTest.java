@@ -1,10 +1,7 @@
-package com.melkir.libraries.test.modules;
+package com.melkir.libraries.modules;
 
 import com.melkir.libraries.data.Module;
 import com.melkir.libraries.data.ModulesDataSource;
-import com.melkir.libraries.modules.ModulesContract;
-import com.melkir.libraries.modules.ModulesPresenter;
-import com.melkir.libraries.modules.ModulesType;
 
 import org.junit.Before;
 import org.junit.Rule;

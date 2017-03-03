@@ -1,8 +1,6 @@
-package com.melkir.libraries.test.moduledetail;
+package com.melkir.libraries.moduledetail;
 
 import com.melkir.libraries.data.Module;
-import com.melkir.libraries.moduledetail.ModuleDetailContract;
-import com.melkir.libraries.moduledetail.ModuleDetailPresenter;
 
 import org.junit.Before;
 import org.junit.Rule;
