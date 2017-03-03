@@ -2,7 +2,7 @@ package com.melkir.libraries.moduledetail;
 
 import android.support.annotation.Nullable;
 
-import com.android.annotations.NonNull;
+import android.support.annotation.NonNull;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.melkir.libraries.moduledetail.ModuleDetailContract.Presenter;

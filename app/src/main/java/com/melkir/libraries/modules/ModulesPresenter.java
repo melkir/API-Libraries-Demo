@@ -1,6 +1,6 @@
 package com.melkir.libraries.modules;
 
-import com.android.annotations.NonNull;
+import android.support.annotation.NonNull;
 import com.melkir.libraries.data.ModulesDataSource;
 import com.melkir.libraries.data.Module;
 
