@@ -28,15 +28,13 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ui.ResultCodes;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.melkir.libraries.BuildConfig;
 import com.melkir.libraries.R;
 import com.melkir.libraries.about.AboutActivity;
-import com.melkir.libraries.settings.SettingsActivity;
 import com.melkir.libraries.data.ModulesRepository;
+import com.melkir.libraries.settings.SettingsActivity;
 import com.melkir.libraries.util.ActivityUtils;
 import com.melkir.libraries.util.LocaleHelper;
 
@@ -65,9 +63,11 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
 
     private SearchView mSearchView;
     private View mNavHeader;
-    TextView mUsername;
-    TextView mEmail;
-    ImageView mProfilePicture;
+    private TextView mUsername;
+    private TextView mEmail;
+    private ImageView mProfilePicture;
+    private Button mSignInButton;
+    private Button mSignOutButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,8 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
 
         // Set the behavior of the navigation drawer
         mNavigationView.setNavigationItemSelectedListener(new NavigationViewListener());
+        mSignInButton = (Button) mNavigationView.findViewById(R.id.sign_in_button);
+        mSignOutButton = (Button) mNavigationView.findViewById(R.id.sign_out_button);
 
         // Set our navigation drawer header
         mNavHeader = mNavigationView.getHeaderView(0);
@@ -100,7 +102,15 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         mModulesPresenter = new ModulesPresenter(new ModulesRepository(this), modulesFragment);
 
         // Update the UI if the user is logged
-        updateUI(FirebaseAuth.getInstance().getCurrentUser());
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) showUserOnNavHeader(user);
+                else showNoUserOnNavHeader();
+            }
+        });
     }
 
     @Override
@@ -182,17 +192,6 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         return super.onOptionsItemSelected(item);
     }
 
-    private void configureToolbar() {
-        // Adding Toolbar to Main screen
-        setSupportActionBar(mToolbar);
-        // Adding menu icon to Toolbar
-        ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null) {
-            supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
     @Override
     public boolean onQueryTextSubmit(String query) {
         mSearchView.clearFocus();
@@ -203,6 +202,18 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
     public boolean onQueryTextChange(String query) {
         mModulesPresenter.setFiltering(query);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            Log.d(TAG, "User logged in");
+        } else if (resultCode == RESULT_CANCELED) {
+            showSnackbar(getString(R.string.sign_in_cancelled));
+        } else if (resultCode == ResultCodes.RESULT_NO_NETWORK) {
+            showSnackbar(getString(R.string.no_internet_connection));
+        }
     }
 
     private class NavigationViewListener implements NavigationView.OnNavigationItemSelectedListener {
@@ -257,46 +268,25 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
     }
 
     public void signOut(View view) {
-        AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
-            public void onComplete(@NonNull Task<Void> task) {
-                // user is now signed out
-                updateUI(null);
-            }
-        });
+        AuthUI.getInstance().signOut(this);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            Log.d(TAG, "User logged in");
-        } else if (resultCode == RESULT_CANCELED) {
-            showSnackbar(getString(R.string.sign_in_cancelled));
-            return;
-        } else if (resultCode == ResultCodes.RESULT_NO_NETWORK) {
-            showSnackbar(getString(R.string.no_internet_connection));
-        }
-        updateUI(FirebaseAuth.getInstance().getCurrentUser());
+    private void showUserOnNavHeader(FirebaseUser user) {
+        // show sign-out button, hide the sign-in button
+        mSignInButton.setVisibility(View.GONE);
+        mSignOutButton.setVisibility(View.VISIBLE);
+        mUsername.setText(user.getDisplayName());
+        mEmail.setText(user.getEmail());
+        // load the user profile picture
+        Glide.with(this).load(user.getPhotoUrl()).into(mProfilePicture);
     }
 
-    private void updateUI(FirebaseUser user) {
-        Button signInButton = (Button) findViewById(R.id.sign_in_button);
-        Button signOutButton = (Button) findViewById(R.id.sign_out_button);
-        if (user != null) {
-            // show sign-out button, hide the sign-in button
-            signInButton.setVisibility(View.GONE);
-            signOutButton.setVisibility(View.VISIBLE);
-            mUsername.setText(user.getDisplayName());
-            mEmail.setText(user.getEmail());
-            // load the user profile picture
-            Glide.with(this).load(user.getPhotoUrl()).into(mProfilePicture);
-        } else {
-            signInButton.setVisibility(View.VISIBLE);
-            signOutButton.setVisibility(View.GONE);
-            mUsername.setText("");
-            mEmail.setText("");
-            mProfilePicture.setImageResource(R.drawable.ic_account);
-        }
+    private void showNoUserOnNavHeader() {
+        mSignInButton.setVisibility(View.VISIBLE);
+        mSignOutButton.setVisibility(View.GONE);
+        mUsername.setText("");
+        mEmail.setText("");
+        mProfilePicture.setImageResource(R.drawable.ic_account);
     }
 
     private void showSnackbar(String message) {
@@ -314,4 +304,14 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         view.setText(count > 0 ? String.valueOf(count) : null);
     }
 
+    private void configureToolbar() {
+        // Adding Toolbar to Main screen
+        setSupportActionBar(mToolbar);
+        // Adding menu icon to Toolbar
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
 }
