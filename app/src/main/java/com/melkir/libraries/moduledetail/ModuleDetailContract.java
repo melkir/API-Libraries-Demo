@@ -14,6 +14,8 @@ public interface ModuleDetailContract {
     }
 
     interface Presenter extends BasePresenter {
+        void loadModule();
+
         void startModule();
     }
 }

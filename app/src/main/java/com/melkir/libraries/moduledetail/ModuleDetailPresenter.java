@@ -16,7 +16,7 @@ public class ModuleDetailPresenter implements Presenter {
     private final View mModuleDetailView;
 
     public ModuleDetailPresenter(@Nullable Module module, @NonNull View moduleDetailView) {
-        mModule = checkNotNull(module, "module cannot be null");
+        mModule = module;
         mModuleDetailView = checkNotNull(moduleDetailView, "moduleDetailView cannot be null");
 
         mModuleDetailView.setPresenter(this);
@@ -27,7 +27,8 @@ public class ModuleDetailPresenter implements Presenter {
         loadModule();
     }
 
-    private void loadModule() {
+    @Override
+    public void loadModule() {
         if (null == mModule) {
             mModuleDetailView.showMissingModule();
         } else {
