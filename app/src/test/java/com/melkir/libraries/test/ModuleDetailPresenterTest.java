@@ -4,12 +4,14 @@ import com.melkir.libraries.data.Module;
 import com.melkir.libraries.moduledetail.ModuleDetailContract;
 import com.melkir.libraries.moduledetail.ModuleDetailPresenter;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 public class ModuleDetailPresenterTest {
@@ -23,10 +25,14 @@ public class ModuleDetailPresenterTest {
 
     private ModuleDetailPresenter mModuleDetailPresenter;
 
+    @Before
+    public void setUp() {
+        MODULE = new Module(1, "Barcode", "A barcode reader", "http://url.com", "barcode", null, 0);
+        mModuleDetailPresenter = new ModuleDetailPresenter(MODULE, mModuleDetailView);
+    }
+
     @Test
     public void shouldPassModuleToView() {
-        mModuleDetailPresenter = new ModuleDetailPresenter(MODULE, mModuleDetailView);
-
         mModuleDetailPresenter.loadModule();
 
         verify(mModuleDetailView).showModule(MODULE);
@@ -39,5 +45,12 @@ public class ModuleDetailPresenterTest {
         mModuleDetailPresenter.loadModule();
 
         verify(mModuleDetailView).showMissingModule();
+    }
+
+    @Test
+    public void clickOnFab_LaunchModule() {
+        mModuleDetailPresenter.startModule();
+
+        verify(mModuleDetailView).startModule(any(String.class));
     }
 }

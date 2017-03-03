@@ -4,6 +4,7 @@ import com.melkir.libraries.data.Module;
 import com.melkir.libraries.data.ModulesDataSource;
 import com.melkir.libraries.modules.ModulesContract;
 import com.melkir.libraries.modules.ModulesPresenter;
+import com.melkir.libraries.modules.ModulesType;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -58,5 +59,42 @@ public class ModulesPresenterTest {
         mModulesPresenter.loadModules();
 
         verify(mModulesView).showNoModules();
+    }
+
+    @Test
+    public void clickOnModule_ShowsDetailUi() {
+        Module module = new Module();
+
+        mModulesPresenter.openModuleDetails(module);
+
+        verify(mModulesView).showModuleDetailsUi(module);
+    }
+
+    @Test
+    public void clickOnSearch_ShowsSearchUi() {
+        mModulesPresenter.setDisplayTypeSearch();
+
+        verify(mModulesView).showSearchViewUi();
+    }
+
+    @Test
+    public void closeSearchView_ShowsCardsUi() {
+        mModulesPresenter.setDisplayTypeCards();
+
+        verify(mModulesView).showCardsViewUi();
+    }
+
+    @Test
+    public void clickFilterCategory_FilterByCategory() {
+        mModulesPresenter.setFiltering(ModulesType.COMPONENT);
+
+        verify(mModulesView).filter(ModulesType.COMPONENT);
+    }
+
+    @Test
+    public void searchFilter_FilterByString() {
+        mModulesPresenter.setFiltering("barcode");
+
+        verify(mModulesView).filter("barcode");
     }
 }
