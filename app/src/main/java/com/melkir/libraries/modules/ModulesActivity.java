@@ -262,7 +262,7 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         mUsername.setText(user.getDisplayName());
         mEmail.setText(user.getEmail());
         // load the user profile picture
-        Glide.with(this).load(user.getPhotoUrl()).into(mProfilePicture);
+        Glide.with(getApplicationContext()).load(user.getPhotoUrl()).into(mProfilePicture);
     }
 
     private void showNoUserOnNavHeader() {
