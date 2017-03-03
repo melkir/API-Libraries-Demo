@@ -15,12 +15,12 @@ public class Module implements Parcelable, SortedListAdapter.ViewModel {
 
     public Module() {
         this.mId = 0;
-        this.mTitle = "title";
-        this.mDescription = "description";
-        this.mCategories = new String[]{"test"};
-        this.mPictureRsc = 0;
-        this.mAction = null;
+        this.mTitle = null;
+        this.mDescription = null;
         this.mLink = null;
+        this.mAction = null;
+        this.mCategories = null;
+        this.mPictureRsc = 0;
     }
 
     public Module(int id, String title, String description, String link, String action,

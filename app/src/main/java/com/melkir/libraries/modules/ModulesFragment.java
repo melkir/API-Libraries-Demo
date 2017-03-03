@@ -115,11 +115,17 @@ public class ModulesFragment extends Fragment implements ModulesContract.View {
 
     @Override
     public void filter(ModulesType requestType) {
+        if (mRecyclerView.getAdapter() != mCardsAdapter) {
+            mRecyclerView.setAdapter(mCardsAdapter);
+        }
         mCardsAdapter.filter(requestType.toString());
     }
 
     @Override
     public void filter(String requestTitle) {
+        if (mRecyclerView.getAdapter() != mSearchAdapter) {
+            mRecyclerView.setAdapter(mSearchAdapter);
+        }
         mSearchAdapter.filter(requestTitle);
         mRecyclerView.scrollToPosition(0);
     }

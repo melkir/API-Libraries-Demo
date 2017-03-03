@@ -1,13 +1,15 @@
 package com.melkir.libraries.modules;
 
 import android.support.annotation.NonNull;
-import com.melkir.libraries.data.ModulesDataSource;
+
 import com.melkir.libraries.data.Module;
+import com.melkir.libraries.data.ModulesDataSource;
 
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.melkir.libraries.modules.ModulesContract.*;
+import static com.melkir.libraries.modules.ModulesContract.Presenter;
+import static com.melkir.libraries.modules.ModulesContract.View;
 
 public class ModulesPresenter implements Presenter {
     private static final String TAG = ModulesPresenter.class.getSimpleName();
