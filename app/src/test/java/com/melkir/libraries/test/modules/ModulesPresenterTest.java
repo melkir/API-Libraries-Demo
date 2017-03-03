@@ -1,4 +1,4 @@
-package com.melkir.libraries.test;
+package com.melkir.libraries.test.modules;
 
 import com.melkir.libraries.data.Module;
 import com.melkir.libraries.data.ModulesDataSource;

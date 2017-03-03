@@ -1,4 +1,4 @@
-package com.melkir.libraries.test;
+package com.melkir.libraries.test.moduledetail;
 
 import com.melkir.libraries.data.Module;
 import com.melkir.libraries.moduledetail.ModuleDetailContract;
