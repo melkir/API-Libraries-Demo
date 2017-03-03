@@ -48,7 +48,7 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$appCompatVersion"
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.firebaseui:firebase-ui-auth:1.0.1'
+    compile 'com.firebaseui:firebase-ui-auth:1.2.0'
     compile 'com.github.wrdlbrnft:sorted-list-adapter:0.1.0.5'
     compile 'com.google.guava:guava:20.0'
     compile 'com.jakewharton:butterknife:8.5.1'
