@@ -3,7 +3,6 @@ package com.melkir.libraries.modules.adapters;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -15,6 +14,9 @@ import com.melkir.libraries.modules.ModulesType;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import java8.util.stream.Collectors;
+import java8.util.stream.StreamSupport;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -54,7 +56,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         notifyDataSetChanged();
     }
 
-    public void setList(List<Module> modules) {
+    private void setList(List<Module> modules) {
         mDefaultList = checkNotNull(modules);
         mFilteredList = checkNotNull(modules);
     }
@@ -64,11 +66,10 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         if (query.equals(ModulesType.ALL_CATEGORIES.toString())) {
             mFilteredList.addAll(mDefaultList);
         } else {
-            for (final Module module : mDefaultList) {
-                if (this.contains(module.getCategories(), query)) {
-                    mFilteredList.add(module);
-                }
-            }
+            List<Module> matchingModules = StreamSupport.stream(mDefaultList)
+                    .filter(module -> this.contains(module.getCategories(), query))
+                    .collect(Collectors.toList());
+            mFilteredList.addAll(matchingModules);
         }
         notifyDataSetChanged();
     }
@@ -93,12 +94,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         void bind(final Module module) {
             ImageView picture = binding.cardImage;
             Glide.with(picture.getContext()).load(module.getPicture()).into(picture);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mItemListener.onModuleClick(module);
-                }
-            });
+            itemView.setOnClickListener(v -> mItemListener.onModuleClick(module));
             binding.setModule(module);
         }
     }

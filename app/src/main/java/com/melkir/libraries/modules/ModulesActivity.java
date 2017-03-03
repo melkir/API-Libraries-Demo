@@ -103,13 +103,10 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
 
         // Update the UI if the user is logged
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) showUserOnNavHeader(user);
-                else showNoUserOnNavHeader();
-            }
+        firebaseAuth.addAuthStateListener(auth -> {
+            FirebaseUser user = auth.getCurrentUser();
+            if (user != null) showUserOnNavHeader(user);
+            else showNoUserOnNavHeader();
         });
     }
 
@@ -137,12 +134,7 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
     protected void onRestoreInstanceState(Bundle bundle) {
         final ModulesType currentFiltering = (ModulesType) bundle.getSerializable(CURRENT_FILTERING_KEY);
         // TODO Replace this part with an Observable to apply filtering after getModules have finished
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mModulesPresenter.setFiltering(currentFiltering);
-            }
-        }, 100);
+        new Handler().postDelayed(() -> mModulesPresenter.setFiltering(currentFiltering), 100);
 
         SubMenu menu = mNavigationView.getMenu().getItem(0).getSubMenu();
         if (COMPONENT == currentFiltering) {
@@ -163,19 +155,11 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         mSearchView.setOnQueryTextListener(this);
 
-        mSearchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mModulesPresenter.setDisplayTypeSearch();
-            }
-        });
+        mSearchView.setOnSearchClickListener(view -> mModulesPresenter.setDisplayTypeSearch());
 
-        mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                mModulesPresenter.setDisplayTypeCards();
-                return false;
-            }
+        mSearchView.setOnCloseListener(() -> {
+            mModulesPresenter.setDisplayTypeCards();
+            return false;
         });
 
         return true;
@@ -214,11 +198,6 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
         } else if (resultCode == ErrorCodes.NO_NETWORK) {
             showSnackbar(getString(R.string.no_internet_connection));
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     private class NavigationViewListener implements NavigationView.OnNavigationItemSelectedListener {

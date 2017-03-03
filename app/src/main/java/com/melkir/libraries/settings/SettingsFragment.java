@@ -4,14 +4,10 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.melkir.libraries.R;
@@ -38,25 +34,15 @@ public class SettingsFragment extends PreferenceFragment {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (null != user) {
             mDisconnect.setEnabled(true);
-            mDisconnect.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference arg0) {
-                    user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(getActivity(), "Account disconnected", Toast.LENGTH_SHORT).show();
-                            mDisconnect.setEnabled(false);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getActivity(),
-                                    "An error occurred, please check your internet connection",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-                    return true;
-                }
+            mDisconnect.setOnPreferenceClickListener(arg0 -> {
+                user.delete().addOnCompleteListener(task -> {
+                    Toast.makeText(getActivity(), "Account disconnected", Toast.LENGTH_SHORT).show();
+                    mDisconnect.setEnabled(false);
+                }).addOnFailureListener(e -> Toast.makeText(getActivity(),
+                        "An error occurred, please check your internet connection",
+                        Toast.LENGTH_LONG).show()
+                );
+                return true;
             });
         } else {
             mDisconnect.setOnPreferenceClickListener(null);
@@ -66,12 +52,9 @@ public class SettingsFragment extends PreferenceFragment {
         String currentLanguage = LocaleHelper.getLanguage(getActivity());
         ListPreference language = (ListPreference) getPreferenceManager().findPreference("language");
         language.setValue(currentLanguage);
-        language.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                updateView((String) newValue);
-                return true;
-            }
+        language.setOnPreferenceChangeListener((preference, newValue) -> {
+            updateView((String) newValue);
+            return true;
         });
     }
 

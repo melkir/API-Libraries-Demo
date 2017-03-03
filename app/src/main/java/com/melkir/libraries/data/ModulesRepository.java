@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ModulesRepository implements ModulesDataSource {
     private static final String TAG = ModulesRepository.class.getSimpleName();
-    private List<Module> modules;
+    private final List<Module> modules;
 
     public ModulesRepository(Context context) {
         Log.d(TAG, "newModulesRepository");

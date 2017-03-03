@@ -31,6 +31,7 @@ public class ModulesActivityPresenterTest {
 
     private ModulesPresenter presenter;
     private final List<Module> MANY_MODULES = Arrays.asList(new Module(), new Module(), new Module());
+    private final List<Module> EMPTY_LIST = Collections.emptyList();
 
     @Before
     public void setUp() {
@@ -51,7 +52,7 @@ public class ModulesActivityPresenterTest {
 
     @Test
     public void shouldHandleNoModulesFound() {
-        when(modulesRepository.getModules()).thenReturn(Collections.<Module>emptyList());
+        when(modulesRepository.getModules()).thenReturn(EMPTY_LIST);
 
         presenter.loadModules();
 

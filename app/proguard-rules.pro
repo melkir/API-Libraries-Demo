@@ -37,3 +37,6 @@
 -dontwarn sun.misc.Unsafe
 -dontwarn android.databinding.tool.util.**
 -dontwarn com.google.common.**
+
+# For Retrolambda
+-dontwarn java.lang.invoke.*

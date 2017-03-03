@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
@@ -46,18 +45,12 @@ public class FeedbackDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.button_text_send, null)
                 .create();
 
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(final DialogInterface dialog) {
-                Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //Dismiss once everything is OK.
-                        if (submitForm()) dialog.dismiss();
-                    }
-                });
-            }
+        dialog.setOnShowListener(alertDialog -> {
+            Button button = ((AlertDialog) alertDialog).getButton(AlertDialog.BUTTON_POSITIVE);
+            button.setOnClickListener(v -> {
+                //Dismiss once everything is OK.
+                if (submitForm()) alertDialog.dismiss();
+            });
         });
         return dialog;
     }

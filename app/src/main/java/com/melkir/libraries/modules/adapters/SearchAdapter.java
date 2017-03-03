@@ -2,7 +2,6 @@ package com.melkir.libraries.modules.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -15,6 +14,9 @@ import com.melkir.libraries.modules.ModulesFragment;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import java8.util.stream.Collectors;
+import java8.util.stream.StreamSupport;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -52,7 +54,7 @@ public class SearchAdapter extends SortedListAdapter<Module> {
         edit().replaceAll(modules).commit();
     }
 
-    public void setList(List<Module> modules) {
+    private void setList(List<Module> modules) {
         mDefaultList = checkNotNull(modules);
     }
 
@@ -62,21 +64,15 @@ public class SearchAdapter extends SortedListAdapter<Module> {
             mFilteredList.addAll(mDefaultList);
         } else {
             String title = requestTitle.toLowerCase();
-            for (Module module : mDefaultList) {
-                if (module.getTitle().toLowerCase().contains(title)) {
-                    mFilteredList.add(module);
-                }
-            }
+            List<Module> matchingModules = StreamSupport.stream(mDefaultList)
+                    .filter(module -> module.getTitle().toLowerCase().contains(title))
+                    .collect(Collectors.toList());
+            mFilteredList.addAll(matchingModules);
         }
         edit().replaceAll(mFilteredList).commit();
     }
 
-    private static final Comparator<Module> TITLE_COMPARATOR = new Comparator<Module>() {
-        @Override
-        public int compare(Module a, Module b) {
-            return a.getTitle().compareTo(b.getTitle());
-        }
-    };
+    private static final Comparator<Module> TITLE_COMPARATOR = (a, b) -> a.getTitle().compareTo(b.getTitle());
 
     private class SearchViewHolder extends SortedListAdapter.ViewHolder<Module> {
         private final SearchBinding binding;
@@ -90,12 +86,7 @@ public class SearchAdapter extends SortedListAdapter<Module> {
         protected void performBind(final Module module) {
             ImageView avatar = binding.itemAvatar;
             Glide.with(avatar.getContext()).load(module.getPicture()).into(avatar);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mItemListener.onModuleClick(module);
-                }
-            });
+            itemView.setOnClickListener(v -> mItemListener.onModuleClick(module));
             binding.setModule(module);
         }
     }

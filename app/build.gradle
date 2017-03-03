@@ -10,6 +10,10 @@ android {
         versionCode 5
         versionName "1.5.2"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         debug {
             multiDexEnabled true
@@ -52,6 +56,7 @@ dependencies {
     compile 'com.github.wrdlbrnft:sorted-list-adapter:0.1.0.5'
     compile 'com.google.guava:guava:20.0'
     compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'net.sourceforge.streamsupport:streamsupport:1.5.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile project(path: ':barcode-reader')
     compile project(path: ':face-tracker')
@@ -65,3 +70,4 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'me.tatarka.retrolambda'
