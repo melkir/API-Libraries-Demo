@@ -9,10 +9,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.melkir.libraries.R;
 import com.melkir.libraries.util.LocaleHelper;
 
@@ -34,15 +35,24 @@ public class SettingsFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.preferences);
 
         mDisconnect = getPreferenceManager().findPreference("disconnect");
-        if (null != FirebaseAuth.getInstance().getCurrentUser()) {
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (null != user) {
             mDisconnect.setEnabled(true);
             mDisconnect.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference arg0) {
-                    AuthUI.getInstance().delete(getActivity()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            displayTaskResult(task);
+                            Toast.makeText(getActivity(), "Account disconnected", Toast.LENGTH_SHORT).show();
+                            mDisconnect.setEnabled(false);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(),
+                                    "An error occurred, please check your internet connection",
+                                    Toast.LENGTH_LONG).show();
                         }
                     });
                     return true;
@@ -63,15 +73,6 @@ public class SettingsFragment extends PreferenceFragment {
                 return true;
             }
         });
-    }
-
-    private void displayTaskResult(Task<Void> task) {
-        if (task.isSuccessful()) {
-            Toast.makeText(getActivity(), "Account disconnected", Toast.LENGTH_SHORT).show();
-            mDisconnect.setEnabled(false);
-        } else {
-            Toast.makeText(getActivity(), "An error occurred, please check your internet connection", Toast.LENGTH_LONG).show();
-        }
     }
 
     private void updateView(String languageCode) {

@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.ui.ResultCodes;
+import com.firebase.ui.auth.ErrorCodes;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.melkir.libraries.BuildConfig;
@@ -211,9 +211,14 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
             Log.d(TAG, "User logged in");
         } else if (resultCode == RESULT_CANCELED) {
             showSnackbar(getString(R.string.sign_in_cancelled));
-        } else if (resultCode == ResultCodes.RESULT_NO_NETWORK) {
+        } else if (resultCode == ErrorCodes.NO_NETWORK) {
             showSnackbar(getString(R.string.no_internet_connection));
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     private class NavigationViewListener implements NavigationView.OnNavigationItemSelectedListener {
