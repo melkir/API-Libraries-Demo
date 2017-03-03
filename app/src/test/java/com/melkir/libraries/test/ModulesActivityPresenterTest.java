@@ -1,15 +1,16 @@
 package com.melkir.libraries.test;
 
-import com.melkir.libraries.data.ModulesDataSource;
 import com.melkir.libraries.data.Module;
+import com.melkir.libraries.data.ModulesDataSource;
 import com.melkir.libraries.modules.ModulesContract;
 import com.melkir.libraries.modules.ModulesPresenter;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,8 +19,9 @@ import java.util.List;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
 public class ModulesActivityPresenterTest {
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock
     ModulesDataSource modulesRepository;
