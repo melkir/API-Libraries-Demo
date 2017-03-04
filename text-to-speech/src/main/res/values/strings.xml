@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Text to Speech</string>
     <string name="random">Random</string>
     <string name="enter_text">Enter text</string>

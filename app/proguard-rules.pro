@@ -40,3 +40,4 @@
 
 # For Retrolambda
 -dontwarn java.lang.invoke.*
+-dontwarn java8.util.*
