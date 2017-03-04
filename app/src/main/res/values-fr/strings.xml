@@ -12,7 +12,6 @@
     <string name="action_send_feedback">Envoyer un commentaire</string>
     <string name="action_about">A propos</string>
     <string name="category">Catégories</string>
-    <string name="card_title_description">Description</string>
     <string name="action_search">Rechercher</string>
     <string name="disconnect_summary">Délier votre compte Google de l\'application</string>
     <string name="disconnect_title">Délier</string>
@@ -27,4 +26,5 @@
     <string name="contributor">Contributeur</string>
     <string name="contributor_text">Illustrations par Cassandra Vion</string>
     <string name="language">Langue</string>
+    <string name="no_data_available">Aucun module trouvé</string>
 </resources>

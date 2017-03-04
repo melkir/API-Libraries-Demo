@@ -30,3 +30,14 @@
 -dontwarn org.shaded.apache.**
 -dontwarn org.ietf.jgss.**
 -dontwarn com.google.android.gms.**
+
+# For Guava
+-dontwarn javax.annotation.**
+-dontwarn javax.inject.**
+-dontwarn sun.misc.Unsafe
+-dontwarn android.databinding.tool.util.**
+-dontwarn com.google.common.**
+
+# For Retrolambda
+-dontwarn java.lang.invoke.*
+-dontwarn java8.util.*

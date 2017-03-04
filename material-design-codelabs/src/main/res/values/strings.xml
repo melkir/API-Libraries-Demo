@@ -13,7 +13,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">"Material Design Codelab "</string>
     <string name="action_settings">Settings</string>
     <string name="item_title">Palais Garnier</string>

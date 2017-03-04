@@ -14,7 +14,7 @@
   ~ limitations under the License.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Our Streets</string>
     <string name="action_panorama">Show panorama</string>
     <string name="loading_failed">Loading failed. :-(</string>

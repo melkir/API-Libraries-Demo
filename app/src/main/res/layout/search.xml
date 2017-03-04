@@ -5,12 +5,8 @@
     <data>
 
         <variable
-            name="listener"
-            type="com.melkir.libraries.view.SearchAdapter.Listener" />
-
-        <variable
             name="module"
-            type="com.melkir.libraries.model.Module" />
+            type="com.melkir.libraries.data.Module" />
     </data>
 
     <RelativeLayout
@@ -18,7 +14,6 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
-        android:onClick="@{view -> listener.onModuleClicked(module)}"
         android:padding="@dimen/md_keylines">
 
         <de.hdodenhof.circleimageview.CircleImageView
