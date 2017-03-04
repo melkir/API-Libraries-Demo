@@ -56,7 +56,7 @@ public class ModulesActivity extends AppCompatActivity implements SearchView.OnQ
 
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
-    @BindView(R.id.drawer)
+    @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
