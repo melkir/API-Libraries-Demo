@@ -30,6 +30,13 @@ public class ModuleDetailPresenterTest {
     }
 
     @Test
+    public void shouldLoadModuleOnStart() {
+        mModuleDetailPresenter.start();
+
+        verify(mModuleDetailView).showModule(MODULE);
+    }
+
+    @Test
     public void shouldPassModuleToView() {
         mModuleDetailPresenter.loadModule();
 
