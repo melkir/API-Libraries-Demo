@@ -48,18 +48,6 @@ ext {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:3.0.1', {
-        // Necessary to avoid version conflicts
-        exclude group: 'com.android.support', module: 'support-v4'
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude module: 'recyclerview-v7'
-    })
-    androidTestImplementation('com.android.support.test.espresso:espresso-intents:3.0.1', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     implementation "com.android.support:appcompat-v7:$appCompatVersion"
     implementation "com.android.support:design:$appCompatVersion"
     implementation "com.android.support:cardview-v7:$appCompatVersion"
@@ -82,6 +70,9 @@ dependencies {
     implementation project(path: ':text-to-speech')
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.7.12'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
