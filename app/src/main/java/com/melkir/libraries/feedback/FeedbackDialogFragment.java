@@ -42,7 +42,7 @@ public class FeedbackDialogFragment extends DialogFragment {
 
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setView(view)
-                .setPositiveButton(R.string.button_text_send, null)
+                .setPositiveButton(R.string.action_send_feedback, null)
                 .create();
 
         dialog.setOnShowListener(alertDialog -> {
