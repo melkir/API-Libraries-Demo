@@ -29,7 +29,7 @@
     <string name="language">Language</string>
     <string name="no_data_available">No module found</string>
 
-    <string name="copyright" translatable="false">Copyright 2016</string>
+    <string name="copyright" translatable="false">Copyright 2017</string>
     <string name="author" translatable="false">Thibault Vieux</string>
     <string name="detail_desc" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
